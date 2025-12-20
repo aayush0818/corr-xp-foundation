@@ -2,69 +2,114 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import CountUpNumber from '@/components/ui/CountUpNumber';
-import { ArrowRight, Shield, Wrench, Microscope, Building2, FileCheck, Users } from 'lucide-react';
+import ScrollIndicator from '@/components/ui/ScrollIndicator';
+import FloatingContact from '@/components/ui/FloatingContact';
+import { ArrowRight, Shield, Wrench, Microscope, Building2, FileCheck, Users, Award, CheckCircle2 } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
+import { motion } from 'framer-motion';
 
-// Hero Section
+// Hero Section - Full bleed with real imagery
 const HeroSection = () => (
-  <section className="relative min-h-screen flex items-center bg-slate pt-20">
-    <div className="absolute inset-0 bg-gradient-to-br from-slate-dark via-slate to-slate-light opacity-90" />
-    <div className="container-custom relative z-10">
-      <div className="max-w-3xl">
-        <AnimatedSection delay={0.1}>
-          <span className="inline-block px-4 py-2 bg-warm-white/10 text-primary text-sm font-medium rounded-full mb-6">
-            Corrosion Concrete Strategist
+  <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    {/* Background Image */}
+    <div 
+      className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage: 'url(https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1920&q=80)'
+      }}
+    />
+    {/* Overlay */}
+    <div className="absolute inset-0 hero-overlay" />
+    
+    {/* Content */}
+    <div className="container-custom relative z-10 pt-20">
+      <div className="max-w-4xl">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <span className="font-script text-primary text-xl md:text-2xl mb-4 block">
+            Excellence in Engineering
           </span>
-        </AnimatedSection>
-        <AnimatedSection delay={0.2}>
-          <h1 className="text-warm-white mb-6 text-balance">
-            Protecting Infrastructure,{' '}
-            <span className="text-primary">Preserving Legacy</span>
-          </h1>
-        </AnimatedSection>
-        <AnimatedSection delay={0.3}>
-          <p className="text-xl text-warm-white/80 mb-8 max-w-2xl leading-relaxed">
-            CORR XP delivers innovative corrosion protection and concrete rehabilitation 
-            solutions that extend the life of critical infrastructure across industries.
-          </p>
-        </AnimatedSection>
-        <AnimatedSection delay={0.4}>
-          <div className="flex flex-wrap gap-4">
-            <Button variant="hero" asChild>
-              <Link to="/contact">
-                Contact Us
-                <ArrowRight size={18} />
-              </Link>
-            </Button>
-            <Button variant="heroOutline" asChild>
-              <Link to="/about">Download Brochure</Link>
-            </Button>
-          </div>
-        </AnimatedSection>
+        </motion.div>
+        
+        <motion.h1 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="text-warm-white text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-[1.1] text-shadow-lg"
+        >
+          Protecting Infrastructure,{' '}
+          <span className="text-primary">Building Legacy</span>
+        </motion.h1>
+        
+        <motion.p 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="text-lg md:text-xl text-warm-white/85 mb-10 max-w-2xl leading-relaxed"
+        >
+          India's leading specialists in corrosion engineering and concrete rehabilitation. 
+          25+ years of protecting critical infrastructure across industries.
+        </motion.p>
+        
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="flex flex-wrap gap-4"
+        >
+          <Button variant="hero" size="lg" asChild>
+            <Link to="/contact">
+              Get Free Consultation
+              <ArrowRight size={18} className="ml-2" />
+            </Link>
+          </Button>
+          <Button 
+            variant="heroOutline" 
+            size="lg" 
+            asChild
+          >
+            <Link to="/projects">Explore Our Work</Link>
+          </Button>
+        </motion.div>
       </div>
     </div>
+
+    <ScrollIndicator />
   </section>
 );
 
-// Stats Section
+// Stats Section - Horizontal with dividers
 const StatsSection = () => {
   const stats = [
-    { value: 25, suffix: '+', label: 'Years Experience' },
-    { value: 500, suffix: '+', label: 'Projects Completed' },
-    { value: 150, suffix: '+', label: 'Expert Engineers' },
-    { value: 98, suffix: '%', label: 'Client Satisfaction' },
+    { value: 25, suffix: '+', label: 'Years of Excellence', icon: Award },
+    { value: 500, suffix: '+', label: 'Projects Delivered', icon: Building2 },
+    { value: 150, suffix: '+', label: 'Expert Engineers', icon: Users },
+    { value: 98, suffix: '%', label: 'Client Retention', icon: CheckCircle2 },
   ];
 
   return (
-    <section className="bg-warm-white py-16">
-      <div className="container-custom">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+    <section className="relative bg-slate py-16 overflow-hidden">
+      {/* Background pattern */}
+      <div className="absolute inset-0 pattern-dots opacity-50" />
+      
+      <div className="container-custom relative z-10">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0">
           {stats.map((stat, index) => (
-            <AnimatedSection key={stat.label} delay={index * 0.1} className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-primary mb-2">
+            <AnimatedSection 
+              key={stat.label} 
+              delay={index * 0.1} 
+              className="stat-divider text-center lg:px-8"
+            >
+              <stat.icon className="w-8 h-8 text-primary mx-auto mb-3 opacity-80" />
+              <div className="text-4xl md:text-5xl font-bold text-warm-white mb-2 tracking-tight">
                 <CountUpNumber end={stat.value} suffix={stat.suffix} />
               </div>
-              <p className="text-charcoal/70 font-medium">{stat.label}</p>
+              <p className="text-warm-white/60 font-medium text-sm uppercase tracking-wide">
+                {stat.label}
+              </p>
             </AnimatedSection>
           ))}
         </div>
@@ -73,62 +118,140 @@ const StatsSection = () => {
   );
 };
 
-// Services Preview
+// About Snapshot - Asymmetric layout with overlapping elements
+const AboutSnapshotSection = () => (
+  <section className="bg-warm-white section-padding overflow-hidden">
+    <div className="container-custom">
+      <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        {/* Image Column - with offset */}
+        <AnimatedSection direction="left" className="lg:col-span-6 order-2 lg:order-1">
+          <div className="relative">
+            {/* Main Image */}
+            <div className="relative aspect-[4/5] rounded overflow-hidden shadow-custom-xl">
+              <img
+                src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800&q=80"
+                alt="Engineering team inspecting infrastructure"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            
+            {/* Floating accent card */}
+            <div className="absolute -bottom-8 -right-8 bg-primary p-6 rounded shadow-custom-xl max-w-[200px]">
+              <div className="text-4xl font-bold text-primary-foreground mb-1">25+</div>
+              <div className="text-primary-foreground/80 text-sm">Years Building Trust</div>
+            </div>
+            
+            {/* Decorative line */}
+            <div className="absolute -left-6 top-1/4 w-1 h-32 bg-primary hidden lg:block" />
+          </div>
+        </AnimatedSection>
+
+        {/* Content Column */}
+        <AnimatedSection direction="right" className="lg:col-span-6 order-1 lg:order-2">
+          <span className="font-script text-accent text-lg mb-2 block">Who We Are</span>
+          <h2 className="mb-6 text-charcoal">
+            Engineering Excellence,{' '}
+            <span className="text-primary">Proven Results</span>
+          </h2>
+          
+          <div className="space-y-4 text-charcoal/75 mb-8">
+            <p className="text-lg leading-relaxed">
+              CORR XP has been at the forefront of corrosion engineering and concrete 
+              rehabilitation in India for over two decades. We combine cutting-edge 
+              technology with deep expertise to protect critical infrastructure.
+            </p>
+            <p className="leading-relaxed">
+              From oil refineries to transportation networks, our solutions extend 
+              asset lifecycles, minimize downtime, and deliver measurable ROI. We don't 
+              just fix problems — we engineer lasting solutions.
+            </p>
+          </div>
+
+          {/* Key points */}
+          <div className="grid grid-cols-2 gap-4 mb-8">
+            {['ISO Certified', 'Pan-India Presence', 'Expert Team', 'Proven Methods'].map((item) => (
+              <div key={item} className="flex items-center gap-2 text-charcoal/80">
+                <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
+                <span className="text-sm font-medium">{item}</span>
+              </div>
+            ))}
+          </div>
+          
+          <Button variant="default" size="lg" asChild>
+            <Link to="/about">
+              Learn Our Story
+              <ArrowRight size={18} className="ml-2" />
+            </Link>
+          </Button>
+        </AnimatedSection>
+      </div>
+    </div>
+  </section>
+);
+
+// Services Preview - Card grid with hover effects
 const ServicesPreviewSection = () => {
   const services = [
     {
       icon: Microscope,
       title: 'Corrosion Assessment',
-      description: 'Comprehensive evaluation and analysis of corrosion damage using advanced diagnostic techniques.',
+      description: 'Advanced diagnostic techniques for comprehensive damage evaluation and risk analysis.',
     },
     {
       icon: Wrench,
-      title: 'Concrete Repair',
-      description: 'Expert restoration of deteriorated concrete structures to ensure structural integrity.',
+      title: 'Concrete Rehabilitation',
+      description: 'Expert restoration of deteriorated structures to ensure long-term structural integrity.',
     },
     {
       icon: Shield,
-      title: 'Protective Coatings',
-      description: 'Application of specialized coatings to prevent future corrosion and extend asset life.',
+      title: 'Protective Systems',
+      description: 'Specialized coating systems and cathodic protection to prevent future corrosion.',
     },
     {
       icon: Building2,
-      title: 'Structural Analysis',
-      description: 'In-depth structural evaluations to identify vulnerabilities and recommend solutions.',
+      title: 'Structural Engineering',
+      description: 'In-depth structural analysis to identify vulnerabilities and design solutions.',
     },
     {
       icon: FileCheck,
       title: 'Quality Assurance',
-      description: 'Rigorous testing and inspection services to ensure compliance with industry standards.',
+      description: 'Rigorous testing and inspection to ensure compliance with global standards.',
     },
     {
       icon: Users,
-      title: 'Consulting Services',
-      description: 'Strategic guidance for infrastructure maintenance, planning, and risk management.',
+      title: 'Technical Consulting',
+      description: 'Strategic guidance for maintenance planning and infrastructure management.',
     },
   ];
 
   return (
-    <section className="bg-warm-white-dark section-padding">
-      <div className="container-custom">
-        <AnimatedSection className="text-center mb-12">
-          <span className="text-primary font-medium mb-2 block">What We Do</span>
-          <h2 className="mb-4">Our Core Services</h2>
-          <p className="text-charcoal/70 max-w-2xl mx-auto">
-            Delivering comprehensive solutions for corrosion control and concrete rehabilitation 
-            across industrial, commercial, and public infrastructure sectors.
+    <section className="bg-warm-white-dark section-padding relative overflow-hidden">
+      {/* Background pattern */}
+      <div className="absolute inset-0 pattern-lines" />
+      
+      <div className="container-custom relative z-10">
+        <AnimatedSection className="max-w-2xl mb-14">
+          <span className="font-script text-accent text-lg mb-2 block">Our Expertise</span>
+          <h2 className="mb-4 text-charcoal">Comprehensive Solutions</h2>
+          <p className="text-charcoal/70 text-lg">
+            End-to-end services for corrosion control and concrete rehabilitation 
+            across industrial, commercial, and infrastructure sectors.
           </p>
         </AnimatedSection>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
             <AnimatedSection key={service.title} delay={index * 0.1}>
-              <div className="bg-warm-white p-8 rounded-lg card-hover h-full border border-border">
-                <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
-                  <service.icon className="w-7 h-7 text-primary" />
+              <div className="group bg-warm-white p-8 h-full border border-border hover:border-primary/30 hover:shadow-custom-lg transition-all duration-400 rounded">
+                <div className="w-12 h-12 bg-slate/5 rounded flex items-center justify-center mb-6 group-hover:bg-primary/10 transition-colors">
+                  <service.icon className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
-                <p className="text-charcoal/70 leading-relaxed">{service.description}</p>
+                <h3 className="text-lg font-semibold mb-3 text-charcoal group-hover:text-primary transition-colors">
+                  {service.title}
+                </h3>
+                <p className="text-charcoal/65 leading-relaxed text-sm">
+                  {service.description}
+                </p>
               </div>
             </AnimatedSection>
           ))}
@@ -138,7 +261,7 @@ const ServicesPreviewSection = () => {
           <Button variant="default" size="lg" asChild>
             <Link to="/services">
               View All Services
-              <ArrowRight size={18} />
+              <ArrowRight size={18} className="ml-2" />
             </Link>
           </Button>
         </AnimatedSection>
@@ -147,146 +270,142 @@ const ServicesPreviewSection = () => {
   );
 };
 
-// About Snapshot
-const AboutSnapshotSection = () => (
-  <section className="bg-slate section-padding">
-    <div className="container-custom">
-      <div className="grid lg:grid-cols-2 gap-12 items-center">
-        <AnimatedSection direction="right">
-          <span className="text-primary font-medium mb-2 block">About CORR XP</span>
-          <h2 className="text-warm-white mb-6">
-            Engineering Excellence Since 1999
-          </h2>
-          <p className="text-warm-white/80 mb-6 leading-relaxed">
-            For over two decades, CORR XP has been at the forefront of corrosion engineering 
-            and concrete technology. Our team of expert engineers and scientists combine 
-            cutting-edge research with practical field experience to deliver solutions that 
-            stand the test of time.
-          </p>
-          <p className="text-warm-white/70 mb-8 leading-relaxed">
-            We partner with clients across industries — from oil & gas to transportation 
-            infrastructure — providing tailored strategies that minimize downtime, reduce 
-            costs, and extend asset lifecycles.
-          </p>
-          <Button variant="hero" asChild>
-            <Link to="/about">
-              Learn More About Us
-              <ArrowRight size={18} />
-            </Link>
-          </Button>
-        </AnimatedSection>
-
-        <AnimatedSection direction="left" delay={0.2}>
-          <div className="relative">
-            <div className="aspect-[4/3] bg-slate-light rounded-lg overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80"
-                alt="Engineering team at work"
-                className="w-full h-full object-cover opacity-80"
-              />
-            </div>
-            <div className="absolute -bottom-6 -left-6 bg-primary p-6 rounded-lg shadow-custom-xl">
-              <div className="text-3xl font-bold text-primary-foreground">25+</div>
-              <div className="text-primary-foreground/80 text-sm">Years of Excellence</div>
-            </div>
-          </div>
-        </AnimatedSection>
-      </div>
-    </div>
-  </section>
-);
-
-// Projects Preview
+// Projects Preview - Featured layout
 const ProjectsPreviewSection = () => {
+  const featuredProject = {
+    id: 1,
+    title: 'Mumbai Coastal Road Protection',
+    category: 'Infrastructure',
+    location: 'Maharashtra',
+    image: 'https://images.unsplash.com/photo-1545558014-8692077e9b5c?auto=format&fit=crop&w=1200&q=80',
+    description: 'Comprehensive corrosion protection system for 10km coastal infrastructure.',
+  };
+
   const projects = [
     {
-      id: 1,
-      title: 'Harbor Bridge Restoration',
-      category: 'Infrastructure',
-      image: 'https://images.unsplash.com/photo-1545558014-8692077e9b5c?auto=format&fit=crop&w=600&q=80',
-    },
-    {
       id: 2,
-      title: 'Industrial Tank Coating',
+      title: 'Refinery Tank Rehabilitation',
       category: 'Oil & Gas',
       image: 'https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=600&q=80',
     },
     {
       id: 3,
-      title: 'Parking Structure Repair',
+      title: 'Multi-Level Parking Repair',
       category: 'Commercial',
       image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80',
     },
   ];
 
   return (
-    <section className="bg-warm-white section-padding">
+    <section className="bg-slate section-padding">
       <div className="container-custom">
-        <AnimatedSection className="text-center mb-12">
-          <span className="text-primary font-medium mb-2 block">Our Work</span>
-          <h2 className="mb-4">Featured Projects</h2>
-          <p className="text-charcoal/70 max-w-2xl mx-auto">
-            Explore our portfolio of successful corrosion protection and concrete 
-            rehabilitation projects across diverse industries.
-          </p>
+        <AnimatedSection className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
+          <div>
+            <span className="font-script text-primary text-lg mb-2 block">Our Portfolio</span>
+            <h2 className="text-warm-white">Featured Projects</h2>
+          </div>
+          <Button variant="heroOutline" asChild>
+            <Link to="/projects">
+              View All Projects
+              <ArrowRight size={16} className="ml-2" />
+            </Link>
+          </Button>
         </AnimatedSection>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-2 gap-6">
+          {/* Featured Project */}
+          <AnimatedSection direction="left" className="lg:row-span-2">
+            <Link to={`/projects/${featuredProject.id}`} className="block group h-full">
+              <div className="relative h-full min-h-[400px] lg:min-h-full overflow-hidden rounded img-zoom">
+                <img
+                  src={featuredProject.image}
+                  alt={featuredProject.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-dark/90 via-slate-dark/40 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-8">
+                  <span className="inline-block px-3 py-1 bg-primary text-primary-foreground text-xs font-medium rounded mb-3">
+                    {featuredProject.category}
+                  </span>
+                  <h3 className="text-2xl font-bold text-warm-white mb-2 group-hover:text-primary transition-colors">
+                    {featuredProject.title}
+                  </h3>
+                  <p className="text-warm-white/70 text-sm mb-1">{featuredProject.location}</p>
+                  <p className="text-warm-white/60 text-sm">{featuredProject.description}</p>
+                </div>
+              </div>
+            </Link>
+          </AnimatedSection>
+
+          {/* Other Projects */}
           {projects.map((project, index) => (
-            <AnimatedSection key={project.id} delay={index * 0.15} direction="up">
+            <AnimatedSection key={project.id} direction="right" delay={index * 0.15}>
               <Link to={`/projects/${project.id}`} className="block group">
-                <div className="relative overflow-hidden rounded-lg aspect-[4/3] mb-4">
+                <div className="relative h-[200px] overflow-hidden rounded img-zoom">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-slate-dark/40 group-hover:bg-slate-dark/20 transition-colors duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-dark/80 via-transparent to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <span className="text-primary text-xs font-medium uppercase tracking-wide">
+                      {project.category}
+                    </span>
+                    <h3 className="text-lg font-semibold text-warm-white mt-1 group-hover:text-primary transition-colors">
+                      {project.title}
+                    </h3>
+                  </div>
                 </div>
-                <span className="text-accent text-sm font-medium">{project.category}</span>
-                <h3 className="text-xl font-semibold mt-1 group-hover:text-primary transition-colors">
-                  {project.title}
-                </h3>
               </Link>
             </AnimatedSection>
           ))}
         </div>
-
-        <AnimatedSection className="text-center mt-12">
-          <Button variant="default" size="lg" asChild>
-            <Link to="/projects">
-              View All Projects
-              <ArrowRight size={18} />
-            </Link>
-          </Button>
-        </AnimatedSection>
       </div>
     </section>
   );
 };
 
-// CTA Section
+// CTA Section - Minimal and bold
 const CTASection = () => (
-  <section className="bg-primary section-padding">
-    <div className="container-custom text-center">
-      <AnimatedSection>
-        <h2 className="text-primary-foreground mb-4">
-          Ready to Protect Your Infrastructure?
-        </h2>
-        <p className="text-primary-foreground/80 max-w-2xl mx-auto mb-8">
-          Contact our team of experts to discuss your corrosion protection and 
-          concrete rehabilitation needs. We're here to help.
-        </p>
-        <div className="flex flex-wrap justify-center gap-4">
+  <section className="bg-primary section-padding-sm relative overflow-hidden">
+    {/* Decorative pattern */}
+    <div className="absolute inset-0 opacity-10">
+      <div className="absolute top-0 right-0 w-96 h-96 bg-warm-white rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent rounded-full blur-3xl" />
+    </div>
+    
+    <div className="container-custom relative z-10">
+      <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+        <div className="text-center lg:text-left">
+          <h2 className="text-primary-foreground text-3xl md:text-4xl font-bold mb-2">
+            Ready to Protect Your Assets?
+          </h2>
+          <p className="text-primary-foreground/80 text-lg">
+            Get a free consultation with our engineering experts today.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-4">
           <Button
-            variant="heroOutline"
-            className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
+            size="lg"
+            className="bg-warm-white text-primary hover:bg-warm-white/90 font-semibold"
             asChild
           >
-            <Link to="/contact">Get Started Today</Link>
+            <Link to="/contact">
+              Request a Quote
+              <ArrowRight size={18} className="ml-2" />
+            </Link>
+          </Button>
+          <Button
+            variant="heroOutline"
+            size="lg"
+            className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
+            asChild
+          >
+            <Link to="/services">Our Services</Link>
           </Button>
         </div>
-      </AnimatedSection>
+      </div>
     </div>
   </section>
 );
@@ -300,15 +419,16 @@ const Index = () => {
           name="description"
           content="CORR XP delivers innovative corrosion protection and concrete rehabilitation solutions that extend the life of critical infrastructure. 25+ years of engineering excellence."
         />
-        <meta name="keywords" content="corrosion protection, concrete repair, infrastructure, structural engineering, protective coatings" />
+        <meta name="keywords" content="corrosion protection, concrete repair, infrastructure, structural engineering, protective coatings, India" />
       </Helmet>
 
       <HeroSection />
       <StatsSection />
-      <ServicesPreviewSection />
       <AboutSnapshotSection />
+      <ServicesPreviewSection />
       <ProjectsPreviewSection />
       <CTASection />
+      <FloatingContact />
     </>
   );
 };
