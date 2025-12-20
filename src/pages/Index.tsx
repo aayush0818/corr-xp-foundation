@@ -189,78 +189,112 @@ const AboutSnapshotSection = () => (
   </section>
 );
 
-// Services Preview - Card grid with hover effects
+// Services Preview - Tabbed/Interactive approach with real imagery
 const ServicesPreviewSection = () => {
   const services = [
     {
-      icon: Microscope,
       title: 'Corrosion Assessment',
-      description: 'Advanced diagnostic techniques for comprehensive damage evaluation and risk analysis.',
+      subtitle: 'Diagnostic Excellence',
+      description: 'We deploy advanced non-destructive testing methods including half-cell potential mapping, concrete resistivity testing, and chloride profiling to assess the extent of corrosion damage.',
+      image: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=800&q=80',
+      features: ['NDT Testing', 'Chloride Analysis', 'Cover Meter Survey'],
     },
     {
-      icon: Wrench,
       title: 'Concrete Rehabilitation',
-      description: 'Expert restoration of deteriorated structures to ensure long-term structural integrity.',
+      subtitle: 'Structural Restoration',
+      description: 'From micro-silica repairs to complete structural strengthening with CFRP, we restore deteriorated concrete to exceed original specifications.',
+      image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80',
+      features: ['Patch Repairs', 'Carbon Fiber Wrap', 'Grouting Works'],
     },
     {
-      icon: Shield,
-      title: 'Protective Systems',
-      description: 'Specialized coating systems and cathodic protection to prevent future corrosion.',
-    },
-    {
-      icon: Building2,
-      title: 'Structural Engineering',
-      description: 'In-depth structural analysis to identify vulnerabilities and design solutions.',
-    },
-    {
-      icon: FileCheck,
-      title: 'Quality Assurance',
-      description: 'Rigorous testing and inspection to ensure compliance with global standards.',
-    },
-    {
-      icon: Users,
-      title: 'Technical Consulting',
-      description: 'Strategic guidance for maintenance planning and infrastructure management.',
+      title: 'Protective Coatings',
+      subtitle: 'Long-term Defense',
+      description: 'Specialized high-build epoxy, polyurethane, and cementitious coating systems designed to withstand aggressive industrial environments.',
+      image: 'https://images.unsplash.com/photo-1590496793929-36417d3117de?auto=format&fit=crop&w=800&q=80',
+      features: ['Epoxy Systems', 'Anti-Carbonation', 'Waterproofing'],
     },
   ];
 
   return (
-    <section className="bg-warm-white-dark section-padding relative overflow-hidden">
-      {/* Background pattern */}
-      <div className="absolute inset-0 pattern-lines" />
-      
+    <section className="bg-slate section-padding relative overflow-hidden">
       <div className="container-custom relative z-10">
-        <AnimatedSection className="max-w-2xl mb-14">
-          <span className="font-script text-accent text-lg mb-2 block">Our Expertise</span>
-          <h2 className="mb-4 text-charcoal">Comprehensive Solutions</h2>
-          <p className="text-charcoal/70 text-lg">
-            End-to-end services for corrosion control and concrete rehabilitation 
-            across industrial, commercial, and infrastructure sectors.
+        <AnimatedSection className="mb-16">
+          <span className="font-script text-primary text-lg mb-2 block">What We Do</span>
+          <h2 className="text-warm-white mb-4">Engineering Solutions That Last</h2>
+          <p className="text-warm-white/60 text-lg max-w-2xl">
+            Three decades of specialized expertise in protecting India's most critical assets.
           </p>
         </AnimatedSection>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Services - Alternating layout */}
+        <div className="space-y-20">
           {services.map((service, index) => (
-            <AnimatedSection key={service.title} delay={index * 0.1}>
-              <div className="group bg-warm-white p-8 h-full border border-border hover:border-primary/30 hover:shadow-custom-lg transition-all duration-400 rounded">
-                <div className="w-12 h-12 bg-slate/5 rounded flex items-center justify-center mb-6 group-hover:bg-primary/10 transition-colors">
-                  <service.icon className="w-6 h-6 text-primary" />
+            <AnimatedSection 
+              key={service.title} 
+              direction={index % 2 === 0 ? 'left' : 'right'}
+              delay={0.1}
+            >
+              <div className={`grid lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
+                {/* Image */}
+                <div className={`relative ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
+                  <div className="relative aspect-[4/3] overflow-hidden rounded">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover"
+                    />
+                    {/* Overlay gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-slate-dark/40 to-transparent" />
+                  </div>
+                  {/* Number indicator */}
+                  <div className="absolute -bottom-6 -right-4 lg:-right-8">
+                    <span className="text-8xl lg:text-9xl font-bold text-primary/20">
+                      0{index + 1}
+                    </span>
+                  </div>
                 </div>
-                <h3 className="text-lg font-semibold mb-3 text-charcoal group-hover:text-primary transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-charcoal/65 leading-relaxed text-sm">
-                  {service.description}
-                </p>
+
+                {/* Content */}
+                <div className={index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}>
+                  <span className="text-primary text-sm font-medium uppercase tracking-wider mb-2 block">
+                    {service.subtitle}
+                  </span>
+                  <h3 className="text-3xl font-bold text-warm-white mb-4">
+                    {service.title}
+                  </h3>
+                  <p className="text-warm-white/70 leading-relaxed mb-6">
+                    {service.description}
+                  </p>
+                  
+                  {/* Feature tags */}
+                  <div className="flex flex-wrap gap-3 mb-6">
+                    {service.features.map((feature) => (
+                      <span 
+                        key={feature}
+                        className="px-4 py-2 bg-warm-white/5 border border-warm-white/10 text-warm-white/80 text-sm rounded"
+                      >
+                        {feature}
+                      </span>
+                    ))}
+                  </div>
+
+                  <Link 
+                    to="/services" 
+                    className="inline-flex items-center text-primary font-medium hover:gap-3 gap-2 transition-all duration-300 group"
+                  >
+                    Learn More
+                    <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
               </div>
             </AnimatedSection>
           ))}
         </div>
 
-        <AnimatedSection className="text-center mt-12">
-          <Button variant="default" size="lg" asChild>
+        <AnimatedSection className="text-center mt-20">
+          <Button variant="hero" size="lg" asChild>
             <Link to="/services">
-              View All Services
+              Explore All Services
               <ArrowRight size={18} className="ml-2" />
             </Link>
           </Button>
@@ -268,6 +302,119 @@ const ServicesPreviewSection = () => {
       </div>
     </section>
   );
+};
+
+// Clients Section - Logo strip with subtle animation
+const ClientsSection = () => {
+  const clients = [
+    { name: 'ONGC', sector: 'Oil & Gas' },
+    { name: 'L&T', sector: 'Infrastructure' },
+    { name: 'IOCL', sector: 'Petroleum' },
+    { name: 'NTPC', sector: 'Power' },
+    { name: 'NHAI', sector: 'Highways' },
+    { name: 'Reliance', sector: 'Industrial' },
+    { name: 'Tata Steel', sector: 'Manufacturing' },
+    { name: 'Adani Ports', sector: 'Ports' },
+  ];
+
+  return (
+    <section className="bg-warm-white py-16 border-y border-border">
+      <div className="container-custom">
+        <AnimatedSection className="text-center mb-12">
+          <span className="text-charcoal/50 text-sm font-medium uppercase tracking-wider">
+            Trusted by Industry Leaders
+          </span>
+        </AnimatedSection>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-8">
+          {clients.map((client, index) => (
+            <AnimatedSection key={client.name} delay={index * 0.05}>
+              <div className="flex flex-col items-center justify-center p-4 group">
+                <div className="w-16 h-16 bg-slate/5 rounded-full flex items-center justify-center mb-3 group-hover:bg-primary/10 transition-colors">
+                  <span className="text-charcoal font-bold text-lg">{client.name.charAt(0)}</span>
+                </div>
+                <span className="text-charcoal font-semibold text-sm text-center">{client.name}</span>
+                <span className="text-charcoal/40 text-xs mt-0.5">{client.sector}</span>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Testimonials Section - Clean quote style
+const TestimonialsSection = () => {
+  const testimonials = [
+    {
+      quote: "CORR XP's team delivered exceptional results on our refinery rehabilitation project. Their technical expertise and professionalism set them apart from any contractor we've worked with.",
+      author: 'Rajesh Kumar',
+      position: 'Chief Engineer',
+      company: 'ONGC',
+      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80',
+    },
+    {
+      quote: "The corrosion protection system they designed for our coastal infrastructure has exceeded all performance benchmarks. Five years on, we're seeing zero degradation.",
+      author: 'Priya Sharma',
+      position: 'Project Director',
+      company: 'L&T Infrastructure',
+      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80',
+    },
+    {
+      quote: "What impressed us most was their systematic approach to problem-solving. They don't just treat symptoms — they identify root causes and engineer permanent solutions.",
+      author: 'Vikram Mehta',
+      position: 'VP Operations',
+      company: 'Tata Steel',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80',
+    },
+  ];
+
+  return (
+    <section className="bg-warm-white-dark section-padding relative overflow-hidden">
+      {/* Decorative quote mark */}
+      <div className="absolute top-20 left-10 opacity-[0.03]">
+        <svg className="w-64 h-64" viewBox="0 0 100 100" fill="currentColor">
+          <path d="M30 10C13.4 10 0 23.4 0 40s13.4 30 30 30c0 11-9 20-20 20v10c16.6 0 30-13.4 30-30V40c0-16.6-13.4-30-30-30zm60 0c-16.6 0-30 13.4-30 30s13.4 30 30 30c0 11-9 20-20 20v10c16.6 0 30-13.4 30-30V40c0-16.6-13.4-30-30-30z"/>
+        </svg>
+      </div>
+
+      <div className="container-custom relative z-10">
+        <AnimatedSection className="text-center mb-16">
+          <span className="font-script text-accent text-lg mb-2 block">Client Testimonials</span>
+          <h2 className="text-charcoal">What Our Clients Say</h2>
+        </AnimatedSection>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {testimonials.map((testimonial, index) => (
+            <AnimatedSection key={testimonial.author} delay={index * 0.15}>
+              <div className="bg-warm-white p-8 rounded border border-border h-full flex flex-col">
+                {/* Quote */}
+                <blockquote className="text-charcoal/75 leading-relaxed mb-8 flex-grow">
+                  "{testimonial.quote}"
+                </blockquote>
+
+                {/* Author */}
+                <div className="flex items-center gap-4 pt-6 border-t border-border">
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.author}
+                    className="w-12 h-12 rounded-full object-cover"
+                  />
+                  <div>
+                    <div className="font-semibold text-charcoal">{testimonial.author}</div>
+                    <div className="text-sm text-charcoal/50">
+                      {testimonial.position}, {testimonial.company}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
 };
 
 // Projects Preview - Featured layout
@@ -426,7 +573,9 @@ const Index = () => {
       <StatsSection />
       <AboutSnapshotSection />
       <ServicesPreviewSection />
+      <ClientsSection />
       <ProjectsPreviewSection />
+      <TestimonialsSection />
       <CTASection />
       <FloatingContact />
     </>
