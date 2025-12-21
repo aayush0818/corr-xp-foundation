@@ -260,144 +260,149 @@ const ServicesPreviewSection = () => {
   }, [activeService, services.length]);
 
   return (
-    <section ref={sectionRef} className="bg-background relative overflow-hidden" style={{ minHeight: '350vh' }}>
+    <section ref={sectionRef} className="bg-background relative overflow-hidden">
       {/* Background accent */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-slate/30 -skew-x-12 origin-top-right" />
       
-      <div className="container-custom relative z-10 py-20 lg:py-32">
-        {/* Sticky content wrapper */}
-        <div className="lg:sticky lg:top-24">
-          {/* Header with vertical text */}
-          <div className="flex items-start gap-8 mb-16">
-            <div className="hidden lg:flex flex-col items-center">
-              <div className="w-px h-16 bg-primary" />
-              <span className="writing-mode-vertical text-primary text-sm tracking-widest uppercase mt-4 font-medium" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>
-                Our Expertise
-              </span>
-            </div>
-            
-            <AnimatedSection>
-              <h2 className="text-foreground text-4xl lg:text-5xl font-bold mb-4">
-                What We <span className="text-primary">Do</span>
-              </h2>
-              <p className="text-muted-foreground text-lg max-w-xl">
-                Three decades of specialized expertise protecting India's critical infrastructure.
-              </p>
-            </AnimatedSection>
-          </div>
-
-          {/* Interactive Service Grid */}
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-0">
-            {/* Left: Service tabs/list */}
-            <div className="lg:col-span-4 lg:pr-12">
-              <div className="space-y-0 border-l-2 border-border">
-                {services.map((service, index) => (
-                  <button
-                    key={service.title}
-                    onClick={() => setActiveService(index)}
-                    className={`w-full text-left pl-6 py-6 relative transition-all duration-300 group ${
-                      activeService === index 
-                        ? 'border-l-2 border-primary -ml-[2px]' 
-                        : 'hover:bg-muted/30'
-                    }`}
-                  >
-                    {/* Number */}
-                    <span className={`text-sm font-mono mb-1 block transition-colors ${
-                      activeService === index ? 'text-primary' : 'text-muted-foreground'
-                    }`}>
-                      0{index + 1}
-                    </span>
-                    
-                    {/* Title */}
-                    <h3 className={`text-xl font-semibold transition-colors ${
-                      activeService === index ? 'text-foreground' : 'text-muted-foreground group-hover:text-foreground'
-                    }`}>
-                      {service.title}
-                    </h3>
-                    
-                    {/* Stat preview */}
-                    <div className={`mt-2 transition-all duration-300 ${
-                      activeService === index ? 'opacity-100 max-h-20' : 'opacity-0 max-h-0 overflow-hidden'
-                    }`}>
-                      <span className="text-2xl font-bold text-primary">{service.stats.value}</span>
-                      <span className="text-muted-foreground text-sm ml-2">{service.stats.label}</span>
-                    </div>
-                  </button>
-                ))}
+      <div className="relative z-10">
+        {/* Sticky content */}
+        <div className="lg:sticky lg:top-20 py-20 lg:py-32">
+          <div className="container-custom">
+            {/* Header with vertical text */}
+            <div className="flex items-start gap-8 mb-16">
+              <div className="hidden lg:flex flex-col items-center">
+                <div className="w-px h-16 bg-primary" />
+                <span className="writing-mode-vertical text-primary text-sm tracking-widest uppercase mt-4 font-medium" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>
+                  Our Expertise
+                </span>
               </div>
               
-              <div className="mt-8 pl-6">
-                <Link 
-                  to="/services" 
-                  className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all duration-300"
-                >
-                  View All Services
-                  <ArrowRight size={18} />
-                </Link>
-              </div>
+              <AnimatedSection>
+                <h2 className="text-foreground text-4xl lg:text-5xl font-bold mb-4">
+                  What We <span className="text-primary">Do</span>
+                </h2>
+                <p className="text-muted-foreground text-lg max-w-xl">
+                  Three decades of specialized expertise protecting India's critical infrastructure.
+                </p>
+              </AnimatedSection>
             </div>
 
-            {/* Right: Active service display */}
-            <div className="lg:col-span-8 relative">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeService}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.4 }}
-                  className="relative"
-                >
-                  {/* Large image */}
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    <img
-                      src={services[activeService].image}
-                      alt={services[activeService].title}
-                      className="w-full h-full object-cover"
-                    />
-                    {/* Overlay with gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-dark via-slate-dark/20 to-transparent" />
-                    
-                    {/* Content overlay */}
-                    <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-12">
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                      >
-                        <p className="text-warm-white/90 text-lg lg:text-xl max-w-lg leading-relaxed">
-                          {services[activeService].description}
-                        </p>
-                        
-                        <Link 
-                          to="/services"
-                          className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
-                        >
-                          Learn More
-                          <ArrowRight size={16} />
-                        </Link>
-                      </motion.div>
-                    </div>
-                  </div>
-
-                  {/* Floating stat card */}
-                  <motion.div 
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.3 }}
-                    className="absolute -top-4 -right-4 lg:top-8 lg:-right-8 bg-primary text-primary-foreground p-6 lg:p-8"
+            {/* Interactive Service Grid */}
+            <div className="grid lg:grid-cols-12 gap-8 lg:gap-0">
+              {/* Left: Service tabs/list */}
+              <div className="lg:col-span-4 lg:pr-12">
+                <div className="space-y-0 border-l-2 border-border">
+                  {services.map((service, index) => (
+                    <button
+                      key={service.title}
+                      onClick={() => setActiveService(index)}
+                      className={`w-full text-left pl-6 py-6 relative transition-all duration-300 group ${
+                        activeService === index 
+                          ? 'border-l-2 border-primary -ml-[2px]' 
+                          : 'hover:bg-muted/30'
+                      }`}
+                    >
+                      {/* Number */}
+                      <span className={`text-sm font-mono mb-1 block transition-colors ${
+                        activeService === index ? 'text-primary' : 'text-muted-foreground'
+                      }`}>
+                        0{index + 1}
+                      </span>
+                      
+                      {/* Title */}
+                      <h3 className={`text-xl font-semibold transition-colors ${
+                        activeService === index ? 'text-foreground' : 'text-muted-foreground group-hover:text-foreground'
+                      }`}>
+                        {service.title}
+                      </h3>
+                      
+                      {/* Stat preview */}
+                      <div className={`mt-2 transition-all duration-300 ${
+                        activeService === index ? 'opacity-100 max-h-20' : 'opacity-0 max-h-0 overflow-hidden'
+                      }`}>
+                        <span className="text-2xl font-bold text-primary">{service.stats.value}</span>
+                        <span className="text-muted-foreground text-sm ml-2">{service.stats.label}</span>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+                
+                <div className="mt-8 pl-6">
+                  <Link 
+                    to="/services" 
+                    className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all duration-300"
                   >
-                    <div className="text-3xl lg:text-4xl font-bold">{services[activeService].stats.value}</div>
-                    <div className="text-sm opacity-80">{services[activeService].stats.label}</div>
+                    View All Services
+                    <ArrowRight size={18} />
+                  </Link>
+                </div>
+              </div>
+
+              {/* Right: Active service display */}
+              <div className="lg:col-span-8 relative">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeService}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.4 }}
+                    className="relative"
+                  >
+                    {/* Large image */}
+                    <div className="relative aspect-[16/10] overflow-hidden">
+                      <img
+                        src={services[activeService].image}
+                        alt={services[activeService].title}
+                        className="w-full h-full object-cover"
+                      />
+                      {/* Overlay with gradient */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-dark via-slate-dark/20 to-transparent" />
+                      
+                      {/* Content overlay */}
+                      <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-12">
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.2 }}
+                        >
+                          <p className="text-warm-white/90 text-lg lg:text-xl max-w-lg leading-relaxed">
+                            {services[activeService].description}
+                          </p>
+                          
+                          <Link 
+                            to="/services"
+                            className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
+                          >
+                            Learn More
+                            <ArrowRight size={16} />
+                          </Link>
+                        </motion.div>
+                      </div>
+                    </div>
+
+                    {/* Floating stat card */}
+                    <motion.div 
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.3 }}
+                      className="absolute -top-4 -right-4 lg:top-8 lg:-right-8 bg-primary text-primary-foreground p-6 lg:p-8"
+                    >
+                      <div className="text-3xl lg:text-4xl font-bold">{services[activeService].stats.value}</div>
+                      <div className="text-sm opacity-80">{services[activeService].stats.label}</div>
+                    </motion.div>
                   </motion.div>
-                </motion.div>
-              </AnimatePresence>
+                </AnimatePresence>
+              </div>
             </div>
           </div>
         </div>
+        
+        {/* Scroll spacer - this creates the scroll distance for switching services */}
+        <div className="h-[150vh] pointer-events-none" aria-hidden="true" />
       </div>
     </section>
-  )
+  );
 };
 
 // Clients Section - Professional logo strip with marquee effect
