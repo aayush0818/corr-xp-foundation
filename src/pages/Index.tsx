@@ -236,8 +236,10 @@ const ServicesPreviewSection = () => {
       const viewportHeight = window.innerHeight;
       
       // Calculate how far we've scrolled through the section
-      const scrolledIntoSection = viewportHeight - rect.top;
-      const totalScrollableDistance = sectionHeight + viewportHeight * 0.5;
+      // Start switching only after section is 30% into view
+      const scrollStart = viewportHeight * 0.7;
+      const scrolledIntoSection = scrollStart - rect.top;
+      const totalScrollableDistance = sectionHeight - viewportHeight * 0.3;
       const scrollProgress = Math.max(0, Math.min(1, scrolledIntoSection / totalScrollableDistance));
       
       // Map scroll progress to service index
@@ -258,7 +260,7 @@ const ServicesPreviewSection = () => {
   }, [activeService, services.length]);
 
   return (
-    <section ref={sectionRef} className="bg-background relative overflow-hidden" style={{ minHeight: '150vh' }}>
+    <section ref={sectionRef} className="bg-background relative overflow-hidden" style={{ minHeight: '250vh' }}>
       {/* Background accent */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-slate/30 -skew-x-12 origin-top-right" />
       
