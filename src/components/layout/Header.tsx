@@ -163,7 +163,7 @@ const Header = () => {
         </div>
 
         {/* Mobile Header */}
-        <div className="lg:hidden">
+        <div className="lg:hidden bg-slate">
           <div className="container-custom flex items-center justify-between py-3">
             {/* Logo */}
             <Link to="/" className="flex items-center">
@@ -176,7 +176,7 @@ const Header = () => {
 
             {/* Mobile Menu Button */}
             <button
-              className={`p-2 rounded-md transition-colors ${isScrolled ? 'text-slate-dark hover:bg-slate/10' : 'text-warm-white hover:bg-warm-white/10'}`}
+              className="p-2 rounded-md transition-colors text-warm-white hover:bg-warm-white/10"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle menu"
             >
