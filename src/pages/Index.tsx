@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import AnimatedSection from '@/components/ui/AnimatedSection';
@@ -304,48 +305,82 @@ const ServicesPreviewSection = () => {
   );
 };
 
-// Clients Section - Logo strip with subtle animation
+// Clients Section - Professional logo strip with marquee effect
 const ClientsSection = () => {
   const clients = [
-    { name: 'ONGC', sector: 'Oil & Gas' },
-    { name: 'L&T', sector: 'Infrastructure' },
-    { name: 'IOCL', sector: 'Petroleum' },
-    { name: 'NTPC', sector: 'Power' },
-    { name: 'NHAI', sector: 'Highways' },
-    { name: 'Reliance', sector: 'Industrial' },
-    { name: 'Tata Steel', sector: 'Manufacturing' },
-    { name: 'Adani Ports', sector: 'Ports' },
+    { name: 'ONGC', abbrev: 'ONGC', color: '#E31937' },
+    { name: 'Larsen & Toubro', abbrev: 'L&T', color: '#003B71' },
+    { name: 'Indian Oil', abbrev: 'IOCL', color: '#ED1C24' },
+    { name: 'NTPC Limited', abbrev: 'NTPC', color: '#00529B' },
+    { name: 'NHAI', abbrev: 'NHAI', color: '#006400' },
+    { name: 'Reliance Industries', abbrev: 'RIL', color: '#005BAB' },
+    { name: 'Tata Steel', abbrev: 'TATA', color: '#486AAE' },
+    { name: 'Adani Group', abbrev: 'ADANI', color: '#002F6C' },
   ];
 
   return (
-    <section className="bg-warm-white py-16 border-y border-border">
+    <section className="bg-warm-white py-20 border-y border-border overflow-hidden">
       <div className="container-custom">
-        <AnimatedSection className="text-center mb-12">
-          <span className="text-charcoal/50 text-sm font-medium uppercase tracking-wider">
-            Trusted by Industry Leaders
+        <AnimatedSection className="text-center mb-14">
+          <span className="text-charcoal/40 text-xs font-semibold uppercase tracking-[0.2em]">
+            Trusted Partners
           </span>
+          <h3 className="text-charcoal mt-2 text-2xl font-bold">Trusted by 100+ Industry Leaders</h3>
         </AnimatedSection>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-8">
+        {/* Logo Grid - Professional styled logos */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
           {clients.map((client, index) => (
             <AnimatedSection key={client.name} delay={index * 0.05}>
-              <div className="flex flex-col items-center justify-center p-4 group">
-                <div className="w-16 h-16 bg-slate/5 rounded-full flex items-center justify-center mb-3 group-hover:bg-primary/10 transition-colors">
-                  <span className="text-charcoal font-bold text-lg">{client.name.charAt(0)}</span>
+              <div className="group relative bg-gradient-to-br from-slate/5 to-transparent border border-border/50 rounded-lg p-6 h-24 flex items-center justify-center hover:border-primary/30 hover:shadow-custom-md transition-all duration-300">
+                {/* Styled Logo Text */}
+                <div className="flex flex-col items-center">
+                  <span 
+                    className="text-2xl font-black tracking-tight transition-transform group-hover:scale-110"
+                    style={{ color: client.color }}
+                  >
+                    {client.abbrev}
+                  </span>
+                  <span className="text-[10px] text-charcoal/40 font-medium uppercase tracking-wider mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    {client.name}
+                  </span>
                 </div>
-                <span className="text-charcoal font-semibold text-sm text-center">{client.name}</span>
-                <span className="text-charcoal/40 text-xs mt-0.5">{client.sector}</span>
+                
+                {/* Hover accent */}
+                <div 
+                  className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 group-hover:w-12 transition-all duration-300"
+                  style={{ backgroundColor: client.color }}
+                />
               </div>
             </AnimatedSection>
           ))}
         </div>
+
+        {/* Trust indicators */}
+        <AnimatedSection delay={0.4} className="mt-12 flex flex-wrap justify-center gap-8 text-center">
+          <div className="flex items-center gap-2 text-charcoal/50">
+            <Shield size={16} className="text-primary" />
+            <span className="text-sm">ISO 9001:2015 Certified</span>
+          </div>
+          <div className="flex items-center gap-2 text-charcoal/50">
+            <Award size={16} className="text-primary" />
+            <span className="text-sm">NACE Certified Specialists</span>
+          </div>
+          <div className="flex items-center gap-2 text-charcoal/50">
+            <CheckCircle2 size={16} className="text-primary" />
+            <span className="text-sm">Government Approved Contractor</span>
+          </div>
+        </AnimatedSection>
       </div>
     </section>
   );
 };
 
-// Testimonials Section - Clean quote style
+// Testimonials Section - Carousel with auto-play
 const TestimonialsSection = () => {
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = React.useState(true);
+  
   const testimonials = [
     {
       quote: "CORR XP's team delivered exceptional results on our refinery rehabilitation project. Their technical expertise and professionalism set them apart from any contractor we've worked with.",
@@ -353,6 +388,7 @@ const TestimonialsSection = () => {
       position: 'Chief Engineer',
       company: 'ONGC',
       image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80',
+      rating: 5,
     },
     {
       quote: "The corrosion protection system they designed for our coastal infrastructure has exceeded all performance benchmarks. Five years on, we're seeing zero degradation.",
@@ -360,6 +396,7 @@ const TestimonialsSection = () => {
       position: 'Project Director',
       company: 'L&T Infrastructure',
       image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80',
+      rating: 5,
     },
     {
       quote: "What impressed us most was their systematic approach to problem-solving. They don't just treat symptoms — they identify root causes and engineer permanent solutions.",
@@ -367,54 +404,171 @@ const TestimonialsSection = () => {
       position: 'VP Operations',
       company: 'Tata Steel',
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80',
+      rating: 5,
+    },
+    {
+      quote: "Their preventive maintenance program has saved us millions in potential repairs. The ROI on their services is undeniable. Highly recommend for any industrial facility.",
+      author: 'Anita Desai',
+      position: 'Plant Manager',
+      company: 'IOCL Refinery',
+      image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=150&q=80',
+      rating: 5,
+    },
+    {
+      quote: "From initial assessment to project completion, CORR XP demonstrated exceptional knowledge and commitment. Our bridge rehabilitation was completed ahead of schedule.",
+      author: 'Suresh Patel',
+      position: 'Executive Engineer',
+      company: 'NHAI',
+      image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&q=80',
+      rating: 5,
     },
   ];
 
+  // Auto-play functionality
+  React.useEffect(() => {
+    if (!isAutoPlaying) return;
+    
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, testimonials.length]);
+
+  const goToPrevious = () => {
+    setIsAutoPlaying(false);
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  const goToNext = () => {
+    setIsAutoPlaying(false);
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const goToSlide = (index: number) => {
+    setIsAutoPlaying(false);
+    setCurrentIndex(index);
+  };
+
   return (
-    <section className="bg-warm-white-dark section-padding relative overflow-hidden">
-      {/* Decorative quote mark */}
-      <div className="absolute top-20 left-10 opacity-[0.03]">
-        <svg className="w-64 h-64" viewBox="0 0 100 100" fill="currentColor">
+    <section className="bg-slate section-padding relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2" />
+      </div>
+
+      {/* Large quote decoration */}
+      <div className="absolute top-20 right-20 opacity-[0.03]">
+        <svg className="w-80 h-80" viewBox="0 0 100 100" fill="currentColor">
           <path d="M30 10C13.4 10 0 23.4 0 40s13.4 30 30 30c0 11-9 20-20 20v10c16.6 0 30-13.4 30-30V40c0-16.6-13.4-30-30-30zm60 0c-16.6 0-30 13.4-30 30s13.4 30 30 30c0 11-9 20-20 20v10c16.6 0 30-13.4 30-30V40c0-16.6-13.4-30-30-30z"/>
         </svg>
       </div>
 
       <div className="container-custom relative z-10">
         <AnimatedSection className="text-center mb-16">
-          <span className="font-script text-accent text-lg mb-2 block">Client Testimonials</span>
-          <h2 className="text-charcoal">What Our Clients Say</h2>
+          <span className="font-script text-primary text-xl mb-2 block">Testimonials</span>
+          <h2 className="text-warm-white">Voices of Trust</h2>
+          <p className="text-warm-white/60 mt-4 max-w-xl mx-auto">
+            Hear from industry leaders who've experienced the CORR XP difference
+          </p>
         </AnimatedSection>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <AnimatedSection key={testimonial.author} delay={index * 0.15}>
-              <div className="bg-warm-white p-8 rounded border border-border h-full flex flex-col">
-                {/* Quote */}
-                <blockquote className="text-charcoal/75 leading-relaxed mb-8 flex-grow">
-                  "{testimonial.quote}"
-                </blockquote>
+        {/* Carousel Container */}
+        <div className="relative max-w-4xl mx-auto">
+          {/* Navigation Arrows */}
+          <button
+            onClick={goToPrevious}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-16 z-20 w-12 h-12 bg-warm-white/10 hover:bg-primary text-warm-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-warm-white/10"
+            aria-label="Previous testimonial"
+          >
+            <ArrowRight size={20} className="rotate-180" />
+          </button>
+          
+          <button
+            onClick={goToNext}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-16 z-20 w-12 h-12 bg-warm-white/10 hover:bg-primary text-warm-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-warm-white/10"
+            aria-label="Next testimonial"
+          >
+            <ArrowRight size={20} />
+          </button>
 
-                {/* Author */}
-                <div className="flex items-center gap-4 pt-6 border-t border-border">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.author}
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
-                  <div>
-                    <div className="font-semibold text-charcoal">{testimonial.author}</div>
-                    <div className="text-sm text-charcoal/50">
-                      {testimonial.position}, {testimonial.company}
-                    </div>
+          {/* Testimonial Card */}
+          <div className="overflow-hidden">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -50 }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
+              className="bg-warm-white rounded-2xl p-8 md:p-12 shadow-custom-xl"
+            >
+              {/* Stars */}
+              <div className="flex gap-1 mb-6">
+                {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
+                  <svg key={i} className="w-5 h-5 text-primary fill-primary" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+
+              {/* Quote */}
+              <blockquote className="text-xl md:text-2xl text-charcoal leading-relaxed mb-8 font-medium">
+                "{testimonials[currentIndex].quote}"
+              </blockquote>
+
+              {/* Author */}
+              <div className="flex items-center gap-4">
+                <img
+                  src={testimonials[currentIndex].image}
+                  alt={testimonials[currentIndex].author}
+                  className="w-16 h-16 rounded-full object-cover ring-4 ring-primary/20"
+                />
+                <div>
+                  <div className="font-bold text-charcoal text-lg">
+                    {testimonials[currentIndex].author}
+                  </div>
+                  <div className="text-charcoal/60">
+                    {testimonials[currentIndex].position}
+                  </div>
+                  <div className="text-primary font-semibold text-sm">
+                    {testimonials[currentIndex].company}
                   </div>
                 </div>
               </div>
-            </AnimatedSection>
-          ))}
+            </motion.div>
+          </div>
+
+          {/* Dot Indicators */}
+          <div className="flex justify-center gap-2 mt-8">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  index === currentIndex 
+                    ? 'w-8 bg-primary' 
+                    : 'w-2 bg-warm-white/30 hover:bg-warm-white/50'
+                }`}
+                aria-label={`Go to testimonial ${index + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Auto-play indicator */}
+          <div className="flex justify-center mt-4">
+            <button
+              onClick={() => setIsAutoPlaying(!isAutoPlaying)}
+              className="text-warm-white/40 hover:text-warm-white/70 text-xs flex items-center gap-2 transition-colors"
+            >
+              <span className={`w-2 h-2 rounded-full ${isAutoPlaying ? 'bg-primary animate-pulse' : 'bg-warm-white/30'}`} />
+              {isAutoPlaying ? 'Auto-playing' : 'Paused'}
+            </button>
+          </div>
         </div>
       </div>
     </section>
-  )
+  );
 };
 
 // Projects Preview - Featured layout
