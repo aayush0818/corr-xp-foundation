@@ -196,37 +196,47 @@ const ServicesPreviewSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const services = [
     {
-      title: 'Corrosion Assessment',
-      shortTitle: 'Assessment',
-      description: 'Advanced non-destructive testing including half-cell potential mapping, concrete resistivity testing, and chloride profiling.',
+      title: 'Durability Repairs',
+      shortTitle: 'Durability',
+      description: 'Restoration of concrete durability through specialized repair techniques that extend structure lifespan and prevent future deterioration.',
       image: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=800&q=80',
-      stats: { value: '500+', label: 'Structures Assessed' },
+      stats: { value: '300+', label: 'Structures Restored' },
     },
     {
-      title: 'Concrete Rehabilitation',
-      shortTitle: 'Rehabilitation',
-      description: 'Complete structural restoration from micro-silica repairs to CFRP strengthening, exceeding original specifications.',
+      title: 'Structural Repairs',
+      shortTitle: 'Repairs',
+      description: 'Comprehensive repair of damaged structural elements including beams, columns, slabs, and foundations using advanced repair mortars and techniques.',
       image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80',
-      stats: { value: '200K', label: 'Sq.m Repaired' },
+      stats: { value: '500+', label: 'Projects Completed' },
     },
     {
-      title: 'Protective Coatings',
-      shortTitle: 'Coatings',
-      description: 'High-build epoxy, polyurethane, and cementitious systems designed for aggressive industrial environments.',
+      title: 'Structural Strengthening',
+      shortTitle: 'Strengthening',
+      description: 'Enhancing load-bearing capacity of existing structures using CFRP wrapping, steel jacketing, external post-tensioning, and shotcrete overlays.',
       image: 'https://images.unsplash.com/photo-1590496793929-36417d3117de?auto=format&fit=crop&w=800&q=80',
-      stats: { value: '1M+', label: 'Sq.m Protected' },
+      stats: { value: '200+', label: 'Structures Strengthened' },
     },
     {
-      title: 'Cathodic Protection',
-      shortTitle: 'Protection',
-      description: 'State-of-the-art impressed current and sacrificial anode systems for long-term corrosion prevention.',
+      title: 'Seismic Retrofitting',
+      shortTitle: 'Retrofitting',
+      description: 'Earthquake resistance upgrades for existing structures through base isolation, damper installation, and structural reinforcement systems.',
       image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
-      stats: { value: '50+', label: 'Systems Installed' },
+      stats: { value: '75+', label: 'Buildings Retrofitted' },
+    },
+    {
+      title: 'Corrosion Mitigation',
+      shortTitle: 'Mitigation',
+      description: 'Prevention and control of corrosion damage through cathodic protection, protective coatings, and corrosion inhibitor treatments.',
+      image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80',
+      stats: { value: '1M+', label: 'Sq.m Protected' },
     },
   ];
 
-  // Scroll-triggered service switching
+  // Scroll-triggered service switching with debouncing for smoother transitions
   useEffect(() => {
+    let lastServiceIndex = activeService;
+    let debounceTimer: NodeJS.Timeout | null = null;
+    
     const handleScroll = () => {
       if (!sectionRef.current) return;
       
@@ -235,40 +245,51 @@ const ServicesPreviewSection = () => {
       const sectionHeight = section.offsetHeight;
       const viewportHeight = window.innerHeight;
       
-      // Calculate how far we've scrolled through the section
-      // Start switching only after section is 30% into view
-      const scrollStart = viewportHeight * 0.7;
+      // Calculate scroll progress through the section
+      // Use a gentler calculation - start switching after section is 40% in view
+      const scrollStart = viewportHeight * 0.6;
       const scrolledIntoSection = scrollStart - rect.top;
-      const totalScrollableDistance = sectionHeight - viewportHeight * 0.3;
-      const scrollProgress = Math.max(0, Math.min(1, scrolledIntoSection / totalScrollableDistance));
       
-      // Map scroll progress to service index
-      const serviceIndex = Math.min(
-        services.length - 1,
-        Math.floor(scrollProgress * services.length)
-      );
+      // Each service gets 100vh of scroll distance for comfortable reading
+      const scrollDistancePerService = viewportHeight * 1.2;
+      const totalScrollDistance = scrollDistancePerService * services.length;
       
-      if (serviceIndex >= 0 && serviceIndex !== activeService) {
-        setActiveService(serviceIndex);
+      const scrollProgress = Math.max(0, Math.min(1, scrolledIntoSection / totalScrollDistance));
+      
+      // Map scroll progress to service index with dead zones for stability
+      const rawIndex = scrollProgress * services.length;
+      const serviceIndex = Math.min(services.length - 1, Math.max(0, Math.floor(rawIndex)));
+      
+      // Only update if we've moved to a different service
+      if (serviceIndex !== lastServiceIndex) {
+        // Clear any pending debounce
+        if (debounceTimer) clearTimeout(debounceTimer);
+        
+        // Debounce the service switch to prevent rapid flickering
+        debounceTimer = setTimeout(() => {
+          lastServiceIndex = serviceIndex;
+          setActiveService(serviceIndex);
+        }, 80);
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Initial check
     
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [activeService, services.length]);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (debounceTimer) clearTimeout(debounceTimer);
+    };
+  }, [services.length]);
 
   return (
-    <section ref={sectionRef} className="bg-background relative overflow-hidden">
+    <section ref={sectionRef} className="bg-background relative overflow-hidden min-h-[600vh]">
       {/* Background accent */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-slate/30 -skew-x-12 origin-top-right" />
       
-      <div className="relative z-10">
-        {/* Sticky content */}
-        <div className="lg:sticky lg:top-20 py-20 lg:py-32">
-          <div className="container-custom">
-            {/* Header with vertical text */}
+      <div className="sticky top-0 h-screen flex items-center z-10">
+        <div className="container-custom w-full">
+          {/* Header with vertical text */}
             <div className="flex items-start gap-8 mb-16">
               <div className="hidden lg:flex flex-col items-center">
                 <div className="w-px h-16 bg-primary" />
@@ -397,10 +418,6 @@ const ServicesPreviewSection = () => {
             </div>
           </div>
         </div>
-        
-        {/* Scroll spacer - this creates the scroll distance for switching services */}
-        <div className="h-[150vh] pointer-events-none" aria-hidden="true" />
-      </div>
     </section>
   );
 };
