@@ -196,47 +196,37 @@ const ServicesPreviewSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const services = [
     {
-      title: 'Durability Repairs',
-      shortTitle: 'Durability',
-      description: 'Restoration of concrete durability through specialized repair techniques that extend structure lifespan and prevent future deterioration.',
+      title: 'Corrosion Assessment',
+      shortTitle: 'Assessment',
+      description: 'Advanced non-destructive testing including half-cell potential mapping, concrete resistivity testing, and chloride profiling.',
       image: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=800&q=80',
-      stats: { value: '300+', label: 'Structures Restored' },
+      stats: { value: '500+', label: 'Structures Assessed' },
     },
     {
-      title: 'Structural Repairs',
-      shortTitle: 'Repairs',
-      description: 'Comprehensive repair of damaged structural elements including beams, columns, slabs, and foundations using advanced repair mortars and techniques.',
+      title: 'Concrete Rehabilitation',
+      shortTitle: 'Rehabilitation',
+      description: 'Complete structural restoration from micro-silica repairs to CFRP strengthening, exceeding original specifications.',
       image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80',
-      stats: { value: '500+', label: 'Projects Completed' },
+      stats: { value: '200K', label: 'Sq.m Repaired' },
     },
     {
-      title: 'Structural Strengthening',
-      shortTitle: 'Strengthening',
-      description: 'Enhancing load-bearing capacity of existing structures using CFRP wrapping, steel jacketing, external post-tensioning, and shotcrete overlays.',
+      title: 'Protective Coatings',
+      shortTitle: 'Coatings',
+      description: 'High-build epoxy, polyurethane, and cementitious systems designed for aggressive industrial environments.',
       image: 'https://images.unsplash.com/photo-1590496793929-36417d3117de?auto=format&fit=crop&w=800&q=80',
-      stats: { value: '200+', label: 'Structures Strengthened' },
-    },
-    {
-      title: 'Seismic Retrofitting',
-      shortTitle: 'Retrofitting',
-      description: 'Earthquake resistance upgrades for existing structures through base isolation, damper installation, and structural reinforcement systems.',
-      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
-      stats: { value: '75+', label: 'Buildings Retrofitted' },
-    },
-    {
-      title: 'Corrosion Mitigation',
-      shortTitle: 'Mitigation',
-      description: 'Prevention and control of corrosion damage through cathodic protection, protective coatings, and corrosion inhibitor treatments.',
-      image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80',
       stats: { value: '1M+', label: 'Sq.m Protected' },
+    },
+    {
+      title: 'Cathodic Protection',
+      shortTitle: 'Protection',
+      description: 'State-of-the-art impressed current and sacrificial anode systems for long-term corrosion prevention.',
+      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
+      stats: { value: '50+', label: 'Systems Installed' },
     },
   ];
 
-  // Scroll-triggered service switching with debouncing for smoother transitions
+  // Scroll-triggered service switching
   useEffect(() => {
-    let lastServiceIndex = activeService;
-    let debounceTimer: NodeJS.Timeout | null = null;
-    
     const handleScroll = () => {
       if (!sectionRef.current) return;
       
@@ -245,181 +235,169 @@ const ServicesPreviewSection = () => {
       const sectionHeight = section.offsetHeight;
       const viewportHeight = window.innerHeight;
       
-      // Calculate scroll progress through the section
-      // Use a gentler calculation - start switching after section is 40% in view
-      const scrollStart = viewportHeight * 0.6;
+      // Calculate how far we've scrolled through the section
+      // Start switching only after section is 30% into view
+      const scrollStart = viewportHeight * 0.7;
       const scrolledIntoSection = scrollStart - rect.top;
+      const totalScrollableDistance = sectionHeight - viewportHeight * 0.3;
+      const scrollProgress = Math.max(0, Math.min(1, scrolledIntoSection / totalScrollableDistance));
       
-      // Each service gets 100vh of scroll distance for comfortable reading
-      const scrollDistancePerService = viewportHeight * 1.2;
-      const totalScrollDistance = scrollDistancePerService * services.length;
+      // Map scroll progress to service index
+      const serviceIndex = Math.min(
+        services.length - 1,
+        Math.floor(scrollProgress * services.length)
+      );
       
-      const scrollProgress = Math.max(0, Math.min(1, scrolledIntoSection / totalScrollDistance));
-      
-      // Map scroll progress to service index with dead zones for stability
-      const rawIndex = scrollProgress * services.length;
-      const serviceIndex = Math.min(services.length - 1, Math.max(0, Math.floor(rawIndex)));
-      
-      // Only update if we've moved to a different service
-      if (serviceIndex !== lastServiceIndex) {
-        // Clear any pending debounce
-        if (debounceTimer) clearTimeout(debounceTimer);
-        
-        // Debounce the service switch to prevent rapid flickering
-        debounceTimer = setTimeout(() => {
-          lastServiceIndex = serviceIndex;
-          setActiveService(serviceIndex);
-        }, 80);
+      if (serviceIndex >= 0 && serviceIndex !== activeService) {
+        setActiveService(serviceIndex);
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Initial check
     
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (debounceTimer) clearTimeout(debounceTimer);
-    };
-  }, [services.length]);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [activeService, services.length]);
 
   return (
-    <section ref={sectionRef} className="bg-background relative overflow-hidden min-h-[600vh]">
+    <section ref={sectionRef} className="bg-background relative overflow-hidden" style={{ minHeight: '250vh' }}>
       {/* Background accent */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-slate/30 -skew-x-12 origin-top-right" />
       
-      <div className="sticky top-0 h-screen flex items-center z-10">
-        <div className="container-custom w-full">
+      <div className="container-custom relative z-10 py-20 lg:py-32">
+        {/* Sticky content wrapper */}
+        <div className="lg:sticky lg:top-24">
           {/* Header with vertical text */}
-            <div className="flex items-start gap-8 mb-16">
-              <div className="hidden lg:flex flex-col items-center">
-                <div className="w-px h-16 bg-primary" />
-                <span className="writing-mode-vertical text-primary text-sm tracking-widest uppercase mt-4 font-medium" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>
-                  Our Expertise
-                </span>
+          <div className="flex items-start gap-8 mb-16">
+            <div className="hidden lg:flex flex-col items-center">
+              <div className="w-px h-16 bg-primary" />
+              <span className="writing-mode-vertical text-primary text-sm tracking-widest uppercase mt-4 font-medium" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>
+                Our Expertise
+              </span>
+            </div>
+            
+            <AnimatedSection>
+              <h2 className="text-foreground text-4xl lg:text-5xl font-bold mb-4">
+                What We <span className="text-primary">Do</span>
+              </h2>
+              <p className="text-muted-foreground text-lg max-w-xl">
+                Three decades of specialized expertise protecting India's critical infrastructure.
+              </p>
+            </AnimatedSection>
+          </div>
+
+          {/* Interactive Service Grid */}
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-0">
+            {/* Left: Service tabs/list */}
+            <div className="lg:col-span-4 lg:pr-12">
+              <div className="space-y-0 border-l-2 border-border">
+                {services.map((service, index) => (
+                  <button
+                    key={service.title}
+                    onClick={() => setActiveService(index)}
+                    className={`w-full text-left pl-6 py-6 relative transition-all duration-300 group ${
+                      activeService === index 
+                        ? 'border-l-2 border-primary -ml-[2px]' 
+                        : 'hover:bg-muted/30'
+                    }`}
+                  >
+                    {/* Number */}
+                    <span className={`text-sm font-mono mb-1 block transition-colors ${
+                      activeService === index ? 'text-primary' : 'text-muted-foreground'
+                    }`}>
+                      0{index + 1}
+                    </span>
+                    
+                    {/* Title */}
+                    <h3 className={`text-xl font-semibold transition-colors ${
+                      activeService === index ? 'text-foreground' : 'text-muted-foreground group-hover:text-foreground'
+                    }`}>
+                      {service.title}
+                    </h3>
+                    
+                    {/* Stat preview */}
+                    <div className={`mt-2 transition-all duration-300 ${
+                      activeService === index ? 'opacity-100 max-h-20' : 'opacity-0 max-h-0 overflow-hidden'
+                    }`}>
+                      <span className="text-2xl font-bold text-primary">{service.stats.value}</span>
+                      <span className="text-muted-foreground text-sm ml-2">{service.stats.label}</span>
+                    </div>
+                  </button>
+                ))}
               </div>
               
-              <AnimatedSection>
-                <h2 className="text-foreground text-4xl lg:text-5xl font-bold mb-4">
-                  What We <span className="text-primary">Do</span>
-                </h2>
-                <p className="text-muted-foreground text-lg max-w-xl">
-                  Three decades of specialized expertise protecting India's critical infrastructure.
-                </p>
-              </AnimatedSection>
+              <div className="mt-8 pl-6">
+                <Link 
+                  to="/services" 
+                  className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all duration-300"
+                >
+                  View All Services
+                  <ArrowRight size={18} />
+                </Link>
+              </div>
             </div>
 
-            {/* Interactive Service Grid */}
-            <div className="grid lg:grid-cols-12 gap-8 lg:gap-0">
-              {/* Left: Service tabs/list */}
-              <div className="lg:col-span-4 lg:pr-12">
-                <div className="space-y-0 border-l-2 border-border">
-                  {services.map((service, index) => (
-                    <button
-                      key={service.title}
-                      onClick={() => setActiveService(index)}
-                      className={`w-full text-left pl-6 py-6 relative transition-all duration-300 group ${
-                        activeService === index 
-                          ? 'border-l-2 border-primary -ml-[2px]' 
-                          : 'hover:bg-muted/30'
-                      }`}
-                    >
-                      {/* Number */}
-                      <span className={`text-sm font-mono mb-1 block transition-colors ${
-                        activeService === index ? 'text-primary' : 'text-muted-foreground'
-                      }`}>
-                        0{index + 1}
-                      </span>
-                      
-                      {/* Title */}
-                      <h3 className={`text-xl font-semibold transition-colors ${
-                        activeService === index ? 'text-foreground' : 'text-muted-foreground group-hover:text-foreground'
-                      }`}>
-                        {service.title}
-                      </h3>
-                      
-                      {/* Stat preview */}
-                      <div className={`mt-2 transition-all duration-300 ${
-                        activeService === index ? 'opacity-100 max-h-20' : 'opacity-0 max-h-0 overflow-hidden'
-                      }`}>
-                        <span className="text-2xl font-bold text-primary">{service.stats.value}</span>
-                        <span className="text-muted-foreground text-sm ml-2">{service.stats.label}</span>
-                      </div>
-                    </button>
-                  ))}
-                </div>
-                
-                <div className="mt-8 pl-6">
-                  <Link 
-                    to="/services" 
-                    className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all duration-300"
-                  >
-                    View All Services
-                    <ArrowRight size={18} />
-                  </Link>
-                </div>
-              </div>
-
-              {/* Right: Active service display */}
-              <div className="lg:col-span-8 relative">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeService}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.4 }}
-                    className="relative"
-                  >
-                    {/* Large image */}
-                    <div className="relative aspect-[16/10] overflow-hidden">
-                      <img
-                        src={services[activeService].image}
-                        alt={services[activeService].title}
-                        className="w-full h-full object-cover"
-                      />
-                      {/* Overlay with gradient */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-dark via-slate-dark/20 to-transparent" />
-                      
-                      {/* Content overlay */}
-                      <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-12">
-                        <motion.div
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.2 }}
+            {/* Right: Active service display */}
+            <div className="lg:col-span-8 relative">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeService}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.4 }}
+                  className="relative"
+                >
+                  {/* Large image */}
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <img
+                      src={services[activeService].image}
+                      alt={services[activeService].title}
+                      className="w-full h-full object-cover"
+                    />
+                    {/* Overlay with gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-dark via-slate-dark/20 to-transparent" />
+                    
+                    {/* Content overlay */}
+                    <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-12">
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 }}
+                      >
+                        <p className="text-warm-white/90 text-lg lg:text-xl max-w-lg leading-relaxed">
+                          {services[activeService].description}
+                        </p>
+                        
+                        <Link 
+                          to="/services"
+                          className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
                         >
-                          <p className="text-warm-white/90 text-lg lg:text-xl max-w-lg leading-relaxed">
-                            {services[activeService].description}
-                          </p>
-                          
-                          <Link 
-                            to="/services"
-                            className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
-                          >
-                            Learn More
-                            <ArrowRight size={16} />
-                          </Link>
-                        </motion.div>
-                      </div>
+                          Learn More
+                          <ArrowRight size={16} />
+                        </Link>
+                      </motion.div>
                     </div>
+                  </div>
 
-                    {/* Floating stat card */}
-                    <motion.div 
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.3 }}
-                      className="absolute -top-4 -right-4 lg:top-8 lg:-right-8 bg-primary text-primary-foreground p-6 lg:p-8"
-                    >
-                      <div className="text-3xl lg:text-4xl font-bold">{services[activeService].stats.value}</div>
-                      <div className="text-sm opacity-80">{services[activeService].stats.label}</div>
-                    </motion.div>
+                  {/* Floating stat card */}
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.3 }}
+                    className="absolute -top-4 -right-4 lg:top-8 lg:-right-8 bg-primary text-primary-foreground p-6 lg:p-8"
+                  >
+                    <div className="text-3xl lg:text-4xl font-bold">{services[activeService].stats.value}</div>
+                    <div className="text-sm opacity-80">{services[activeService].stats.label}</div>
                   </motion.div>
-                </AnimatePresence>
-              </div>
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
         </div>
+      </div>
     </section>
-  );
+  )
 };
 
 // Clients Section - Professional logo strip with marquee effect
