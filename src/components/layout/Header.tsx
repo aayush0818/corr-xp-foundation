@@ -38,16 +38,16 @@ const Header = () => {
 
   return (
     <>
-      {/* Two-Row Header Structure */}
+      {/* Desktop Header */}
       <header
-        className={`fixed lg:sticky top-0 left-0 right-0 z-50 transition-all duration-400 ${
+        className={`hidden lg:block sticky top-0 left-0 right-0 z-50 transition-all duration-400 ${
           isScrolled
             ? 'bg-warm-white shadow-custom-lg'
             : 'bg-slate backdrop-blur-sm'
         }`}
       >
         {/* Top Row: Contact | Logo | CTAs + Social */}
-        <div className={`hidden lg:block transition-all duration-300 ${isScrolled ? 'py-0 border-b border-slate/10' : 'border-b border-warm-white/10'}`}>
+        <div className={`transition-all duration-300 ${isScrolled ? 'py-0 border-b border-slate/10' : 'border-b border-warm-white/10'}`}>
           <div className="container-custom">
             <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'py-1.5' : 'py-3'}`}>
               {/* Left: Contact Info */}
@@ -101,7 +101,7 @@ const Header = () => {
         </div>
 
         {/* Bottom Row: Split Navigation */}
-        <div className="hidden lg:block">
+        <div>
           <div className="container-custom">
             <div className={`flex items-center justify-center transition-all duration-300 ${isScrolled ? 'py-1' : 'py-2'}`}>
               {/* Left Navigation */}
@@ -161,28 +161,28 @@ const Header = () => {
             </div>
           </div>
         </div>
+      </header>
 
-        {/* Mobile Header */}
-        <div className="lg:hidden bg-slate">
-          <div className="container-custom flex items-center justify-between py-3">
-            {/* Logo */}
-            <Link to="/" className="flex items-center">
-              <img 
-                src={logo} 
-                alt="CORR XP Logo" 
-                className="h-10"
-              />
-            </Link>
+      {/* Mobile Header - Completely Separate */}
+      <header className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-slate shadow-custom-md">
+        <div className="container-custom flex items-center justify-between py-3">
+          {/* Logo */}
+          <Link to="/" className="flex items-center">
+            <img 
+              src={logo} 
+              alt="CORR XP Logo" 
+              className="h-10"
+            />
+          </Link>
 
-            {/* Mobile Menu Button */}
-            <button
-              className="p-2 rounded-md transition-colors text-warm-white hover:bg-warm-white/10"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+          {/* Mobile Menu Button */}
+          <button
+            className="p-2 rounded-md transition-colors text-warm-white hover:bg-warm-white/10"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
 
         {/* Mobile Navigation */}
@@ -193,7 +193,7 @@ const Header = () => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="lg:hidden bg-slate-dark/98 backdrop-blur-md border-t border-warm-white/10"
+              className="bg-slate-dark border-t border-warm-white/10"
             >
               <nav className="container-custom py-6 flex flex-col gap-1">
                 {allNavItems.map((item, index) => (
