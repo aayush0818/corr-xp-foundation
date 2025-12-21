@@ -41,8 +41,8 @@ const Header = () => {
       <header
         className={`fixed lg:sticky top-0 left-0 right-0 z-50 transition-all duration-400 ${
           isScrolled
-            ? 'bg-slate-dark/98 backdrop-blur-md shadow-custom-lg'
-            : 'bg-slate/95 backdrop-blur-sm'
+            ? 'bg-slate-dark backdrop-blur-md shadow-custom-lg'
+            : 'bg-slate backdrop-blur-sm'
         }`}
       >
         {/* Top Row: Contact | Logo | CTAs + Social */}
