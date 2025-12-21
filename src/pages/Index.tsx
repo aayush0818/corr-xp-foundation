@@ -145,13 +145,13 @@ const AboutSnapshotSection = () => <section className="bg-warm-white section-pad
             </div>
             
             {/* Floating accent card */}
-            <div className="absolute -bottom-8 -right-8 bg-primary p-6 rounded shadow-custom-xl max-w-[200px]">
+            <div className="absolute -bottom-8 right-0 lg:-right-8 bg-primary p-6 rounded shadow-custom-xl max-w-[200px]">
               <div className="text-4xl font-bold text-primary-foreground mb-1">25+</div>
               <div className="text-primary-foreground/80 text-sm">Years Building Trust</div>
             </div>
             
             {/* Decorative line */}
-            <div className="absolute -left-6 top-1/4 w-1 h-32 bg-primary hidden lg:block" />
+            <div className="absolute left-0 lg:-left-6 top-1/4 w-1 h-32 bg-primary hidden lg:block" />
           </div>
         </AnimatedSection>
 
@@ -277,7 +277,7 @@ const ServicesPreviewSection = () => {
     minHeight: '200vh'
   }}>
       {/* Background accent */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-slate/30 -skew-x-12 origin-top-right" />
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-slate/30 -skew-x-12 origin-top-right hidden lg:block" />
       
       <div className="container-custom relative z-10 py-20 lg:py-32">
         {/* Sticky content wrapper */}
@@ -389,7 +389,7 @@ const ServicesPreviewSection = () => {
                   scale: 1
                 }} transition={{
                   delay: 0.3
-                }} className="absolute -top-4 -right-4 lg:top-8 lg:-right-8 bg-primary text-primary-foreground p-6 lg:p-8">
+                }} className="absolute top-4 right-4 lg:top-8 lg:right-8 bg-primary text-primary-foreground p-6 lg:p-8">
                     <div className="text-3xl lg:text-4xl font-bold">{services[activeService].stats.value}</div>
                     <div className="text-sm opacity-80">{services[activeService].stats.label}</div>
                   </motion.div>
@@ -552,13 +552,13 @@ const TestimonialsSection = () => {
   };
   return <section className="bg-slate section-padding relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl translate-y-1/2 hidden lg:block" />
       </div>
 
       {/* Large quote decoration */}
-      <div className="absolute top-20 right-20 opacity-[0.03]">
+      <div className="absolute top-20 right-20 opacity-[0.03] hidden lg:block">
         <svg className="w-80 h-80" viewBox="0 0 100 100" fill="currentColor">
           <path d="M30 10C13.4 10 0 23.4 0 40s13.4 30 30 30c0 11-9 20-20 20v10c16.6 0 30-13.4 30-30V40c0-16.6-13.4-30-30-30zm60 0c-16.6 0-30 13.4-30 30s13.4 30 30 30c0 11-9 20-20 20v10c16.6 0 30-13.4 30-30V40c0-16.6-13.4-30-30-30z" />
         </svg>
@@ -574,13 +574,13 @@ const TestimonialsSection = () => {
         </AnimatedSection>
 
         {/* Carousel Container */}
-        <div className="relative max-w-4xl mx-auto">
+        <div className="relative max-w-4xl mx-auto px-4">
           {/* Navigation Arrows */}
-          <button onClick={goToPrevious} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-16 z-20 w-12 h-12 bg-warm-white/10 hover:bg-primary text-warm-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-warm-white/10" aria-label="Previous testimonial">
+          <button onClick={goToPrevious} className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 lg:w-12 lg:h-12 lg:-left-16 bg-warm-white/10 hover:bg-primary text-warm-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-warm-white/10" aria-label="Previous testimonial">
             <ArrowRight size={20} className="rotate-180" />
           </button>
           
-          <button onClick={goToNext} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-16 z-20 w-12 h-12 bg-warm-white/10 hover:bg-primary text-warm-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-warm-white/10" aria-label="Next testimonial">
+          <button onClick={goToNext} className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 lg:w-12 lg:h-12 lg:-right-16 bg-warm-white/10 hover:bg-primary text-warm-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-warm-white/10" aria-label="Next testimonial">
             <ArrowRight size={20} />
           </button>
 
@@ -726,9 +726,9 @@ const ProjectsPreviewSection = () => {
 // CTA Section - Minimal and bold
 const CTASection = () => <section className="bg-primary section-padding-sm relative overflow-hidden">
     {/* Decorative pattern */}
-    <div className="absolute inset-0 opacity-10">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-warm-white rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent rounded-full blur-3xl" />
+    <div className="absolute inset-0 opacity-10 overflow-hidden">
+      <div className="absolute top-0 right-0 w-96 h-96 bg-warm-white rounded-full blur-3xl hidden lg:block" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent rounded-full blur-3xl hidden lg:block" />
     </div>
     
     <div className="container-custom relative z-10">
