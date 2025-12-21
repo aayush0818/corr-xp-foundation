@@ -260,7 +260,7 @@ const ServicesPreviewSection = () => {
   }, [activeService, services.length]);
 
   return (
-    <section ref={sectionRef} className="bg-background relative overflow-hidden" style={{ minHeight: '250vh' }}>
+    <section ref={sectionRef} className="bg-background relative overflow-hidden" style={{ minHeight: '200vh' }}>
       {/* Background accent */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-slate/30 -skew-x-12 origin-top-right" />
       
