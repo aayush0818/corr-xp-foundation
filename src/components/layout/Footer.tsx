@@ -110,21 +110,21 @@ const Footer = () => {
               <Link to="/" className="text-warm-white/60 hover:text-primary transition-colors text-sm">
                 Home
               </Link>
-              <Link to="/about" className="text-warm-white/60 hover:text-primary transition-colors text-sm">
+              <span className="text-warm-white/40 text-sm cursor-not-allowed">
                 About Us
-              </Link>
-              <Link to="/services" className="text-warm-white/60 hover:text-primary transition-colors text-sm">
+              </span>
+              <span className="text-warm-white/40 text-sm cursor-not-allowed">
                 What We Do
-              </Link>
-              <Link to="/projects" className="text-warm-white/60 hover:text-primary transition-colors text-sm">
+              </span>
+              <span className="text-warm-white/40 text-sm cursor-not-allowed">
                 Projects
-              </Link>
-              <Link to="/news" className="text-warm-white/60 hover:text-primary transition-colors text-sm">
+              </span>
+              <span className="text-warm-white/40 text-sm cursor-not-allowed">
                 News & Media
-              </Link>
-              <Link to="/contact" className="text-warm-white/60 hover:text-primary transition-colors text-sm">
+              </span>
+              <span className="text-warm-white/40 text-sm cursor-not-allowed">
                 Contact
-              </Link>
+              </span>
             </nav>
           </div>
 
@@ -132,24 +132,24 @@ const Footer = () => {
           <div className="lg:col-span-3">
             <h4 className="text-sm font-semibold mb-6 uppercase tracking-wider text-warm-white/80">Services</h4>
             <nav className="flex flex-col gap-3">
-              <Link to="/services" className="text-warm-white/60 hover:text-primary transition-colors text-sm">
+              <span className="text-warm-white/40 text-sm cursor-not-allowed">
                 Corrosion Assessment
-              </Link>
-              <Link to="/services" className="text-warm-white/60 hover:text-primary transition-colors text-sm">
+              </span>
+              <span className="text-warm-white/40 text-sm cursor-not-allowed">
                 Concrete Rehabilitation
-              </Link>
-              <Link to="/services" className="text-warm-white/60 hover:text-primary transition-colors text-sm">
+              </span>
+              <span className="text-warm-white/40 text-sm cursor-not-allowed">
                 Protective Coatings
-              </Link>
-              <Link to="/services" className="text-warm-white/60 hover:text-primary transition-colors text-sm">
+              </span>
+              <span className="text-warm-white/40 text-sm cursor-not-allowed">
                 Structural Analysis
-              </Link>
-              <Link to="/services" className="text-warm-white/60 hover:text-primary transition-colors text-sm">
+              </span>
+              <span className="text-warm-white/40 text-sm cursor-not-allowed">
                 Quality Assurance
-              </Link>
-              <Link to="/services" className="text-warm-white/60 hover:text-primary transition-colors text-sm">
+              </span>
+              <span className="text-warm-white/40 text-sm cursor-not-allowed">
                 Technical Consulting
-              </Link>
+              </span>
             </nav>
           </div>
 
@@ -196,15 +196,15 @@ const Footer = () => {
             © {currentYear} CORR XP. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm">
-            <Link to="/privacy" className="text-warm-white/40 hover:text-primary transition-colors">
+            <span className="text-warm-white/30 cursor-not-allowed">
               Privacy Policy
-            </Link>
-            <Link to="/terms" className="text-warm-white/40 hover:text-primary transition-colors">
+            </span>
+            <span className="text-warm-white/30 cursor-not-allowed">
               Terms of Service
-            </Link>
-            <Link to="/sitemap" className="text-warm-white/40 hover:text-primary transition-colors">
+            </span>
+            <span className="text-warm-white/30 cursor-not-allowed">
               Sitemap
-            </Link>
+            </span>
           </div>
         </div>
       </div>
