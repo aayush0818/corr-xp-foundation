@@ -41,12 +41,12 @@ const Header = () => {
       <header
         className={`fixed lg:sticky top-0 left-0 right-0 z-50 transition-all duration-400 ${
           isScrolled
-            ? 'bg-slate-dark backdrop-blur-md shadow-custom-lg'
+            ? 'bg-warm-white shadow-custom-lg'
             : 'bg-slate backdrop-blur-sm'
         }`}
       >
         {/* Top Row: Contact | Logo | CTAs + Social */}
-        <div className={`hidden lg:block border-b border-warm-white/10 transition-all duration-300 ${isScrolled ? 'py-0' : ''}`}>
+        <div className={`hidden lg:block transition-all duration-300 ${isScrolled ? 'py-0 border-b border-slate/10' : 'border-b border-warm-white/10'}`}>
           <div className="container-custom">
             <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'py-1.5' : 'py-3'}`}>
               {/* Left: Contact Info */}
@@ -65,12 +65,12 @@ const Header = () => {
               <Link to="/" className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2 group">
                 <div className="flex flex-col items-center transition-all duration-300">
                   <div className="flex items-baseline">
-                    <span className={`font-bold text-warm-white tracking-tight transition-all duration-300 ${isScrolled ? 'text-xl' : 'text-2xl'}`}>
+                    <span className={`font-bold tracking-tight transition-all duration-300 ${isScrolled ? 'text-xl text-slate-dark' : 'text-2xl text-warm-white'}`}>
                       CORR
                     </span>
                     <span className={`font-bold text-primary ml-1 transition-all duration-300 ${isScrolled ? 'text-xl' : 'text-2xl'}`}>XP</span>
                   </div>
-                  <span className={`text-warm-white/50 tracking-widest uppercase transition-all duration-300 ${isScrolled ? 'text-[8px] opacity-0 h-0' : 'text-[10px] opacity-100'}`}>Engineering Solutions</span>
+                  <span className={`tracking-widest uppercase transition-all duration-300 ${isScrolled ? 'text-[8px] opacity-0 h-0' : 'text-[10px] text-warm-white/50 opacity-100'}`}>Engineering Solutions</span>
                 </div>
               </Link>
 
@@ -118,7 +118,9 @@ const Header = () => {
                     } ${
                       location.pathname === item.path
                         ? 'text-primary'
-                        : 'text-warm-white/80 hover:text-warm-white'
+                        : isScrolled 
+                          ? 'text-slate-dark/80 hover:text-slate-dark'
+                          : 'text-warm-white/80 hover:text-warm-white'
                     }`}
                   >
                     {item.name}
@@ -145,7 +147,9 @@ const Header = () => {
                     } ${
                       location.pathname === item.path
                         ? 'text-primary'
-                        : 'text-warm-white/80 hover:text-warm-white'
+                        : isScrolled 
+                          ? 'text-slate-dark/80 hover:text-slate-dark'
+                          : 'text-warm-white/80 hover:text-warm-white'
                     }`}
                   >
                     {item.name}
@@ -167,7 +171,7 @@ const Header = () => {
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2 group">
               <div className="flex items-baseline">
-                <span className="text-xl font-bold text-warm-white tracking-tight">
+                <span className={`text-xl font-bold tracking-tight transition-all duration-300 ${isScrolled ? 'text-slate-dark' : 'text-warm-white'}`}>
                   CORR
                 </span>
                 <span className="text-xl font-bold text-primary ml-1">XP</span>
@@ -176,7 +180,7 @@ const Header = () => {
 
             {/* Mobile Menu Button */}
             <button
-              className="text-warm-white p-2 hover:bg-warm-white/10 rounded-md transition-colors"
+              className={`p-2 rounded-md transition-colors ${isScrolled ? 'text-slate-dark hover:bg-slate/10' : 'text-warm-white hover:bg-warm-white/10'}`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle menu"
             >
