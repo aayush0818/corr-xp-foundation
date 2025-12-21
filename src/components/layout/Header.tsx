@@ -51,13 +51,13 @@ const Header = () => {
             <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'py-1.5' : 'py-3'}`}>
               {/* Left: Contact Info */}
               <div className={`flex items-center gap-6 transition-all duration-300 ${isScrolled ? 'opacity-0 pointer-events-none h-0 overflow-hidden' : 'opacity-100'}`}>
-                <a href="tel:+1234567890" className="flex items-center gap-2 text-warm-white/70 hover:text-primary transition-colors text-sm">
+                <a href="tel:+919900387360" className="flex items-center gap-2 text-warm-white/70 hover:text-primary transition-colors text-sm">
                   <Phone size={14} />
-                  <span>022-2580 1080</span>
+                  <span>+91 9900387360</span>
                 </a>
-                <a href="mailto:info@corrxp.com" className="flex items-center gap-2 text-warm-white/70 hover:text-primary transition-colors text-sm">
+                <a href="mailto:corrxp@gmail.com" className="flex items-center gap-2 text-warm-white/70 hover:text-primary transition-colors text-sm">
                   <Mail size={14} />
-                  <span>info@corrxp.com</span>
+                  <span>corrxp@gmail.com</span>
                 </a>
               </div>
 
@@ -224,18 +224,18 @@ const Header = () => {
                 {/* Mobile contact info */}
                 <div className="mt-4 pt-4 border-t border-warm-white/10 space-y-3">
                   <a 
-                    href="tel:+1234567890" 
+                    href="tel:+919900387360" 
                     className="flex items-center gap-3 px-4 py-2 text-warm-white/70 hover:text-primary transition-colors"
                   >
                     <Phone size={16} />
-                    <span>022-2580 1080</span>
+                    <span>+91 9900387360</span>
                   </a>
                   <a 
-                    href="mailto:info@corrxp.com" 
+                    href="mailto:corrxp@gmail.com" 
                     className="flex items-center gap-3 px-4 py-2 text-warm-white/70 hover:text-primary transition-colors"
                   >
                     <Mail size={16} />
-                    <span>info@corrxp.com</span>
+                    <span>corrxp@gmail.com</span>
                   </a>
                 </div>
 
