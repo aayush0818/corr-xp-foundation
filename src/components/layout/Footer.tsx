@@ -60,22 +60,22 @@ const Footer = () => {
             {/* Contact Info */}
             <div className="space-y-3">
               <a
-                href="mailto:info@corrxp.com"
+                href="mailto:corrxp@gmail.com"
                 className="flex items-center gap-3 text-warm-white/60 hover:text-primary transition-colors"
               >
                 <Mail size={16} className="flex-shrink-0" />
-                <span>info@corrxp.com</span>
+                <span>corrxp@gmail.com</span>
               </a>
               <a
-                href="tel:+1234567890"
+                href="tel:+919900387360"
                 className="flex items-center gap-3 text-warm-white/60 hover:text-primary transition-colors"
               >
                 <Phone size={16} className="flex-shrink-0" />
-                <span>+1 (234) 567-890</span>
+                <span>+91 9900387360</span>
               </a>
               <div className="flex items-start gap-3 text-warm-white/60">
                 <MapPin size={16} className="mt-1 flex-shrink-0" />
-                <span>123 Engineering Drive, Suite 100<br />New York, NY 10001</span>
+                <span>A-1201, Chaturbhuj CHS, Shilp Chowk,<br />Khargar, Sec 21, Navi Mumbai 410210</span>
               </div>
             </div>
 
