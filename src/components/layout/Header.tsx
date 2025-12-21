@@ -46,11 +46,11 @@ const Header = () => {
         }`}
       >
         {/* Top Row: Contact | Logo | CTAs + Social */}
-        <div className="hidden lg:block border-b border-warm-white/10">
+        <div className={`hidden lg:block border-b border-warm-white/10 transition-all duration-300 ${isScrolled ? 'py-0' : ''}`}>
           <div className="container-custom">
-            <div className="flex items-center justify-between py-3">
+            <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'py-1.5' : 'py-3'}`}>
               {/* Left: Contact Info */}
-              <div className="flex items-center gap-6">
+              <div className={`flex items-center gap-6 transition-all duration-300 ${isScrolled ? 'opacity-0 pointer-events-none h-0 overflow-hidden' : 'opacity-100'}`}>
                 <a href="tel:+1234567890" className="flex items-center gap-2 text-warm-white/70 hover:text-primary transition-colors text-sm">
                   <Phone size={14} />
                   <span>022-2580 1080</span>
@@ -63,19 +63,19 @@ const Header = () => {
 
               {/* Center: Logo */}
               <Link to="/" className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2 group">
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center transition-all duration-300">
                   <div className="flex items-baseline">
-                    <span className="text-2xl font-bold text-warm-white tracking-tight">
+                    <span className={`font-bold text-warm-white tracking-tight transition-all duration-300 ${isScrolled ? 'text-xl' : 'text-2xl'}`}>
                       CORR
                     </span>
-                    <span className="text-2xl font-bold text-primary ml-1">XP</span>
+                    <span className={`font-bold text-primary ml-1 transition-all duration-300 ${isScrolled ? 'text-xl' : 'text-2xl'}`}>XP</span>
                   </div>
-                  <span className="text-[10px] text-warm-white/50 tracking-widest uppercase">Engineering Solutions</span>
+                  <span className={`text-warm-white/50 tracking-widest uppercase transition-all duration-300 ${isScrolled ? 'text-[8px] opacity-0 h-0' : 'text-[10px] opacity-100'}`}>Engineering Solutions</span>
                 </div>
               </Link>
 
               {/* Right: CTAs + Social */}
-              <div className="flex items-center gap-4">
+              <div className={`flex items-center gap-4 transition-all duration-300 ${isScrolled ? 'opacity-0 pointer-events-none h-0 overflow-hidden' : 'opacity-100'}`}>
                 <Button variant="ghost" size="sm" className="text-warm-white/80 hover:text-warm-white hover:bg-warm-white/10 text-sm" asChild>
                   <Link to="/contact">Inquire Now</Link>
                 </Button>
@@ -106,14 +106,16 @@ const Header = () => {
         {/* Bottom Row: Split Navigation */}
         <div className="hidden lg:block">
           <div className="container-custom">
-            <div className="flex items-center justify-center py-2">
+            <div className={`flex items-center justify-center transition-all duration-300 ${isScrolled ? 'py-1' : 'py-2'}`}>
               {/* Left Navigation */}
               <nav className="flex items-center">
                 {leftNavItems.map((item) => (
                   <Link
                     key={item.path}
                     to={item.path}
-                    className={`px-6 py-3 text-sm font-medium uppercase tracking-wider transition-all duration-300 relative group ${
+                    className={`px-6 transition-all duration-300 text-sm font-medium uppercase tracking-wider relative group ${
+                      isScrolled ? 'py-2' : 'py-3'
+                    } ${
                       location.pathname === item.path
                         ? 'text-primary'
                         : 'text-warm-white/80 hover:text-warm-white'
@@ -130,7 +132,7 @@ const Header = () => {
               </nav>
 
               {/* Center Spacer for Logo alignment */}
-              <div className="w-48" />
+              <div className={`transition-all duration-300 ${isScrolled ? 'w-32' : 'w-48'}`} />
 
               {/* Right Navigation */}
               <nav className="flex items-center">
@@ -138,7 +140,9 @@ const Header = () => {
                   <Link
                     key={item.path}
                     to={item.path}
-                    className={`px-6 py-3 text-sm font-medium uppercase tracking-wider transition-all duration-300 relative group ${
+                    className={`px-6 transition-all duration-300 text-sm font-medium uppercase tracking-wider relative group ${
+                      isScrolled ? 'py-2' : 'py-3'
+                    } ${
                       location.pathname === item.path
                         ? 'text-primary'
                         : 'text-warm-white/80 hover:text-warm-white'
