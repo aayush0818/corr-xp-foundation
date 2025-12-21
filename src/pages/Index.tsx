@@ -8,6 +8,7 @@ import FloatingContact from '@/components/ui/FloatingContact';
 import { ArrowRight, Shield, Wrench, Microscope, Building2, FileCheck, Users, Award, CheckCircle2 } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
+import mumbaiCoastalRoad from '@/assets/mumbai-coastal-road.jpg';
 
 // Hero Section - Full bleed with real imagery
 const HeroSection = () => <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -656,7 +657,7 @@ const ProjectsPreviewSection = () => {
     title: 'Mumbai Coastal Road Protection',
     category: 'Infrastructure',
     location: 'Maharashtra',
-    image: 'https://images.unsplash.com/photo-1545558014-8692077e9b5c?auto=format&fit=crop&w=1200&q=80',
+    image: mumbaiCoastalRoad,
     description: 'Comprehensive corrosion protection system for 10km coastal infrastructure.'
   };
   const projects = [{
