@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, ArrowRight, Linkedin, Twitter, Youtube } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
+import logo from '@/assets/logo.png';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -47,10 +48,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="lg:col-span-4">
             <Link to="/" className="inline-block mb-6">
-              <div className="flex items-baseline">
-                <span className="text-2xl font-bold tracking-tight">CORR</span>
-                <span className="text-2xl font-bold text-primary ml-1">XP</span>
-              </div>
+              <img src={logo} alt="CORR XP Logo" className="h-14" />
             </Link>
             <p className="text-warm-white/60 mb-6 leading-relaxed">
               India's leading specialists in corrosion engineering and concrete rehabilitation. 
