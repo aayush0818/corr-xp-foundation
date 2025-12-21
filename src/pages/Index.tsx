@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import AnimatedSection from '@/components/ui/AnimatedSection';
@@ -7,7 +7,7 @@ import ScrollIndicator from '@/components/ui/ScrollIndicator';
 import FloatingContact from '@/components/ui/FloatingContact';
 import { ArrowRight, Shield, Wrench, Microscope, Building2, FileCheck, Users, Award, CheckCircle2 } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 // Hero Section - Full bleed with real imagery
 const HeroSection = () => (
@@ -190,116 +190,174 @@ const AboutSnapshotSection = () => (
   </section>
 );
 
-// Services Preview - Tabbed/Interactive approach with real imagery
+// Services Preview - Editorial masonry layout
 const ServicesPreviewSection = () => {
+  const [activeService, setActiveService] = useState(0);
+  
   const services = [
     {
       title: 'Corrosion Assessment',
-      subtitle: 'Diagnostic Excellence',
-      description: 'We deploy advanced non-destructive testing methods including half-cell potential mapping, concrete resistivity testing, and chloride profiling to assess the extent of corrosion damage.',
+      shortTitle: 'Assessment',
+      description: 'Advanced non-destructive testing including half-cell potential mapping, concrete resistivity testing, and chloride profiling.',
       image: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=800&q=80',
-      features: ['NDT Testing', 'Chloride Analysis', 'Cover Meter Survey'],
+      stats: { value: '500+', label: 'Structures Assessed' },
     },
     {
       title: 'Concrete Rehabilitation',
-      subtitle: 'Structural Restoration',
-      description: 'From micro-silica repairs to complete structural strengthening with CFRP, we restore deteriorated concrete to exceed original specifications.',
+      shortTitle: 'Rehabilitation',
+      description: 'Complete structural restoration from micro-silica repairs to CFRP strengthening, exceeding original specifications.',
       image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80',
-      features: ['Patch Repairs', 'Carbon Fiber Wrap', 'Grouting Works'],
+      stats: { value: '200K', label: 'Sq.m Repaired' },
     },
     {
       title: 'Protective Coatings',
-      subtitle: 'Long-term Defense',
-      description: 'Specialized high-build epoxy, polyurethane, and cementitious coating systems designed to withstand aggressive industrial environments.',
+      shortTitle: 'Coatings',
+      description: 'High-build epoxy, polyurethane, and cementitious systems designed for aggressive industrial environments.',
       image: 'https://images.unsplash.com/photo-1590496793929-36417d3117de?auto=format&fit=crop&w=800&q=80',
-      features: ['Epoxy Systems', 'Anti-Carbonation', 'Waterproofing'],
+      stats: { value: '1M+', label: 'Sq.m Protected' },
+    },
+    {
+      title: 'Cathodic Protection',
+      shortTitle: 'Protection',
+      description: 'State-of-the-art impressed current and sacrificial anode systems for long-term corrosion prevention.',
+      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
+      stats: { value: '50+', label: 'Systems Installed' },
     },
   ];
 
   return (
-    <section className="bg-slate section-padding relative overflow-hidden">
+    <section className="bg-background section-padding relative overflow-hidden">
+      {/* Background accent */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-slate/30 -skew-x-12 origin-top-right" />
+      
       <div className="container-custom relative z-10">
-        <AnimatedSection className="mb-16">
-          <span className="font-script text-primary text-lg mb-2 block">What We Do</span>
-          <h2 className="text-warm-white mb-4">Engineering Solutions That Last</h2>
-          <p className="text-warm-white/60 text-lg max-w-2xl">
-            Three decades of specialized expertise in protecting India's most critical assets.
-          </p>
-        </AnimatedSection>
-
-        {/* Services - Alternating layout */}
-        <div className="space-y-20">
-          {services.map((service, index) => (
-            <AnimatedSection 
-              key={service.title} 
-              direction={index % 2 === 0 ? 'left' : 'right'}
-              delay={0.1}
-            >
-              <div className={`grid lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
-                {/* Image */}
-                <div className={`relative ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
-                  <div className="relative aspect-[4/3] overflow-hidden rounded">
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      className="w-full h-full object-cover"
-                    />
-                    {/* Overlay gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-slate-dark/40 to-transparent" />
-                  </div>
-                  {/* Number indicator */}
-                  <div className="absolute -bottom-6 -right-4 lg:-right-8">
-                    <span className="text-8xl lg:text-9xl font-bold text-primary/20">
-                      0{index + 1}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className={index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}>
-                  <span className="text-primary text-sm font-medium uppercase tracking-wider mb-2 block">
-                    {service.subtitle}
-                  </span>
-                  <h3 className="text-3xl font-bold text-warm-white mb-4">
-                    {service.title}
-                  </h3>
-                  <p className="text-warm-white/70 leading-relaxed mb-6">
-                    {service.description}
-                  </p>
-                  
-                  {/* Feature tags */}
-                  <div className="flex flex-wrap gap-3 mb-6">
-                    {service.features.map((feature) => (
-                      <span 
-                        key={feature}
-                        className="px-4 py-2 bg-warm-white/5 border border-warm-white/10 text-warm-white/80 text-sm rounded"
-                      >
-                        {feature}
-                      </span>
-                    ))}
-                  </div>
-
-                  <Link 
-                    to="/services" 
-                    className="inline-flex items-center text-primary font-medium hover:gap-3 gap-2 transition-all duration-300 group"
-                  >
-                    Learn More
-                    <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
-              </div>
-            </AnimatedSection>
-          ))}
+        {/* Header with vertical text */}
+        <div className="flex items-start gap-8 mb-16">
+          <div className="hidden lg:flex flex-col items-center">
+            <div className="w-px h-16 bg-primary" />
+            <span className="writing-mode-vertical text-primary text-sm tracking-widest uppercase mt-4 font-medium" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>
+              Our Expertise
+            </span>
+          </div>
+          
+          <AnimatedSection>
+            <h2 className="text-foreground text-4xl lg:text-5xl font-bold mb-4">
+              What We <span className="text-primary">Do</span>
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-xl">
+              Three decades of specialized expertise protecting India's critical infrastructure.
+            </p>
+          </AnimatedSection>
         </div>
 
-        <AnimatedSection className="text-center mt-20">
-          <Button variant="hero" size="lg" asChild>
-            <Link to="/services">
-              Explore All Services
-              <ArrowRight size={18} className="ml-2" />
-            </Link>
-          </Button>
-        </AnimatedSection>
+        {/* Interactive Service Grid */}
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-0">
+          {/* Left: Service tabs/list */}
+          <div className="lg:col-span-4 lg:pr-12">
+            <div className="space-y-0 border-l-2 border-border">
+              {services.map((service, index) => (
+                <button
+                  key={service.title}
+                  onClick={() => setActiveService(index)}
+                  className={`w-full text-left pl-6 py-6 relative transition-all duration-300 group ${
+                    activeService === index 
+                      ? 'border-l-2 border-primary -ml-[2px]' 
+                      : 'hover:bg-muted/30'
+                  }`}
+                >
+                  {/* Number */}
+                  <span className={`text-sm font-mono mb-1 block transition-colors ${
+                    activeService === index ? 'text-primary' : 'text-muted-foreground'
+                  }`}>
+                    0{index + 1}
+                  </span>
+                  
+                  {/* Title */}
+                  <h3 className={`text-xl font-semibold transition-colors ${
+                    activeService === index ? 'text-foreground' : 'text-muted-foreground group-hover:text-foreground'
+                  }`}>
+                    {service.title}
+                  </h3>
+                  
+                  {/* Stat preview */}
+                  <div className={`mt-2 transition-all duration-300 ${
+                    activeService === index ? 'opacity-100 max-h-20' : 'opacity-0 max-h-0 overflow-hidden'
+                  }`}>
+                    <span className="text-2xl font-bold text-primary">{service.stats.value}</span>
+                    <span className="text-muted-foreground text-sm ml-2">{service.stats.label}</span>
+                  </div>
+                </button>
+              ))}
+            </div>
+            
+            <div className="mt-8 pl-6">
+              <Link 
+                to="/services" 
+                className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all duration-300"
+              >
+                View All Services
+                <ArrowRight size={18} />
+              </Link>
+            </div>
+          </div>
+
+          {/* Right: Active service display */}
+          <div className="lg:col-span-8 relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeService}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.4 }}
+                className="relative"
+              >
+                {/* Large image */}
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <img
+                    src={services[activeService].image}
+                    alt={services[activeService].title}
+                    className="w-full h-full object-cover"
+                  />
+                  {/* Overlay with gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-dark via-slate-dark/20 to-transparent" />
+                  
+                  {/* Content overlay */}
+                  <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-12">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 }}
+                    >
+                      <p className="text-warm-white/90 text-lg lg:text-xl max-w-lg leading-relaxed">
+                        {services[activeService].description}
+                      </p>
+                      
+                      <Link 
+                        to="/services"
+                        className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
+                      >
+                        Learn More
+                        <ArrowRight size={16} />
+                      </Link>
+                    </motion.div>
+                  </div>
+                </div>
+
+                {/* Floating stat card */}
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.3 }}
+                  className="absolute -top-4 -right-4 lg:top-8 lg:-right-8 bg-primary text-primary-foreground p-6 lg:p-8"
+                >
+                  <div className="text-3xl lg:text-4xl font-bold">{services[activeService].stats.value}</div>
+                  <div className="text-sm opacity-80">{services[activeService].stats.label}</div>
+                </motion.div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
       </div>
     </section>
   );
