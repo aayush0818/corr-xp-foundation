@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, Mail, Download, ChevronRight, Facebook, Twitter, Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
+import logo from '@/assets/logo.png';
 
 const leftNavItems = [
   { name: 'Home', path: '/' },
@@ -63,15 +64,11 @@ const Header = () => {
 
               {/* Center: Logo */}
               <Link to="/" className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2 group">
-                <div className="flex flex-col items-center transition-all duration-300">
-                  <div className="flex items-baseline">
-                    <span className={`font-bold tracking-tight transition-all duration-300 ${isScrolled ? 'text-xl text-slate-dark' : 'text-2xl text-warm-white'}`}>
-                      CORR
-                    </span>
-                    <span className={`font-bold text-primary ml-1 transition-all duration-300 ${isScrolled ? 'text-xl' : 'text-2xl'}`}>XP</span>
-                  </div>
-                  <span className={`tracking-widest uppercase transition-all duration-300 ${isScrolled ? 'text-[8px] opacity-0 h-0' : 'text-[10px] text-warm-white/50 opacity-100'}`}>Engineering Solutions</span>
-                </div>
+                <img 
+                  src={logo} 
+                  alt="CORR XP Logo" 
+                  className={`transition-all duration-300 ${isScrolled ? 'h-10' : 'h-14'}`}
+                />
               </Link>
 
               {/* Right: CTAs + Social */}
@@ -169,13 +166,12 @@ const Header = () => {
         <div className="lg:hidden">
           <div className="container-custom flex items-center justify-between py-3">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-2 group">
-              <div className="flex items-baseline">
-                <span className={`text-xl font-bold tracking-tight transition-all duration-300 ${isScrolled ? 'text-slate-dark' : 'text-warm-white'}`}>
-                  CORR
-                </span>
-                <span className="text-xl font-bold text-primary ml-1">XP</span>
-              </div>
+            <Link to="/" className="flex items-center">
+              <img 
+                src={logo} 
+                alt="CORR XP Logo" 
+                className="h-10"
+              />
             </Link>
 
             {/* Mobile Menu Button */}
