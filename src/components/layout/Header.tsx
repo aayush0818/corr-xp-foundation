@@ -13,7 +13,6 @@ const leftNavItems = [
 
 const rightNavItems = [
   { name: 'Projects', path: '/projects' },
-  { name: 'News & Media', path: '/news' },
   { name: 'Contact Us', path: '/contact' },
 ];
 
