@@ -212,225 +212,192 @@ const AboutSnapshotSection = () => <section className="bg-warm-white section-pad
     </div>
   </section>;
 
-// Services Preview - Scroll-triggered editorial layout
+// Services Preview - Dynamic card grid with auto-cycling
 const ServicesPreviewSection = () => {
   const [activeService, setActiveService] = useState(0);
-  const sectionRef = useRef<HTMLElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  
   const services = [{
-    title: 'Structural Repair & Rehabilitation',
-    shortTitle: 'Structural',
-    description: 'Repair and rehabilitation of distressed structural members such as beams, columns, slabs, and foundations to restore structural safety.',
+    title: 'Structural Repair',
+    description: 'Repair of beams, columns, slabs, and foundations to restore structural safety.',
     image: workSurfacePrep,
-    stats: {
-      value: '500+',
-      label: 'Structures Repaired'
-    }
+    stats: { value: '500+', label: 'Structures' },
+    color: 'from-primary to-primary/70'
   }, {
-    title: 'Concrete Repair & Protection',
-    shortTitle: 'Concrete',
-    description: 'Concrete patch repair, micro-concreting, crack injection, grouting, and protective coating systems.',
+    title: 'Concrete Protection',
+    description: 'Crack injection, grouting, and protective coating systems.',
     image: workBeamWrapping,
-    stats: {
-      value: '200K',
-      label: 'Sq.m Repaired'
-    }
+    stats: { value: '200K', label: 'Sq.m' },
+    color: 'from-accent to-accent/70'
   }, {
-    title: 'Fiber Wrapping (FRP)',
-    shortTitle: 'FRP',
-    description: 'Strengthening of RCC structures using Fiber Reinforced Polymer systems to improve load-carrying capacity and ductility.',
+    title: 'FRP Strengthening',
+    description: 'Fiber Reinforced Polymer systems for load-carrying capacity.',
     image: workFiberWrapping,
-    stats: {
-      value: '1M+',
-      label: 'Sq.m Strengthened'
-    }
+    stats: { value: '1M+', label: 'Sq.m' },
+    color: 'from-primary to-accent'
   }, {
-    title: 'Structural Retrofitting',
-    shortTitle: 'Retrofitting',
-    description: 'Advanced retrofitting using Carbon Fiber (CFRP), Glass Fiber (GFRP), and Aramid Fiber (AFRP) wrapping systems.',
+    title: 'Retrofitting',
+    description: 'Carbon, Glass, and Aramid fiber wrapping systems.',
     image: workColumnWrapping,
-    stats: {
-      value: '100+',
-      label: 'Buildings Retrofitted'
-    }
+    stats: { value: '100+', label: 'Buildings' },
+    color: 'from-slate to-slate-light'
   }, {
     title: 'Corrosion Control',
-    shortTitle: 'Corrosion',
-    description: 'Treatment of corroded reinforcement and anti-corrosion systems to enhance durability and extend service life.',
+    description: 'Anti-corrosion systems to extend service life.',
     image: workSurfacePrep,
-    stats: {
-      value: '50+',
-      label: 'Systems Installed'
-    }
+    stats: { value: '50+', label: 'Systems' },
+    color: 'from-accent to-primary'
   }, {
-    title: 'Steel Coating & Protection',
-    shortTitle: 'Steel',
-    description: 'Surface preparation, anti-corrosive coatings, self-healing epoxy, PU, and zinc-rich coatings as per ISO guidelines.',
+    title: 'Steel Coating',
+    description: 'Epoxy, PU, and zinc-rich coatings per ISO guidelines.',
     image: workFloorCoating,
-    stats: {
-      value: '75+',
-      label: 'Steel Projects'
-    }
+    stats: { value: '75+', label: 'Projects' },
+    color: 'from-slate-light to-primary'
   }];
 
-  // Scroll-triggered service switching
+  // Auto-cycle services
   useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
-      const section = sectionRef.current;
-      const rect = section.getBoundingClientRect();
-      const sectionHeight = section.offsetHeight;
-      const viewportHeight = window.innerHeight;
+    if (isHovered) return;
+    const interval = setInterval(() => {
+      setActiveService((prev) => (prev + 1) % services.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [isHovered, services.length]);
 
-      // Calculate how far we've scrolled through the section
-      // Start switching only after section is 30% into view
-      const scrollStart = viewportHeight * 0.7;
-      const scrolledIntoSection = scrollStart - rect.top;
-      const totalScrollableDistance = sectionHeight - viewportHeight * 0.3;
-      const scrollProgress = Math.max(0, Math.min(1, scrolledIntoSection / totalScrollableDistance));
+  return (
+    <section className="relative bg-charcoal overflow-hidden py-24 lg:py-32">
+      {/* Animated background */}
+      <div className="absolute inset-0">
+        <motion.div 
+          className="absolute inset-0 opacity-30"
+          animate={{
+            background: [
+              'radial-gradient(circle at 20% 50%, hsl(var(--primary) / 0.3) 0%, transparent 50%)',
+              'radial-gradient(circle at 80% 50%, hsl(var(--primary) / 0.3) 0%, transparent 50%)',
+              'radial-gradient(circle at 50% 80%, hsl(var(--primary) / 0.3) 0%, transparent 50%)',
+              'radial-gradient(circle at 20% 50%, hsl(var(--primary) / 0.3) 0%, transparent 50%)',
+            ]
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+        />
+        <div className="absolute inset-0 pattern-dots opacity-10" />
+      </div>
 
-      // Map scroll progress to service index
-      const serviceIndex = Math.min(services.length - 1, Math.floor(scrollProgress * services.length));
-      if (serviceIndex >= 0 && serviceIndex !== activeService) {
-        setActiveService(serviceIndex);
-      }
-    };
-    window.addEventListener('scroll', handleScroll, {
-      passive: true
-    });
-    handleScroll(); // Initial check
+      <div className="container-custom relative z-10">
+        {/* Header */}
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16">
+          <AnimatedSection>
+            <span className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground text-xs font-bold uppercase tracking-widest rounded mb-4">
+              <Wrench size={14} />
+              Our Services
+            </span>
+            <h2 className="text-warm-white text-4xl lg:text-6xl font-bold leading-tight">
+              What We <span className="text-primary">Do</span>
+            </h2>
+          </AnimatedSection>
+          
+          <Link to="/services">
+            <Button variant="heroOutline" size="lg" className="group">
+              <span>View All Services</span>
+              <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </Link>
+        </div>
 
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [activeService, services.length]);
-  return <section ref={sectionRef} className="bg-background relative overflow-hidden" style={{
-    minHeight: '200vh'
-  }}>
-      {/* Background accent */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-slate/30 -skew-x-12 origin-top-right hidden lg:block" />
-      
-      <div className="container-custom relative z-10 py-20 lg:py-32">
-        {/* Sticky content wrapper */}
-        <div className="lg:sticky lg:top-24">
-          {/* Header with vertical text */}
-          <div className="flex items-start gap-8 mb-16">
-            <div className="hidden lg:flex flex-col items-center">
-              <div className="w-px h-16 bg-primary" />
-              <span className="writing-mode-vertical text-primary text-sm tracking-widest uppercase mt-4 font-medium" style={{
-              writingMode: 'vertical-rl',
-              transform: 'rotate(180deg)'
-            }}>
-                Our Expertise
-              </span>
-            </div>
-            
-            <AnimatedSection>
-              <h2 className="text-foreground text-4xl lg:text-5xl font-bold mb-4">
-                What We <span className="text-primary">Do</span>
-              </h2>
-              <p className="text-muted-foreground text-lg max-w-xl">
-                Three decades of specialized expertise protecting India's critical infrastructure.
-              </p>
-            </AnimatedSection>
-          </div>
-
-          {/* Interactive Service Grid */}
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-0">
-            {/* Left: Service tabs/list */}
-            <div className="lg:col-span-4 lg:pr-12">
-              <div className="space-y-0 border-l-2 border-border">
-                {services.map((service, index) => <button key={service.title} onClick={() => setActiveService(index)} className={`w-full text-left pl-6 py-6 relative transition-all duration-300 group ${activeService === index ? 'border-l-2 border-primary -ml-[2px]' : 'hover:bg-muted/30'}`}>
-                    {/* Number */}
-                    <span className={`text-sm font-mono mb-1 block transition-colors ${activeService === index ? 'text-primary' : 'text-muted-foreground'}`}>
-                      0{index + 1}
-                    </span>
-                    
-                    {/* Title */}
-                    <h3 className={`text-xl font-semibold transition-colors ${activeService === index ? 'text-foreground' : 'text-muted-foreground group-hover:text-foreground'}`}>
+        {/* Service Cards Grid */}
+        <div 
+          className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          {services.map((service, index) => (
+            <motion.div
+              key={service.title}
+              className={`relative overflow-hidden rounded-xl cursor-pointer group ${
+                index === activeService ? 'lg:col-span-2 lg:row-span-2' : ''
+              }`}
+              onClick={() => setActiveService(index)}
+              layout
+              transition={{ duration: 0.5, type: "spring" }}
+            >
+              {/* Background Image */}
+              <div className={`relative ${index === activeService ? 'aspect-[16/9] lg:aspect-auto lg:h-full' : 'aspect-square'}`}>
+                <img 
+                  src={service.image} 
+                  alt={service.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                
+                {/* Gradient Overlay */}
+                <div className={`absolute inset-0 bg-gradient-to-t ${service.color} opacity-80 mix-blend-multiply`} />
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/50 to-transparent" />
+                
+                {/* Content */}
+                <div className="absolute inset-0 p-4 lg:p-6 flex flex-col justify-end">
+                  {/* Stats Badge */}
+                  <motion.div 
+                    className={`absolute top-4 right-4 bg-warm-white text-charcoal px-3 py-2 rounded font-bold text-center transition-all duration-300 ${
+                      index === activeService ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                    }`}
+                    initial={false}
+                  >
+                    <div className="text-xl lg:text-2xl leading-none">{service.stats.value}</div>
+                    <div className="text-[10px] uppercase tracking-wider text-charcoal/60">{service.stats.label}</div>
+                  </motion.div>
+                  
+                  {/* Title & Description */}
+                  <div>
+                    <h3 className={`text-warm-white font-bold transition-all duration-300 ${
+                      index === activeService ? 'text-2xl lg:text-3xl mb-3' : 'text-lg lg:text-xl'
+                    }`}>
                       {service.title}
                     </h3>
                     
-                    {/* Stat preview */}
-                    <div className={`mt-2 transition-all duration-300 ${activeService === index ? 'opacity-100 max-h-20' : 'opacity-0 max-h-0 overflow-hidden'}`}>
-                      <span className="text-2xl font-bold text-primary">{service.stats.value}</span>
-                      <span className="text-muted-foreground text-sm ml-2">{service.stats.label}</span>
-                    </div>
-                  </button>)}
-              </div>
-              
-              <div className="mt-8 pl-6">
-                <Link to="/services" className="inline-flex items-center gap-2 text-primary font-medium hover:text-primary/80 transition-colors">
-                  View All Services
-                  <ArrowRight size={18} />
-                </Link>
-              </div>
-            </div>
-
-            {/* Right: Active service display */}
-            <div className="lg:col-span-8 relative">
-              <AnimatePresence mode="wait">
-                <motion.div key={activeService} initial={{
-                opacity: 0,
-                x: 20
-              }} animate={{
-                opacity: 1,
-                x: 0
-              }} exit={{
-                opacity: 0,
-                x: -20
-              }} transition={{
-                duration: 0.4
-              }} className="relative">
-                  {/* Large image */}
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    <img src={services[activeService].image} alt={services[activeService].title} className="w-full h-full object-cover" />
-                    {/* Overlay with gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-dark via-slate-dark/20 to-transparent" />
-                    
-                    {/* Content overlay */}
-                    <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-12">
-                      <motion.div initial={{
-                      opacity: 0,
-                      y: 20
-                    }} animate={{
-                      opacity: 1,
-                      y: 0
-                    }} transition={{
-                      delay: 0.2
-                    }}>
-                        <p className="text-warm-white/90 text-lg lg:text-xl max-w-lg leading-relaxed">
-                          {services[activeService].description}
-                        </p>
-                        
-                        <Link to="/services" className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors">
-                          Learn More
-                          <ArrowRight size={16} />
-                        </Link>
-                      </motion.div>
-                    </div>
+                    <AnimatePresence>
+                      {index === activeService && (
+                        <motion.p
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="text-warm-white/80 text-sm lg:text-base max-w-md"
+                        >
+                          {service.description}
+                        </motion.p>
+                      )}
+                    </AnimatePresence>
                   </div>
+                  
+                  {/* Active Indicator */}
+                  <motion.div 
+                    className="absolute bottom-0 left-0 h-1 bg-primary"
+                    initial={{ width: 0 }}
+                    animate={{ width: index === activeService ? '100%' : 0 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
 
-                  {/* Floating stat card */}
-                  <motion.div initial={{
-                  opacity: 0,
-                  scale: 0.9
-                }} animate={{
-                  opacity: 1,
-                  scale: 1
-                }} transition={{
-                  delay: 0.3
-                }} className="absolute top-4 right-4 lg:top-8 lg:right-8 bg-primary text-primary-foreground p-6 lg:p-8">
-                    <div className="text-3xl lg:text-4xl font-bold">{services[activeService].stats.value}</div>
-                    <div className="text-sm opacity-80">{services[activeService].stats.label}</div>
-                  </motion.div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </div>
+        {/* Progress Dots */}
+        <div className="flex justify-center gap-2 mt-8">
+          {services.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveService(index)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                index === activeService ? 'w-8 bg-primary' : 'w-2 bg-warm-white/30 hover:bg-warm-white/50'
+              }`}
+            />
+          ))}
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
 
-// Clients Section - Bold design with real logos
+// Clients Section - Infinite marquee with bold design
 const ClientsSection = () => {
   const clients = [
     { name: 'ONGC', logo: ongcLogo },
@@ -442,86 +409,109 @@ const ClientsSection = () => {
     { name: 'ACC', logo: accLogo },
   ];
 
+  // Double the array for seamless loop
+  const marqueeClients = [...clients, ...clients];
+
   return (
-    <section className="relative bg-slate overflow-hidden py-24">
-      {/* Bold geometric background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-1/3 h-full bg-primary/10 -skew-x-12 -translate-x-20" />
-        <div className="absolute bottom-0 right-0 w-1/4 h-1/2 bg-accent/5 skew-x-12 translate-x-10" />
-        <div className="absolute inset-0 pattern-lines opacity-20" />
+    <section className="relative bg-warm-white overflow-hidden py-20">
+      {/* Background pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: 'repeating-linear-gradient(90deg, hsl(var(--charcoal)) 0px, hsl(var(--charcoal)) 1px, transparent 1px, transparent 100px)',
+        }} />
       </div>
 
-      <div className="container-custom relative z-10">
-        {/* Header with large typography */}
-        <AnimatedSection className="mb-16">
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
-            <div>
-              <span className="inline-block px-4 py-2 bg-primary/20 text-primary text-xs font-bold uppercase tracking-widest rounded-full mb-4">
-                Trusted Partners
-              </span>
-              <h2 className="text-warm-white text-4xl lg:text-5xl font-bold leading-tight">
-                Industry Leaders<br />
-                <span className="text-primary">Trust Our Expertise</span>
-              </h2>
-            </div>
-            <div className="lg:text-right">
-              <div className="text-6xl lg:text-7xl font-black text-primary/20">100+</div>
-              <p className="text-warm-white/60 -mt-2">Clients Served</p>
-            </div>
-          </div>
-        </AnimatedSection>
-
-        {/* Logo Grid - Bold cards with hover effects */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
-          {clients.map((client, index) => (
-            <AnimatedSection key={client.name} delay={index * 0.08}>
-              <motion.div 
-                className="group relative bg-warm-white rounded-lg overflow-hidden aspect-square flex items-center justify-center p-4 cursor-pointer"
-                whileHover={{ scale: 1.05, y: -5 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                {/* Logo */}
-                <img 
-                  src={client.logo} 
-                  alt={client.name} 
-                  className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
-                />
-                
-                {/* Hover overlay with name */}
-                <div className="absolute inset-0 bg-slate-dark/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <span className="text-warm-white text-sm font-bold text-center px-2">{client.name}</span>
-                </div>
-                
-                {/* Bottom accent bar */}
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-              </motion.div>
-            </AnimatedSection>
-          ))}
-        </div>
-
-        {/* Trust indicators */}
-        <AnimatedSection delay={0.5} className="mt-16">
-          <div className="flex flex-wrap justify-center gap-6 lg:gap-12">
+      <div className="container-custom relative z-10 mb-12">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <AnimatedSection>
+            <h2 className="text-charcoal text-3xl lg:text-4xl font-bold">
+              Trusted by <span className="text-primary">Industry Leaders</span>
+            </h2>
+          </AnimatedSection>
+          
+          <div className="flex items-center gap-8">
             {[
-              { icon: Shield, label: 'MSME Registered' },
-              { icon: Award, label: 'NACE Certified' },
-              { icon: CheckCircle2, label: 'GST Registered' },
-              { icon: FileCheck, label: 'ASTM Compliant' },
-            ].map((item, index) => (
-              <motion.div 
-                key={item.label}
-                className="flex items-center gap-3 px-6 py-3 bg-warm-white/5 border border-warm-white/10 rounded-full"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <item.icon size={18} className="text-primary" />
-                <span className="text-warm-white/80 text-sm font-medium">{item.label}</span>
-              </motion.div>
+              { value: '100+', label: 'Clients' },
+              { value: '7+', label: 'Industries' },
+            ].map((stat) => (
+              <div key={stat.label} className="text-center">
+                <div className="text-3xl font-black text-primary">{stat.value}</div>
+                <div className="text-xs uppercase tracking-wider text-charcoal/50">{stat.label}</div>
+              </div>
             ))}
           </div>
-        </AnimatedSection>
+        </div>
+      </div>
+
+      {/* Marquee Container */}
+      <div className="relative">
+        {/* Gradient Overlays */}
+        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-warm-white to-transparent z-10" />
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-warm-white to-transparent z-10" />
+        
+        {/* First Marquee Row */}
+        <div className="flex overflow-hidden mb-4">
+          <motion.div
+            className="flex gap-6 py-4"
+            animate={{ x: ['0%', '-50%'] }}
+            transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
+          >
+            {marqueeClients.map((client, index) => (
+              <div
+                key={`row1-${index}`}
+                className="flex-shrink-0 w-40 h-28 bg-white rounded-xl shadow-lg border border-border/30 p-4 flex items-center justify-center hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer group"
+              >
+                <img 
+                  src={client.logo} 
+                  alt={client.name}
+                  className="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+                />
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Second Marquee Row (Reverse Direction) */}
+        <div className="flex overflow-hidden">
+          <motion.div
+            className="flex gap-6 py-4"
+            animate={{ x: ['-50%', '0%'] }}
+            transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
+          >
+            {marqueeClients.reverse().map((client, index) => (
+              <div
+                key={`row2-${index}`}
+                className="flex-shrink-0 w-40 h-28 bg-white rounded-xl shadow-lg border border-border/30 p-4 flex items-center justify-center hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer group"
+              >
+                <img 
+                  src={client.logo} 
+                  alt={client.name}
+                  className="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+                />
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Trust Badges */}
+      <div className="container-custom mt-12">
+        <div className="flex flex-wrap justify-center gap-4">
+          {[
+            { icon: Shield, label: 'MSME Registered' },
+            { icon: Award, label: 'NACE Certified' },
+            { icon: CheckCircle2, label: 'GST Registered' },
+            { icon: FileCheck, label: 'ASTM Compliant' },
+          ].map((item) => (
+            <div 
+              key={item.label}
+              className="flex items-center gap-2 px-4 py-2 bg-slate/5 rounded-full border border-border/50"
+            >
+              <item.icon size={16} className="text-primary" />
+              <span className="text-charcoal/70 text-sm font-medium">{item.label}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
