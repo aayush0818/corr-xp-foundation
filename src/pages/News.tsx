@@ -8,68 +8,68 @@ import { motion } from 'framer-motion';
 const newsData = [
   {
     id: 1,
-    title: 'CORR XP Wins Infrastructure Excellence Award 2024',
-    excerpt: 'Our team has been recognized for outstanding contributions to infrastructure protection with the prestigious Industry Excellence Award.',
+    title: 'CORR XP India Completes Major Infrastructure Retrofitting Project',
+    excerpt: 'Our team successfully completed a large-scale structural retrofitting project using advanced CFRP systems for enhanced seismic performance.',
     date: '2024-12-15',
-    category: 'Company News',
+    category: 'Project Update',
     author: 'CORR XP Team',
     readTime: '3 min',
-    image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80',
     featured: true,
   },
   {
     id: 2,
-    title: 'New Innovations in Cathodic Protection Technology',
-    excerpt: 'Our R&D team has developed a breakthrough in cathodic protection systems that promises 40% improvement in corrosion prevention.',
+    title: 'New Fiber Wrapping Techniques for RCC Structures',
+    excerpt: 'Introducing advanced FRP strengthening solutions that improve load-carrying capacity, stiffness, and ductility of existing structures.',
     date: '2024-11-28',
-    category: 'Innovation',
-    author: 'Dr. Meera Iyer',
+    category: 'Technical',
+    author: 'Engineering Team',
     readTime: '5 min',
     image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800&q=80',
     featured: false,
   },
   {
     id: 3,
-    title: 'CORR XP Expands Operations to Southeast Asia',
-    excerpt: 'We are excited to announce the opening of our new regional office in Singapore, marking our first international expansion.',
+    title: 'Expanding Services to Industrial Facilities Sector',
+    excerpt: 'CORR XP India now offers specialized structural repair and protection services for manufacturing plants and processing facilities.',
     date: '2024-10-20',
-    category: 'Expansion',
-    author: 'Corporate Communications',
+    category: 'Company News',
+    author: 'Management',
     readTime: '4 min',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=800&q=80',
     featured: false,
   },
   {
     id: 4,
-    title: 'Industry Report: State of Infrastructure Corrosion 2024',
-    excerpt: 'Our annual report reveals critical insights into the current state of infrastructure corrosion in India.',
+    title: 'Understanding Corrosion Control in Concrete Structures',
+    excerpt: 'A comprehensive guide to treating corroded reinforcement and applying anti-corrosion systems for extended service life.',
     date: '2024-09-15',
-    category: 'Research',
-    author: 'Research Division',
+    category: 'Educational',
+    author: 'Technical Division',
     readTime: '8 min',
     image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
     featured: false,
   },
   {
     id: 5,
-    title: 'Partnership with National Highway Authority',
-    excerpt: 'CORR XP signs a landmark multi-year agreement to provide corrosion assessment services for over 500 bridges.',
+    title: 'Bridge Rehabilitation Project Successfully Delivered',
+    excerpt: 'CORR XP India completes structural repair and strengthening of a major infrastructure bridge using carbon fiber systems.',
     date: '2024-08-10',
-    category: 'Partnerships',
-    author: 'Business Development',
+    category: 'Project Update',
+    author: 'Project Team',
     readTime: '3 min',
     image: 'https://images.unsplash.com/photo-1545558014-8692077e9b5c?auto=format&fit=crop&w=800&q=80',
     featured: false,
   },
   {
     id: 6,
-    title: 'CEO Featured in Engineering Today Magazine',
-    excerpt: 'Our CEO Dr. Rajesh Kumar discusses the future of sustainable infrastructure protection in an exclusive interview.',
+    title: 'Steel Coating Best Practices: ISO Guidelines',
+    excerpt: 'Learn about surface preparation, anti-corrosive coatings, and zinc-rich coating applications as per ISO standards.',
     date: '2024-07-22',
-    category: 'Media',
-    author: 'PR Team',
+    category: 'Technical',
+    author: 'Coating Specialists',
     readTime: '6 min',
-    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80',
     featured: false,
   },
 ];
@@ -89,16 +89,15 @@ const NewsPage = () => {
   return (
     <>
       <Helmet>
-        <title>News & Media | CORR XP - Latest Updates and Industry Insights</title>
+        <title>News & Updates | CORR XP India - Structural Repair Insights</title>
         <meta
           name="description"
-          content="Stay updated with CORR XP's latest news, industry insights, research publications, and company announcements."
+          content="Stay updated with CORR XP India's latest project updates, technical insights, and company news in structural repair and retrofitting."
         />
       </Helmet>
 
       {/* Hero Section */}
       <section className="relative bg-slate overflow-hidden">
-        {/* Abstract background */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-slate-dark via-slate to-slate" />
           <div className="absolute top-0 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
@@ -115,17 +114,17 @@ const NewsPage = () => {
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-6">
                 <Newspaper className="w-4 h-4 text-primary" />
-                <span className="text-primary text-sm font-medium">News & Media</span>
+                <span className="text-primary text-sm font-medium">News & Updates</span>
               </div>
               
               <h1 className="text-warm-white text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
                 Latest Updates &{' '}
-                <span className="text-primary">Industry Insights</span>
+                <span className="text-primary">Technical Insights</span>
               </h1>
               
               <p className="text-lg text-warm-white/80 max-w-2xl leading-relaxed">
-                Stay informed about our latest projects, innovations, and developments in 
-                corrosion protection and infrastructure preservation.
+                Stay informed about our latest projects, technical innovations, and developments 
+                in structural repair, protection, and retrofitting.
               </p>
             </motion.div>
           </div>
@@ -189,7 +188,7 @@ const NewsPage = () => {
         <div className="container-custom">
           <AnimatedSection className="mb-10">
             <span className="font-script text-accent text-lg block mb-2">Latest Stories</span>
-            <h2 className="text-charcoal">More News</h2>
+            <h2 className="text-charcoal">More Updates</h2>
           </AnimatedSection>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -245,7 +244,7 @@ const NewsPage = () => {
             <span className="font-script text-primary text-lg mb-2 block">Stay Connected</span>
             <h2 className="text-warm-white mb-4">Subscribe to Updates</h2>
             <p className="text-warm-white/70 mb-6 text-sm">
-              Get the latest industry insights and project updates delivered to your inbox.
+              Get the latest technical insights and project updates delivered to your inbox.
             </p>
             <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
               <input
