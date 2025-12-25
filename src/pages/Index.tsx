@@ -15,6 +15,13 @@ import workBeamWrapping from '@/assets/work-beam-wrapping-2.jpg';
 import workFloorCoating from '@/assets/work-floor-coating-1.jpg';
 import teamPhoto from '@/assets/team-photo-1.jpg';
 import workSurfacePrep from '@/assets/work-surface-prep-1.jpg';
+import ongcLogo from '@/assets/clients/ongc.png';
+import ltLogo from '@/assets/clients/lt.png';
+import nalcoLogo from '@/assets/clients/nalco.png';
+import ciplaLogo from '@/assets/clients/cipla.png';
+import tataSteelLogo from '@/assets/clients/tata-steel.png';
+import ambujaCementLogo from '@/assets/clients/ambuja-cement.png';
+import accLogo from '@/assets/clients/acc.png';
 
 // Hero Section - Full bleed with real imagery
 const HeroSection = () => <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -423,91 +430,101 @@ const ServicesPreviewSection = () => {
     </section>;
 };
 
-// Clients Section - Professional logo strip with marquee effect
+// Clients Section - Bold design with real logos
 const ClientsSection = () => {
-  const clients = [{
-    name: 'ONGC',
-    abbrev: 'ONGC',
-    color: '#E31937'
-  }, {
-    name: 'Larsen & Toubro',
-    abbrev: 'L&T',
-    color: '#003B71'
-  }, {
-    name: 'Indian Oil',
-    abbrev: 'IOCL',
-    color: '#ED1C24'
-  }, {
-    name: 'NTPC Limited',
-    abbrev: 'NTPC',
-    color: '#00529B'
-  }, {
-    name: 'NHAI',
-    abbrev: 'NHAI',
-    color: '#006400'
-  }, {
-    name: 'Reliance Industries',
-    abbrev: 'RIL',
-    color: '#005BAB'
-  }, {
-    name: 'Tata Steel',
-    abbrev: 'TATA',
-    color: '#486AAE'
-  }, {
-    name: 'Adani Group',
-    abbrev: 'ADANI',
-    color: '#002F6C'
-  }];
-  return <section className="bg-warm-white py-20 border-y border-border overflow-hidden">
-      <div className="container-custom">
-        <AnimatedSection className="text-center mb-14">
-          <span className="text-charcoal/40 text-xs font-semibold uppercase tracking-[0.2em]">
-            Trusted Partners
-          </span>
-          <h3 className="text-charcoal mt-2 text-2xl font-bold">Trusted by 100+ Industry Leaders</h3>
+  const clients = [
+    { name: 'ONGC', logo: ongcLogo },
+    { name: 'Larsen & Toubro', logo: ltLogo },
+    { name: 'NALCO', logo: nalcoLogo },
+    { name: 'Cipla', logo: ciplaLogo },
+    { name: 'Tata Steel', logo: tataSteelLogo },
+    { name: 'Ambuja Cement', logo: ambujaCementLogo },
+    { name: 'ACC', logo: accLogo },
+  ];
+
+  return (
+    <section className="relative bg-slate overflow-hidden py-24">
+      {/* Bold geometric background */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-0 w-1/3 h-full bg-primary/10 -skew-x-12 -translate-x-20" />
+        <div className="absolute bottom-0 right-0 w-1/4 h-1/2 bg-accent/5 skew-x-12 translate-x-10" />
+        <div className="absolute inset-0 pattern-lines opacity-20" />
+      </div>
+
+      <div className="container-custom relative z-10">
+        {/* Header with large typography */}
+        <AnimatedSection className="mb-16">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+            <div>
+              <span className="inline-block px-4 py-2 bg-primary/20 text-primary text-xs font-bold uppercase tracking-widest rounded-full mb-4">
+                Trusted Partners
+              </span>
+              <h2 className="text-warm-white text-4xl lg:text-5xl font-bold leading-tight">
+                Industry Leaders<br />
+                <span className="text-primary">Trust Our Expertise</span>
+              </h2>
+            </div>
+            <div className="lg:text-right">
+              <div className="text-6xl lg:text-7xl font-black text-primary/20">100+</div>
+              <p className="text-warm-white/60 -mt-2">Clients Served</p>
+            </div>
+          </div>
         </AnimatedSection>
 
-        {/* Logo Grid - Professional styled logos */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
-          {clients.map((client, index) => <AnimatedSection key={client.name} delay={index * 0.05}>
-              <div className="group relative bg-gradient-to-br from-slate/5 to-transparent border border-border/50 rounded-lg p-6 h-24 flex items-center justify-center hover:border-primary/30 hover:shadow-custom-md transition-all duration-300">
-                {/* Styled Logo Text */}
-                <div className="flex flex-col items-center">
-                  <span className="text-2xl font-black tracking-tight transition-transform group-hover:scale-110" style={{
-                color: client.color
-              }}>
-                    {client.abbrev}
-                  </span>
-                  <span className="text-[10px] text-charcoal/40 font-medium uppercase tracking-wider mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                    {client.name}
-                  </span>
+        {/* Logo Grid - Bold cards with hover effects */}
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
+          {clients.map((client, index) => (
+            <AnimatedSection key={client.name} delay={index * 0.08}>
+              <motion.div 
+                className="group relative bg-warm-white rounded-lg overflow-hidden aspect-square flex items-center justify-center p-4 cursor-pointer"
+                whileHover={{ scale: 1.05, y: -5 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                {/* Logo */}
+                <img 
+                  src={client.logo} 
+                  alt={client.name} 
+                  className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
+                />
+                
+                {/* Hover overlay with name */}
+                <div className="absolute inset-0 bg-slate-dark/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <span className="text-warm-white text-sm font-bold text-center px-2">{client.name}</span>
                 </div>
                 
-                {/* Hover accent */}
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 group-hover:w-12 transition-all duration-300" style={{
-              backgroundColor: client.color
-            }} />
-              </div>
-            </AnimatedSection>)}
+                {/* Bottom accent bar */}
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+              </motion.div>
+            </AnimatedSection>
+          ))}
         </div>
 
         {/* Trust indicators */}
-        <AnimatedSection delay={0.4} className="mt-12 flex flex-wrap justify-center gap-8 text-center">
-          <div className="flex items-center gap-2 text-charcoal/50">
-            <Shield size={16} className="text-primary" />
-            <span className="text-sm">ISO 9001:2015 Certified</span>
-          </div>
-          <div className="flex items-center gap-2 text-charcoal/50">
-            <Award size={16} className="text-primary" />
-            <span className="text-sm">NACE Certified Specialists</span>
-          </div>
-          <div className="flex items-center gap-2 text-charcoal/50">
-            <CheckCircle2 size={16} className="text-primary" />
-            <span className="text-sm">Government Approved Contractor</span>
+        <AnimatedSection delay={0.5} className="mt-16">
+          <div className="flex flex-wrap justify-center gap-6 lg:gap-12">
+            {[
+              { icon: Shield, label: 'MSME Registered' },
+              { icon: Award, label: 'NACE Certified' },
+              { icon: CheckCircle2, label: 'GST Registered' },
+              { icon: FileCheck, label: 'ASTM Compliant' },
+            ].map((item, index) => (
+              <motion.div 
+                key={item.label}
+                className="flex items-center gap-3 px-6 py-3 bg-warm-white/5 border border-warm-white/10 rounded-full"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <item.icon size={18} className="text-primary" />
+                <span className="text-warm-white/80 text-sm font-medium">{item.label}</span>
+              </motion.div>
+            ))}
           </div>
         </AnimatedSection>
       </div>
-    </section>;
+    </section>
+  );
 };
 
 // Testimonials Section - Carousel with auto-play
