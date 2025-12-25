@@ -6,15 +6,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 import logo from '@/assets/logo.png';
 
 const leftNavItems = [
-  { name: 'Home', path: '/', enabled: true },
-  { name: 'Who We Are', path: '/about', enabled: false },
-  { name: 'What We Do', path: '/services', enabled: false },
+  { name: 'Home', path: '/' },
+  { name: 'Who We Are', path: '/about' },
+  { name: 'What We Do', path: '/services' },
 ];
 
 const rightNavItems = [
-  { name: 'Projects', path: '/projects', enabled: false },
-  { name: 'News & Media', path: '/news', enabled: false },
-  { name: 'Contact Us', path: '/contact', enabled: false },
+  { name: 'Projects', path: '/projects' },
+  { name: 'News & Media', path: '/news' },
+  { name: 'Contact Us', path: '/contact' },
 ];
 
 const allNavItems = [...leftNavItems, ...rightNavItems];
@@ -73,9 +73,11 @@ const Header = () => {
 
               {/* Right: CTAs + Social */}
               <div className={`flex items-center gap-4 transition-all duration-300 ${isScrolled ? 'opacity-0 pointer-events-none h-0 overflow-hidden' : 'opacity-100'}`}>
-                <Button variant="ghost" size="sm" className="text-warm-white/80 hover:text-warm-white hover:bg-warm-white/10 text-sm cursor-not-allowed opacity-50">
-                  <span>Inquire Now</span>
-                </Button>
+                <Link to="/contact">
+                  <Button variant="ghost" size="sm" className="text-warm-white/80 hover:text-warm-white hover:bg-warm-white/10 text-sm">
+                    <span>Inquire Now</span>
+                  </Button>
+                </Link>
                 <a 
                   href="/brochure.pdf" 
                   className="flex items-center gap-2 text-primary hover:text-rust-light transition-colors font-medium text-sm bg-primary/10 px-4 py-2 rounded"
@@ -107,41 +109,26 @@ const Header = () => {
               {/* Left Navigation */}
               <nav className="flex items-center">
                 {leftNavItems.map((item) => (
-                  item.enabled ? (
-                    <Link
-                      key={item.path}
-                      to={item.path}
-                      className={`px-6 transition-all duration-300 text-sm font-medium uppercase tracking-wider relative group ${
-                        isScrolled ? 'py-2' : 'py-3'
-                      } ${
-                        location.pathname === item.path
-                          ? 'text-primary'
-                          : isScrolled 
-                            ? 'text-slate-dark/80 hover:text-slate-dark'
-                            : 'text-warm-white/80 hover:text-warm-white'
-                      }`}
-                    >
-                      {item.name}
-                      <span
-                        className={`absolute bottom-0 left-6 right-6 h-0.5 bg-primary transform origin-left transition-transform duration-300 ${
-                          location.pathname === item.path ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-                        }`}
-                      />
-                    </Link>
-                  ) : (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    className={`px-6 transition-all duration-300 text-sm font-medium uppercase tracking-wider relative group ${
+                      isScrolled ? 'py-2' : 'py-3'
+                    } ${
+                      location.pathname === item.path
+                        ? 'text-primary'
+                        : isScrolled 
+                          ? 'text-slate-dark/80 hover:text-slate-dark'
+                          : 'text-warm-white/80 hover:text-warm-white'
+                    }`}
+                  >
+                    {item.name}
                     <span
-                      key={item.path}
-                      className={`px-6 transition-all duration-300 text-sm font-medium uppercase tracking-wider cursor-not-allowed ${
-                        isScrolled ? 'py-2' : 'py-3'
-                      } ${
-                        isScrolled 
-                          ? 'text-slate-dark/40'
-                          : 'text-warm-white/40'
+                      className={`absolute bottom-0 left-6 right-6 h-0.5 bg-primary transform origin-left transition-transform duration-300 ${
+                        location.pathname === item.path ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                       }`}
-                    >
-                      {item.name}
-                    </span>
-                  )
+                    />
+                  </Link>
                 ))}
               </nav>
 
@@ -151,41 +138,26 @@ const Header = () => {
               {/* Right Navigation */}
               <nav className="flex items-center">
                 {rightNavItems.map((item) => (
-                  item.enabled ? (
-                    <Link
-                      key={item.path}
-                      to={item.path}
-                      className={`px-6 transition-all duration-300 text-sm font-medium uppercase tracking-wider relative group ${
-                        isScrolled ? 'py-2' : 'py-3'
-                      } ${
-                        location.pathname === item.path
-                          ? 'text-primary'
-                          : isScrolled 
-                            ? 'text-slate-dark/80 hover:text-slate-dark'
-                            : 'text-warm-white/80 hover:text-warm-white'
-                      }`}
-                    >
-                      {item.name}
-                      <span
-                        className={`absolute bottom-0 left-6 right-6 h-0.5 bg-primary transform origin-left transition-transform duration-300 ${
-                          location.pathname === item.path ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-                        }`}
-                      />
-                    </Link>
-                  ) : (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    className={`px-6 transition-all duration-300 text-sm font-medium uppercase tracking-wider relative group ${
+                      isScrolled ? 'py-2' : 'py-3'
+                    } ${
+                      location.pathname === item.path
+                        ? 'text-primary'
+                        : isScrolled 
+                          ? 'text-slate-dark/80 hover:text-slate-dark'
+                          : 'text-warm-white/80 hover:text-warm-white'
+                    }`}
+                  >
+                    {item.name}
                     <span
-                      key={item.path}
-                      className={`px-6 transition-all duration-300 text-sm font-medium uppercase tracking-wider cursor-not-allowed ${
-                        isScrolled ? 'py-2' : 'py-3'
-                      } ${
-                        isScrolled 
-                          ? 'text-slate-dark/40'
-                          : 'text-warm-white/40'
+                      className={`absolute bottom-0 left-6 right-6 h-0.5 bg-primary transform origin-left transition-transform duration-300 ${
+                        location.pathname === item.path ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                       }`}
-                    >
-                      {item.name}
-                    </span>
-                  )
+                    />
+                  </Link>
                 ))}
               </nav>
             </div>
@@ -233,26 +205,17 @@ const Header = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.05 }}
                   >
-                    {item.enabled ? (
-                      <Link
-                        to={item.path}
-                        className={`flex items-center justify-between px-4 py-3 text-base font-medium rounded-md transition-colors ${
-                          location.pathname === item.path
-                            ? 'text-primary bg-warm-white/5'
-                            : 'text-warm-white/80 hover:text-warm-white hover:bg-warm-white/5'
-                        }`}
-                      >
-                        {item.name}
-                        <ChevronRight size={16} className="opacity-50" />
-                      </Link>
-                    ) : (
-                      <span
-                        className="flex items-center justify-between px-4 py-3 text-base font-medium rounded-md text-warm-white/40 cursor-not-allowed"
-                      >
-                        {item.name}
-                        <ChevronRight size={16} className="opacity-25" />
-                      </span>
-                    )}
+                    <Link
+                      to={item.path}
+                      className={`flex items-center justify-between px-4 py-3 text-base font-medium rounded-md transition-colors ${
+                        location.pathname === item.path
+                          ? 'text-primary bg-warm-white/5'
+                          : 'text-warm-white/80 hover:text-warm-white hover:bg-warm-white/5'
+                      }`}
+                    >
+                      {item.name}
+                      <ChevronRight size={16} className="opacity-50" />
+                    </Link>
                   </motion.div>
                 ))}
                 
@@ -294,10 +257,12 @@ const Header = () => {
                   transition={{ delay: allNavItems.length * 0.05 }}
                   className="mt-4 pt-4 border-t border-warm-white/10"
                 >
-                  <Button variant="hero" className="w-full cursor-not-allowed opacity-50">
-                    <span>Get a Free Quote</span>
-                    <ChevronRight size={16} className="ml-1" />
-                  </Button>
+                  <Link to="/contact">
+                    <Button variant="hero" className="w-full">
+                      <span>Get a Free Quote</span>
+                      <ChevronRight size={16} className="ml-1" />
+                    </Button>
+                  </Link>
                 </motion.div>
               </nav>
             </motion.div>

@@ -75,13 +75,17 @@ const HeroSection = () => <section className="relative min-h-screen flex items-c
         duration: 0.8,
         delay: 0.8
       }} className="flex flex-wrap gap-4">
-          <Button variant="hero" size="lg" className="cursor-not-allowed opacity-70">
-            <span>Get Free Consultation</span>
-            <ArrowRight size={18} className="ml-2" />
-          </Button>
-          <Button variant="heroOutline" size="lg" className="cursor-not-allowed opacity-70">
-            <span>Explore Our Work</span>
-          </Button>
+          <Link to="/contact">
+            <Button variant="hero" size="lg">
+              <span>Get Free Consultation</span>
+              <ArrowRight size={18} className="ml-2" />
+            </Button>
+          </Link>
+          <Link to="/projects">
+            <Button variant="heroOutline" size="lg">
+              <span>Explore Our Work</span>
+            </Button>
+          </Link>
         </motion.div>
       </div>
     </div>
@@ -184,10 +188,12 @@ const AboutSnapshotSection = () => <section className="bg-warm-white section-pad
               </div>)}
           </div>
           
-          <Button variant="default" size="lg" className="cursor-not-allowed opacity-70">
-            <span>Learn Our Story</span>
-            <ArrowRight size={18} className="ml-2" />
-          </Button>
+          <Link to="/about">
+            <Button variant="default" size="lg">
+              <span>Learn Our Story</span>
+              <ArrowRight size={18} className="ml-2" />
+            </Button>
+          </Link>
         </AnimatedSection>
       </div>
     </div>
@@ -329,10 +335,10 @@ const ServicesPreviewSection = () => {
               </div>
               
               <div className="mt-8 pl-6">
-                <span className="inline-flex items-center gap-2 text-primary/50 font-medium cursor-not-allowed">
+                <Link to="/services" className="inline-flex items-center gap-2 text-primary font-medium hover:text-primary/80 transition-colors">
                   View All Services
                   <ArrowRight size={18} />
-                </span>
+                </Link>
               </div>
             </div>
 
@@ -372,10 +378,10 @@ const ServicesPreviewSection = () => {
                           {services[activeService].description}
                         </p>
                         
-                        <span className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-primary/50 text-primary-foreground font-medium cursor-not-allowed">
+                        <Link to="/services" className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors">
                           Learn More
                           <ArrowRight size={16} />
-                        </span>
+                        </Link>
                       </motion.div>
                     </div>
                   </div>
@@ -674,49 +680,51 @@ const ProjectsPreviewSection = () => {
             <span className="font-script text-primary text-lg mb-2 block">Our Portfolio</span>
             <h2 className="text-warm-white">Featured Projects</h2>
           </div>
-          <Button variant="heroOutline" className="cursor-not-allowed opacity-70">
-            <span>View All Projects</span>
-            <ArrowRight size={16} className="ml-2" />
-          </Button>
+          <Link to="/projects">
+            <Button variant="heroOutline">
+              <span>View All Projects</span>
+              <ArrowRight size={16} className="ml-2" />
+            </Button>
+          </Link>
         </AnimatedSection>
 
         <div className="grid lg:grid-cols-2 gap-6">
           {/* Featured Project */}
           <AnimatedSection direction="left" className="lg:row-span-2">
-            <div className="block h-full cursor-not-allowed">
+            <Link to="/projects" className="block h-full group">
               <div className="relative h-full min-h-[400px] lg:min-h-full overflow-hidden rounded img-zoom">
-                <img src={featuredProject.image} alt={featuredProject.title} className="w-full h-full object-cover" />
+                <img src={featuredProject.image} alt={featuredProject.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-dark/90 via-slate-dark/40 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-8">
                   <span className="inline-block px-3 py-1 bg-primary text-primary-foreground text-xs font-medium rounded mb-3">
                     {featuredProject.category}
                   </span>
-                  <h3 className="text-2xl font-bold text-warm-white mb-2">
+                  <h3 className="text-2xl font-bold text-warm-white mb-2 group-hover:text-primary transition-colors">
                     {featuredProject.title}
                   </h3>
                   <p className="text-warm-white/70 text-sm mb-1">{featuredProject.location}</p>
                   <p className="text-warm-white/60 text-sm">{featuredProject.description}</p>
                 </div>
               </div>
-            </div>
+            </Link>
           </AnimatedSection>
 
           {/* Other Projects */}
           {projects.map((project, index) => <AnimatedSection key={project.id} direction="right" delay={index * 0.15}>
-              <div className="block cursor-not-allowed">
+              <Link to="/projects" className="block group">
                 <div className="relative h-[200px] overflow-hidden rounded img-zoom">
-                  <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                  <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-dark/80 via-transparent to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-6">
                     <span className="text-primary text-xs font-medium uppercase tracking-wide">
                       {project.category}
                     </span>
-                    <h3 className="text-lg font-semibold text-warm-white mt-1">
+                    <h3 className="text-lg font-semibold text-warm-white mt-1 group-hover:text-primary transition-colors">
                       {project.title}
                     </h3>
                   </div>
                 </div>
-              </div>
+              </Link>
             </AnimatedSection>)}
         </div>
       </div>
@@ -742,13 +750,17 @@ const CTASection = () => <section className="bg-primary section-padding-sm relat
           </p>
         </div>
         <div className="flex flex-wrap gap-4">
-          <Button size="lg" className="bg-warm-white/70 text-primary font-semibold cursor-not-allowed">
-            <span>Request a Quote</span>
-            <ArrowRight size={18} className="ml-2" />
-          </Button>
-          <Button variant="heroOutline" size="lg" className="border-primary-foreground/30 text-primary-foreground/50 cursor-not-allowed">
-            <span>Our Services</span>
-          </Button>
+          <Link to="/contact">
+            <Button size="lg" className="bg-warm-white text-primary font-semibold hover:bg-warm-white/90">
+              <span>Request a Quote</span>
+              <ArrowRight size={18} className="ml-2" />
+            </Button>
+          </Link>
+          <Link to="/services">
+            <Button variant="heroOutline" size="lg" className="border-primary-foreground/50 text-primary-foreground hover:bg-primary-foreground/10">
+              <span>Our Services</span>
+            </Button>
+          </Link>
         </div>
       </div>
     </div>
