@@ -33,7 +33,7 @@ const HeroSection = () => <section className="relative min-h-screen flex items-c
         delay: 0.2
       }}>
           <span className="font-script text-primary text-xl md:text-2xl mb-4 block">
-            Structural Repair Specialists
+            Corrosion • Concrete • Strategist
           </span>
         </motion.div>
         
@@ -47,8 +47,8 @@ const HeroSection = () => <section className="relative min-h-screen flex items-c
         duration: 0.8,
         delay: 0.4
       }} className="text-warm-white text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-[1.1] text-shadow-lg">
-          Structural Repair,{' '}
-          <span className="text-primary">Protection & Retrofitting</span>
+          Restoring Strength.{' '}
+          <span className="text-primary">Reinforcing Trust.</span>
         </motion.h1>
         
         <motion.p initial={{

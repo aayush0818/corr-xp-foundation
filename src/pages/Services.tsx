@@ -14,6 +14,8 @@ import {
   Zap,
   GraduationCap,
   Construction,
+  Beaker,
+  FileCheck,
 } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
@@ -38,7 +40,7 @@ const services = [
       'Patch repair & micro-concreting',
       'Crack injection & grouting',
       'Protective coating systems',
-      'Deterioration prevention',
+      'Deck slab waterproofing',
     ],
   },
   {
@@ -55,12 +57,12 @@ const services = [
   {
     icon: Layers,
     title: 'Steel Coating & Protection',
-    description: 'Protective coating solutions for steel structures including surface preparation, anti-corrosive coatings, and industrial steel protection.',
+    description: 'Protective coating solutions for steel structures including surface preparation, anti-corrosive coatings as per NACE & ASTM guidelines.',
     features: [
       'Abrasive blasting & surface prep',
       'Anti-corrosive coating systems',
-      'Self-healing epoxy & PU coatings',
-      'Zinc-rich coatings (ISO guidelines)',
+      'Epoxy, PU & zinc-rich coatings',
+      'Food grade coating for tanks',
     ],
   },
   {
@@ -71,7 +73,7 @@ const services = [
       'Load capacity improvement',
       'Stiffness enhancement',
       'Ductility improvement',
-      'RCC structure strengthening',
+      'Building structure strengthening',
     ],
   },
   {
@@ -87,6 +89,27 @@ const services = [
   },
 ];
 
+const areasOfExpertise = [
+  { title: 'Material Supply', description: 'Specialized materials for repair works' },
+  { title: 'Specialised Use of Materials', description: 'Expert application techniques' },
+  { title: 'Corrosion Assessment', description: 'Comprehensive testing & analysis' },
+  { title: 'Repairs / Protective Coating', description: 'End-to-end coating works' },
+];
+
+const astmTests = [
+  { code: 'ASTM G102', description: 'Structural Steel Corrosion Rate Electrochemical Testing' },
+  { code: 'ASTM G50', description: 'Atmospheric Corrosion Testing' },
+  { code: 'ASTM B117', description: 'Induced Salt Spray Testing' },
+  { code: 'ASTM G142', description: 'Hydrogen Induced Cracking' },
+  { code: 'ASTM G316', description: 'Stress Induced Cracking Analysis' },
+];
+
+const onsiteTests = [
+  'Replica Metallography',
+  'Linear Polarization Testing',
+  'Galvanic Corrosion Testing',
+];
+
 const retrofittingBenefits = [
   'Enhance load capacity of existing structures',
   'Improve seismic performance',
@@ -97,10 +120,18 @@ const retrofittingBenefits = [
 
 const industries = [
   { icon: Home, name: 'Residential & Commercial', description: 'Buildings' },
-  { icon: Factory, name: 'Industrial Facilities', description: 'Manufacturing & Processing' },
+  { icon: Factory, name: 'Industrial Facilities', description: 'Manufacturing' },
   { icon: Construction, name: 'Infrastructure', description: 'Bridges & Roads' },
-  { icon: Zap, name: 'Power Plants', description: 'Utilities & Energy' },
-  { icon: GraduationCap, name: 'Institutional', description: 'Education & Healthcare' },
+  { icon: Zap, name: 'Power Plants', description: 'Utilities' },
+  { icon: GraduationCap, name: 'Institutional', description: 'Education' },
+];
+
+const values = [
+  { title: 'Client Satisfaction', description: 'Understanding and meeting client requirements to the fullest extent.' },
+  { title: 'Efficient Delivery', description: 'Ensuring services are delivered promptly and effectively.' },
+  { title: 'Cost-Effectiveness', description: 'Providing economical solutions to clients.' },
+  { title: 'Safety Priority', description: 'Conducting all activities with safety in mind.' },
+  { title: 'High-Quality Work', description: 'Delivering work that aligns with contract specifications and best practices.' },
 ];
 
 const ServicesPage = () => {
@@ -110,7 +141,7 @@ const ServicesPage = () => {
         <title>Our Services | CORR XP India - Structural Repair, Protection & Retrofitting</title>
         <meta
           name="description"
-          content="CORR XP India offers structural repair, concrete protection, corrosion control, steel coating, FRP strengthening, and structural retrofitting services."
+          content="CORR XP India offers structural repair, concrete protection, corrosion control, steel coating, FRP strengthening, and structural retrofitting services with NACE & ASTM certified testing."
         />
       </Helmet>
 
@@ -142,8 +173,7 @@ const ServicesPage = () => {
               
               <p className="text-lg text-warm-white/80 max-w-2xl leading-relaxed">
                 Advanced solutions for concrete and steel structures. We focus on improving 
-                strength, durability, and performance of existing assets using proven repair 
-                systems and modern strengthening technologies.
+                strength, durability, and performance using proven repair systems and modern technologies.
               </p>
             </motion.div>
           </div>
@@ -159,14 +189,35 @@ const ServicesPage = () => {
               <div className="text-warm-white/60 text-sm">Core Services</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-primary">5</div>
-              <div className="text-warm-white/60 text-sm">Industries Served</div>
+              <div className="text-3xl font-bold text-primary">NACE</div>
+              <div className="text-warm-white/60 text-sm">Certified Testing</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-primary">In-house</div>
-              <div className="text-warm-white/60 text-sm">Design of Repairs</div>
+              <div className="text-3xl font-bold text-primary">ASTM</div>
+              <div className="text-warm-white/60 text-sm">Standards Compliant</div>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Areas of Expertise */}
+      <section className="bg-warm-white section-padding-sm">
+        <div className="container-custom">
+          <AnimatedSection className="text-center mb-10">
+            <span className="font-script text-accent text-lg mb-2 block">Areas of Expertise</span>
+            <h2 className="text-charcoal">End-to-End Solutions</h2>
+          </AnimatedSection>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {areasOfExpertise.map((area, index) => (
+              <AnimatedSection key={area.title} delay={index * 0.1}>
+                <div className="bg-warm-white-dark border border-border p-6 rounded text-center hover:shadow-custom-md transition-all">
+                  <h3 className="text-charcoal font-semibold mb-2">{area.title}</h3>
+                  <p className="text-charcoal/60 text-sm">{area.description}</p>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -175,10 +226,9 @@ const ServicesPage = () => {
         <div className="container-custom">
           <AnimatedSection className="text-center mb-12">
             <span className="font-script text-accent text-lg mb-2 block">What We Do</span>
-            <h2 className="text-charcoal mb-4">Comprehensive Engineering Solutions</h2>
+            <h2 className="text-charcoal mb-4">Our Key Services</h2>
             <p className="text-charcoal/70 max-w-2xl mx-auto">
-              From structural repair to advanced fiber wrapping, we deliver proven solutions 
-              with in-house design capabilities including structural stability analysis.
+              Comprehensive services with in-house design capabilities including structural stability analysis.
             </p>
           </AnimatedSection>
 
@@ -213,8 +263,72 @@ const ServicesPage = () => {
         </div>
       </section>
 
+      {/* Corrosion Assessment & Testing */}
+      <section className="bg-slate section-padding">
+        <div className="container-custom">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <AnimatedSection>
+              <div className="flex items-center gap-3 mb-6">
+                <Beaker className="w-8 h-8 text-primary" />
+                <div>
+                  <span className="font-script text-primary text-lg block">NACE International</span>
+                  <h2 className="text-warm-white">Corrosion Assessment & Testing</h2>
+                </div>
+              </div>
+              
+              <p className="text-warm-white/70 mb-8 leading-relaxed">
+                We conduct comprehensive corrosion testing as per ASTM standards, providing 
+                accurate assessments to determine the best protection strategies for your structures.
+              </p>
+
+              <div className="space-y-3 mb-8">
+                <h3 className="text-warm-white font-semibold mb-4">ASTM Testing Standards:</h3>
+                {astmTests.map((test) => (
+                  <div key={test.code} className="bg-slate-light/30 border border-warm-white/10 p-4 rounded">
+                    <div className="text-primary font-bold text-sm">{test.code}</div>
+                    <div className="text-warm-white/70 text-sm">{test.description}</div>
+                  </div>
+                ))}
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.2}>
+              <div className="bg-slate-light/30 border border-warm-white/10 p-8 rounded">
+                <div className="flex items-center gap-3 mb-6">
+                  <FileCheck className="w-6 h-6 text-primary" />
+                  <h3 className="text-warm-white text-xl font-bold">Onsite Tests for Structural Steel</h3>
+                </div>
+                
+                <div className="space-y-4 mb-8">
+                  {onsiteTests.map((test, index) => (
+                    <div key={test} className="flex items-center gap-3">
+                      <span className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center text-primary font-bold text-sm">
+                        {index + 1}
+                      </span>
+                      <span className="text-warm-white">{test}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="pt-6 border-t border-warm-white/10">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-primary/10 rounded flex items-center justify-center">
+                      <Shield className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <div className="text-warm-white font-semibold">NACE International</div>
+                      <div className="text-warm-white/60 text-sm">The Corrosion Society Certified</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
       {/* Retrofitting Benefits */}
-      <section className="bg-warm-white-dark section-padding">
+      <section className="bg-warm-white section-padding">
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <AnimatedSection>
@@ -222,8 +336,7 @@ const ServicesPage = () => {
               <h2 className="text-charcoal mb-6">Carbon / Glass / Aramid Fiber Systems</h2>
               <p className="text-charcoal/70 mb-8 leading-relaxed">
                 Our high-performance fiber wrapping and laminate upgrade systems provide 
-                advanced structural retrofitting without adding significant dead load to 
-                your structures.
+                advanced structural retrofitting without adding significant dead load.
               </p>
               <div className="space-y-4">
                 {retrofittingBenefits.map((benefit) => (
@@ -235,21 +348,18 @@ const ServicesPage = () => {
               </div>
             </AnimatedSection>
             <AnimatedSection delay={0.2}>
-              <div className="bg-slate p-8 rounded">
-                <h3 className="text-warm-white text-xl font-bold mb-4">Fiber Systems We Use</h3>
-                <div className="space-y-4">
-                  <div className="bg-slate-light/30 p-4 rounded border border-warm-white/10">
-                    <div className="text-primary font-bold mb-1">CFRP</div>
-                    <div className="text-warm-white/70 text-sm">Carbon Fiber Reinforced Polymer</div>
-                  </div>
-                  <div className="bg-slate-light/30 p-4 rounded border border-warm-white/10">
-                    <div className="text-primary font-bold mb-1">GFRP</div>
-                    <div className="text-warm-white/70 text-sm">Glass Fiber Reinforced Polymer</div>
-                  </div>
-                  <div className="bg-slate-light/30 p-4 rounded border border-warm-white/10">
-                    <div className="text-primary font-bold mb-1">AFRP</div>
-                    <div className="text-warm-white/70 text-sm">Aramid Fiber Reinforced Polymer</div>
-                  </div>
+              <div className="grid grid-cols-3 gap-4">
+                <div className="bg-primary p-6 rounded text-center">
+                  <div className="text-primary-foreground font-bold text-2xl mb-1">CFRP</div>
+                  <div className="text-primary-foreground/80 text-xs">Carbon Fiber</div>
+                </div>
+                <div className="bg-slate p-6 rounded text-center">
+                  <div className="text-warm-white font-bold text-2xl mb-1">GFRP</div>
+                  <div className="text-warm-white/80 text-xs">Glass Fiber</div>
+                </div>
+                <div className="bg-accent p-6 rounded text-center">
+                  <div className="text-accent-foreground font-bold text-2xl mb-1">AFRP</div>
+                  <div className="text-accent-foreground/80 text-xs">Aramid Fiber</div>
                 </div>
               </div>
             </AnimatedSection>
@@ -257,22 +367,43 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* Industries Section */}
-      <section className="bg-slate section-padding">
+      {/* Our Values */}
+      <section className="bg-warm-white-dark section-padding-sm">
         <div className="container-custom">
-          <AnimatedSection className="text-center mb-12">
+          <AnimatedSection className="text-center mb-10">
+            <span className="font-script text-accent text-lg mb-2 block">Our Approach</span>
+            <h2 className="text-charcoal">Providing Solutions with Sustainability in Mind</h2>
+          </AnimatedSection>
+
+          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {values.map((value, index) => (
+              <AnimatedSection key={value.title} delay={index * 0.1}>
+                <div className="bg-warm-white border border-border p-5 rounded text-center h-full">
+                  <h3 className="text-charcoal font-semibold text-sm mb-2">{value.title}</h3>
+                  <p className="text-charcoal/60 text-xs">{value.description}</p>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Industries Section */}
+      <section className="bg-slate section-padding-sm">
+        <div className="container-custom">
+          <AnimatedSection className="text-center mb-10">
             <span className="font-script text-primary text-lg mb-2 block">Sectors We Serve</span>
-            <h2 className="text-warm-white mb-4">Industries We Protect</h2>
+            <h2 className="text-warm-white">Industries We Protect</h2>
           </AnimatedSection>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {industries.map((industry, index) => (
               <AnimatedSection key={industry.name} delay={index * 0.1}>
-                <div className="bg-slate-light/30 backdrop-blur-sm border border-warm-white/10 p-6 rounded text-center hover:bg-slate-light/50 transition-all duration-300 group">
-                  <div className="w-12 h-12 bg-primary/10 rounded flex items-center justify-center mx-auto mb-3 group-hover:bg-primary/20 transition-colors">
-                    <industry.icon className="w-6 h-6 text-primary" />
+                <div className="bg-slate-light/30 border border-warm-white/10 p-5 rounded text-center hover:bg-slate-light/50 transition-all group">
+                  <div className="w-10 h-10 bg-primary/10 rounded flex items-center justify-center mx-auto mb-3 group-hover:bg-primary/20 transition-colors">
+                    <industry.icon className="w-5 h-5 text-primary" />
                   </div>
-                  <h3 className="text-warm-white font-semibold text-sm mb-1">{industry.name}</h3>
+                  <h3 className="text-warm-white font-medium text-sm">{industry.name}</h3>
                   <p className="text-warm-white/50 text-xs">{industry.description}</p>
                 </div>
               </AnimatedSection>

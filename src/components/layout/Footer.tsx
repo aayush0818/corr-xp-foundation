@@ -65,15 +65,15 @@ const Footer = () => {
                 <span>corrxp@gmail.com</span>
               </a>
               <a
-                href="tel:+919900387360"
+                href="tel:+919988252531"
                 className="flex items-center gap-3 text-warm-white/60 hover:text-primary transition-colors"
               >
                 <Phone size={16} className="flex-shrink-0" />
-                <span>+91 9900387360</span>
+                <span>+91 99 88 2525 31</span>
               </a>
               <div className="flex items-start gap-3 text-warm-white/60">
                 <MapPin size={16} className="mt-1 flex-shrink-0" />
-                <span>A-1201, Chaturbhuj CHS, Shilp Chowk,<br />Khargar, Sec 21, Navi Mumbai 410210</span>
+                <span>A-1201, Chaturbhuj CHS, Shilp Chowk,<br />Sec 21, Kharghar 410210, MH, India</span>
               </div>
             </div>
 
