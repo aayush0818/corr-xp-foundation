@@ -48,19 +48,20 @@ const ContactPage = () => {
   };
 
   const contactInfo = [
-    { icon: Mail, label: 'Email', value: 'info@corrxp.com', href: 'mailto:info@corrxp.com' },
-    { icon: Phone, label: 'Phone', value: '+91 22 1234 5678', href: 'tel:+912212345678' },
-    { icon: MapPin, label: 'Address', value: 'Nariman Point, Mumbai', href: null },
+    { icon: Mail, label: 'Email', value: 'corrxp@gmail.com', href: 'mailto:corrxp@gmail.com' },
+    { icon: Phone, label: 'Phone', value: '+91 99 88 2525 31', href: 'tel:+919988252531' },
+    { icon: MapPin, label: 'Address', value: 'Kharghar, Navi Mumbai', href: null },
     { icon: Clock, label: 'Hours', value: 'Mon - Sat: 9AM - 6PM', href: null },
   ];
 
   const services = [
-    'Corrosion Assessment',
-    'Concrete Repair',
-    'Protective Coatings',
-    'Structural Analysis',
-    'Quality Assurance',
-    'Consulting',
+    'Structural Repair & Rehabilitation',
+    'Concrete Repair & Protection',
+    'Corrosion Control Solutions',
+    'Steel Coating & Protection',
+    'Fiber Wrapping (FRP)',
+    'Structural Retrofitting',
+    'Corrosion Assessment & Testing',
     'Other',
   ];
 
@@ -281,13 +282,14 @@ const ContactPage = () => {
                 <div className="bg-warm-white-dark p-6 rounded border border-border">
                   <div className="flex items-center gap-2 mb-4">
                     <Building2 className="w-5 h-5 text-primary" />
-                    <h3 className="text-lg font-bold text-charcoal">Head Office</h3>
+                    <h3 className="text-lg font-bold text-charcoal">Office</h3>
                   </div>
                   <address className="not-italic text-charcoal/70 text-sm space-y-1">
-                    <p>CORR XP Engineering Pvt. Ltd.</p>
-                    <p>Floor 12, Trade Tower</p>
-                    <p>Nariman Point</p>
-                    <p>Mumbai 400021, India</p>
+                    <p className="font-medium text-charcoal">Corrxp India Services</p>
+                    <p>A-1201, Chaturbhuj CHS</p>
+                    <p>Shilp Chowk, Sec 21</p>
+                    <p>Kharghar 410210</p>
+                    <p>MH, India</p>
                   </address>
                 </div>
 

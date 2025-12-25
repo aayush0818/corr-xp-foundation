@@ -52,9 +52,9 @@ const Header = () => {
             <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'py-1.5' : 'py-3'}`}>
               {/* Left: Contact Info */}
               <div className={`flex items-center gap-6 transition-all duration-300 ${isScrolled ? 'opacity-0 pointer-events-none h-0 overflow-hidden' : 'opacity-100'}`}>
-                <a href="tel:+919900387360" className="flex items-center gap-2 text-warm-white/70 hover:text-primary transition-colors text-sm">
+                <a href="tel:+919988252531" className="flex items-center gap-2 text-warm-white/70 hover:text-primary transition-colors text-sm">
                   <Phone size={14} />
-                  <span>+91 9900387360</span>
+                  <span>+91 99 88 2525 31</span>
                 </a>
                 <a href="mailto:corrxp@gmail.com" className="flex items-center gap-2 text-warm-white/70 hover:text-primary transition-colors text-sm">
                   <Mail size={14} />
