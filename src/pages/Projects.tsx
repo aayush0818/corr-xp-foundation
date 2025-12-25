@@ -148,7 +148,6 @@ const ProjectsPage = () => {
             className="flex flex-wrap gap-8 mt-12 pt-8 border-t border-warm-white/10"
           >
             {[
-              { value: '₹500+ Cr', label: 'Project Value' },
               { value: '500+', label: 'Projects' },
               { value: '25+', label: 'States' },
               { value: '98%', label: 'Satisfaction' },
@@ -224,12 +223,9 @@ const ProjectsPage = () => {
                         <span>•</span>
                         <span>{project.year}</span>
                       </div>
-                      <h3 className="text-lg font-semibold text-charcoal mb-2 group-hover:text-primary transition-colors">
+                      <h3 className="text-lg font-semibold text-charcoal group-hover:text-primary transition-colors">
                         {project.title}
                       </h3>
-                      <p className="text-charcoal/70 text-sm line-clamp-2">
-                        {project.description}
-                      </p>
                     </div>
                   </div>
                 </AnimatedSection>
