@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import AnimatedSection from '@/components/ui/AnimatedSection';
-import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Send, ArrowRight, Building2, CheckCircle2 } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { useToast } from '@/hooks/use-toast';
+import { motion } from 'framer-motion';
 
 const ContactPage = () => {
   const { toast } = useToast();
@@ -12,11 +13,12 @@ const ContactPage = () => {
     email: '',
     phone: '',
     company: '',
+    service: '',
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -31,8 +33,8 @@ const ContactPage = () => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     toast({
-      title: 'Message Sent!',
-      description: "Thank you for contacting us. We'll get back to you within 24 hours.",
+      title: 'Message Sent Successfully!',
+      description: "Thank you for contacting us. Our team will get back to you within 24 hours.",
     });
 
     setFormData({
@@ -40,6 +42,7 @@ const ContactPage = () => {
       email: '',
       phone: '',
       company: '',
+      service: '',
       message: '',
     });
     setIsSubmitting(false);
@@ -48,28 +51,45 @@ const ContactPage = () => {
   const contactInfo = [
     {
       icon: Mail,
-      label: 'Email',
+      label: 'Email Us',
       value: 'info@corrxp.com',
       href: 'mailto:info@corrxp.com',
     },
     {
       icon: Phone,
-      label: 'Phone',
-      value: '+1 (234) 567-890',
-      href: 'tel:+1234567890',
+      label: 'Call Us',
+      value: '+91 22 1234 5678',
+      href: 'tel:+912212345678',
     },
     {
       icon: MapPin,
-      label: 'Address',
-      value: '123 Engineering Drive, Suite 100\nNew York, NY 10001',
+      label: 'Visit Us',
+      value: 'Nariman Point, Mumbai 400021',
       href: null,
     },
     {
       icon: Clock,
-      label: 'Business Hours',
-      value: 'Monday - Friday: 8:00 AM - 6:00 PM',
+      label: 'Working Hours',
+      value: 'Mon - Sat: 9:00 AM - 6:00 PM',
       href: null,
     },
+  ];
+
+  const services = [
+    'Corrosion Assessment',
+    'Concrete Repair & Restoration',
+    'Protective Coatings',
+    'Structural Analysis',
+    'Quality Assurance & Testing',
+    'Consulting Services',
+    'Other',
+  ];
+
+  const reasons = [
+    'Free initial consultation',
+    'Response within 24 hours',
+    'Customized solutions',
+    'Expert engineering team',
   ];
 
   return (
@@ -83,18 +103,64 @@ const ContactPage = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="bg-slate pt-32 pb-20">
-        <div className="container-custom">
-          <AnimatedSection>
-            <span className="text-primary font-medium mb-2 block">Contact Us</span>
-            <h1 className="text-warm-white mb-6 max-w-3xl">
-              Let's Discuss Your Project
+      <section className="relative min-h-[60vh] flex items-center overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80)',
+          }}
+        />
+        <div className="absolute inset-0 hero-overlay" />
+        
+        <div className="container-custom relative z-10 pt-32 pb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-3xl"
+          >
+            <span className="font-script text-primary text-xl md:text-2xl mb-4 block">
+              Get in Touch
+            </span>
+            <h1 className="text-warm-white text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+              Let's Discuss{' '}
+              <span className="text-primary">Your Project</span>
             </h1>
-            <p className="text-xl text-warm-white/80 max-w-2xl">
+            <p className="text-xl text-warm-white/85 max-w-2xl leading-relaxed">
               Whether you need a consultation, quote, or have questions about our services, 
-              our team is ready to help.
+              our team of experts is ready to help you protect your infrastructure.
             </p>
-          </AnimatedSection>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Contact Info Bar */}
+      <section className="bg-slate py-8">
+        <div className="container-custom">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {contactInfo.map((info, index) => (
+              <AnimatedSection key={info.label} delay={index * 0.1}>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded flex items-center justify-center flex-shrink-0">
+                    <info.icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-warm-white/60 text-sm">{info.label}</p>
+                    {info.href ? (
+                      <a
+                        href={info.href}
+                        className="text-warm-white font-medium hover:text-primary transition-colors"
+                      >
+                        {info.value}
+                      </a>
+                    ) : (
+                      <p className="text-warm-white font-medium">{info.value}</p>
+                    )}
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -104,12 +170,15 @@ const ContactPage = () => {
           <div className="grid lg:grid-cols-3 gap-12">
             {/* Contact Form */}
             <AnimatedSection className="lg:col-span-2">
-              <div className="bg-warm-white p-8 rounded-lg border border-border shadow-custom-sm">
-                <h2 className="text-2xl font-semibold mb-6">Send Us a Message</h2>
+              <div className="bg-warm-white p-8 md:p-10 rounded shadow-custom-lg border border-border">
+                <div className="mb-8">
+                  <h2 className="text-2xl md:text-3xl font-bold text-charcoal mb-2">Send Us a Message</h2>
+                  <p className="text-charcoal/60">Fill out the form below and we'll get back to you shortly.</p>
+                </div>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-charcoal mb-2">
+                      <label htmlFor="name" className="block text-sm font-semibold text-charcoal mb-2">
                         Full Name *
                       </label>
                       <input
@@ -119,12 +188,12 @@ const ContactPage = () => {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 rounded-md border border-border bg-warm-white text-charcoal placeholder:text-charcoal/50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                        placeholder="John Doe"
+                        className="w-full px-4 py-3 rounded border border-border bg-warm-white text-charcoal placeholder:text-charcoal/40 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                        placeholder="Your full name"
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-charcoal mb-2">
+                      <label htmlFor="email" className="block text-sm font-semibold text-charcoal mb-2">
                         Email Address *
                       </label>
                       <input
@@ -134,14 +203,14 @@ const ContactPage = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 rounded-md border border-border bg-warm-white text-charcoal placeholder:text-charcoal/50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                        placeholder="john@company.com"
+                        className="w-full px-4 py-3 rounded border border-border bg-warm-white text-charcoal placeholder:text-charcoal/40 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                        placeholder="your@email.com"
                       />
                     </div>
                   </div>
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-charcoal mb-2">
+                      <label htmlFor="phone" className="block text-sm font-semibold text-charcoal mb-2">
                         Phone Number
                       </label>
                       <input
@@ -150,12 +219,12 @@ const ContactPage = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-md border border-border bg-warm-white text-charcoal placeholder:text-charcoal/50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                        placeholder="+1 (234) 567-890"
+                        className="w-full px-4 py-3 rounded border border-border bg-warm-white text-charcoal placeholder:text-charcoal/40 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                        placeholder="+91 XXXXX XXXXX"
                       />
                     </div>
                     <div>
-                      <label htmlFor="company" className="block text-sm font-medium text-charcoal mb-2">
+                      <label htmlFor="company" className="block text-sm font-semibold text-charcoal mb-2">
                         Company Name
                       </label>
                       <input
@@ -164,14 +233,31 @@ const ContactPage = () => {
                         name="company"
                         value={formData.company}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-md border border-border bg-warm-white text-charcoal placeholder:text-charcoal/50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                        placeholder="Your Company"
+                        className="w-full px-4 py-3 rounded border border-border bg-warm-white text-charcoal placeholder:text-charcoal/40 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                        placeholder="Your company"
                       />
                     </div>
                   </div>
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-charcoal mb-2">
-                      Message *
+                    <label htmlFor="service" className="block text-sm font-semibold text-charcoal mb-2">
+                      Service Interested In
+                    </label>
+                    <select
+                      id="service"
+                      name="service"
+                      value={formData.service}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded border border-border bg-warm-white text-charcoal focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                    >
+                      <option value="">Select a service</option>
+                      {services.map((service) => (
+                        <option key={service} value={service}>{service}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-semibold text-charcoal mb-2">
+                      Project Details *
                     </label>
                     <textarea
                       id="message"
@@ -180,17 +266,17 @@ const ContactPage = () => {
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="w-full px-4 py-3 rounded-md border border-border bg-warm-white text-charcoal placeholder:text-charcoal/50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
-                      placeholder="Tell us about your project or inquiry..."
+                      className="w-full px-4 py-3 rounded border border-border bg-warm-white text-charcoal placeholder:text-charcoal/40 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none"
+                      placeholder="Tell us about your project, requirements, or any questions you have..."
                     />
                   </div>
-                  <Button variant="hero" type="submit" disabled={isSubmitting} className="w-full md:w-auto">
+                  <Button variant="hero" type="submit" disabled={isSubmitting} size="lg" className="w-full md:w-auto">
                     {isSubmitting ? (
                       'Sending...'
                     ) : (
                       <>
                         Send Message
-                        <Send size={18} />
+                        <Send size={18} className="ml-2" />
                       </>
                     )}
                   </Button>
@@ -198,42 +284,53 @@ const ContactPage = () => {
               </div>
             </AnimatedSection>
 
-            {/* Contact Info */}
+            {/* Sidebar */}
             <AnimatedSection delay={0.2}>
               <div className="space-y-8">
-                <div>
-                  <h3 className="text-xl font-semibold mb-6">Contact Information</h3>
-                  <div className="space-y-6">
-                    {contactInfo.map((info) => (
-                      <div key={info.label} className="flex gap-4">
-                        <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                          <info.icon className="w-5 h-5 text-primary" />
-                        </div>
-                        <div>
-                          <p className="text-sm text-charcoal/60 mb-1">{info.label}</p>
-                          {info.href ? (
-                            <a
-                              href={info.href}
-                              className="text-charcoal hover:text-primary transition-colors whitespace-pre-line"
-                            >
-                              {info.value}
-                            </a>
-                          ) : (
-                            <p className="text-charcoal whitespace-pre-line">{info.value}</p>
-                          )}
-                        </div>
+                {/* Why Contact Us */}
+                <div className="bg-slate p-8 rounded">
+                  <h3 className="text-xl font-bold text-warm-white mb-6">Why Contact Us?</h3>
+                  <div className="space-y-4">
+                    {reasons.map((reason) => (
+                      <div key={reason} className="flex items-center gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
+                        <span className="text-warm-white/80">{reason}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Map Placeholder */}
-                <div className="aspect-square rounded-lg overflow-hidden bg-warm-white-dark">
+                {/* Office Info */}
+                <div className="bg-warm-white-dark p-8 rounded border border-border">
+                  <div className="flex items-center gap-3 mb-6">
+                    <Building2 className="w-6 h-6 text-primary" />
+                    <h3 className="text-xl font-bold text-charcoal">Head Office</h3>
+                  </div>
+                  <address className="not-italic text-charcoal/70 space-y-2 mb-6">
+                    <p>CORR XP Engineering Pvt. Ltd.</p>
+                    <p>Floor 12, Trade Tower</p>
+                    <p>Nariman Point</p>
+                    <p>Mumbai, Maharashtra 400021</p>
+                    <p>India</p>
+                  </address>
+                  <a 
+                    href="https://maps.google.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-primary font-medium hover:underline"
+                  >
+                    Get Directions
+                    <ArrowRight size={16} />
+                  </a>
+                </div>
+
+                {/* Map */}
+                <div className="aspect-[4/3] rounded overflow-hidden shadow-custom-sm">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9663095343008!2d-74.00425878428698!3d40.74076794379132!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259bf5c1654f3%3A0xc80f9cfce5383d5d!2sGoogle%20New%20York!5e0!3m2!1sen!2sus!4v1677157439054!5m2!1sen!2sus"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3774.2156903538244!2d72.82259!3d18.925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDU1JzMwLjAiTiA3MsKwNDknMjEuMyJF!5e0!3m2!1sen!2sin!4v1677157439054!5m2!1sen!2sin"
                     width="100%"
                     height="100%"
-                    style={{ border: 0, filter: 'grayscale(0.3)' }}
+                    style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
