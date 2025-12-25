@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import AnimatedSection from '@/components/ui/AnimatedSection';
-import { ArrowRight, MapPin, Calendar, ExternalLink } from 'lucide-react';
+import { ArrowRight, MapPin, Calendar, ExternalLink, FolderOpen } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -38,7 +38,7 @@ const projectsData = [
     location: 'Bangalore, Karnataka',
     year: '2023',
     value: '₹12 Cr',
-    description: 'Structural concrete repair and waterproofing for a 6-level parking structure serving 2000+ vehicles.',
+    description: 'Structural concrete repair and waterproofing for a 6-level parking structure.',
     image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
     featured: false,
   },
@@ -93,7 +93,7 @@ const projectsData = [
     location: 'Pune, Maharashtra',
     year: '2022',
     value: '₹18 Cr',
-    description: 'Concrete facade repair and protective coating application for a 40-story office building.',
+    description: 'Concrete facade repair and protective coating for a 40-story office building.',
     image: 'https://images.unsplash.com/photo-1464082354059-27db6ce50048?auto=format&fit=crop&w=800&q=80',
     featured: false,
   },
@@ -118,8 +118,6 @@ const ProjectsPage = () => {
       ? projectsData
       : projectsData.filter((project) => project.category === activeCategory);
 
-  const featuredProject = projectsData.find(p => p.featured);
-
   return (
     <>
       <Helmet>
@@ -131,130 +129,75 @@ const ProjectsPage = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] flex items-center overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1920&q=80)',
-          }}
-        />
-        <div className="absolute inset-0 hero-overlay" />
-        
-        <div className="container-custom relative z-10 pt-32 pb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-3xl"
-          >
-            <span className="font-script text-primary text-xl md:text-2xl mb-4 block">
-              Our Portfolio
-            </span>
-            <h1 className="text-warm-white text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              Projects That{' '}
-              <span className="text-primary">Define Excellence</span>
-            </h1>
-            <p className="text-xl text-warm-white/85 max-w-2xl leading-relaxed">
-              500+ successful projects across India. Each one a testament to our commitment 
-              to engineering excellence and client satisfaction.
-            </p>
-          </motion.div>
+      <section className="relative bg-slate overflow-hidden">
+        {/* Abstract background */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-dark via-slate to-slate" />
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-tl from-primary/5 to-transparent" />
+          <div className="absolute inset-0 pattern-dots opacity-30" />
         </div>
-
-        {/* Stats bar */}
-        <div className="absolute bottom-0 left-0 right-0 bg-slate/95 backdrop-blur-sm">
-          <div className="container-custom py-6">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-              {[
-                { value: '₹500+ Cr', label: 'Project Value' },
-                { value: '500+', label: 'Projects Completed' },
-                { value: '25+', label: 'States Covered' },
-                { value: '98%', label: 'Client Satisfaction' },
-              ].map((stat) => (
-                <div key={stat.label}>
-                  <div className="text-2xl md:text-3xl font-bold text-primary">{stat.value}</div>
-                  <div className="text-warm-white/60 text-sm">{stat.label}</div>
-                </div>
-              ))}
-            </div>
+        
+        <div className="container-custom relative z-10 pt-32 pb-20 lg:pt-40 lg:pb-28">
+          <div className="max-w-3xl">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-6">
+                <FolderOpen className="w-4 h-4 text-primary" />
+                <span className="text-primary text-sm font-medium">Our Portfolio</span>
+              </div>
+              
+              <h1 className="text-warm-white text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                Projects That{' '}
+                <span className="text-primary">Define Excellence</span>
+              </h1>
+              
+              <p className="text-lg text-warm-white/80 max-w-2xl leading-relaxed">
+                500+ successful projects across India. Each one a testament to our commitment 
+                to engineering excellence and client satisfaction.
+              </p>
+            </motion.div>
           </div>
+
+          {/* Stats row */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="flex flex-wrap gap-8 mt-12 pt-8 border-t border-warm-white/10"
+          >
+            {[
+              { value: '₹500+ Cr', label: 'Project Value' },
+              { value: '500+', label: 'Projects' },
+              { value: '25+', label: 'States' },
+              { value: '98%', label: 'Satisfaction' },
+            ].map((stat) => (
+              <div key={stat.label}>
+                <div className="text-2xl font-bold text-primary">{stat.value}</div>
+                <div className="text-warm-white/60 text-sm">{stat.label}</div>
+              </div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
-      {/* Featured Project */}
-      {featuredProject && (
-        <section className="bg-warm-white section-padding">
-          <div className="container-custom">
-            <AnimatedSection className="mb-8">
-              <span className="font-script text-accent text-lg">Featured Project</span>
-            </AnimatedSection>
-            
-            <AnimatedSection>
-              <div className="grid lg:grid-cols-2 gap-12 items-center">
-                <div className="relative">
-                  <div className="aspect-[16/10] rounded overflow-hidden shadow-custom-xl">
-                    <img
-                      src={featuredProject.image}
-                      alt={featuredProject.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="absolute top-4 left-4">
-                    <span className="px-4 py-2 bg-primary text-primary-foreground text-sm font-medium rounded">
-                      {featuredProject.category}
-                    </span>
-                  </div>
-                </div>
-                <div>
-                  <div className="flex items-center gap-4 text-charcoal/60 mb-4">
-                    <span className="flex items-center gap-1">
-                      <MapPin size={16} />
-                      {featuredProject.location}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Calendar size={16} />
-                      {featuredProject.year}
-                    </span>
-                  </div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-charcoal mb-4">
-                    {featuredProject.title}
-                  </h2>
-                  <p className="text-charcoal/70 text-lg mb-6 leading-relaxed">
-                    {featuredProject.description}
-                  </p>
-                  <div className="flex items-center gap-8 mb-8">
-                    <div>
-                      <div className="text-3xl font-bold text-primary">{featuredProject.value}</div>
-                      <div className="text-charcoal/60 text-sm">Project Value</div>
-                    </div>
-                  </div>
-                  <Link to="/contact">
-                    <Button variant="default" size="lg">
-                      <span>Discuss Your Project</span>
-                      <ArrowRight size={18} className="ml-2" />
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
-      )}
-
       {/* Filter & Projects */}
-      <section className="bg-warm-white-dark section-padding">
+      <section className="bg-warm-white section-padding">
         <div className="container-custom">
           {/* Category Filter */}
-          <AnimatedSection className="mb-12">
-            <div className="flex flex-wrap gap-3 justify-center">
+          <AnimatedSection className="mb-10">
+            <div className="flex flex-wrap gap-2 justify-center">
               {categories.map((category) => (
                 <button
                   key={category}
                   onClick={() => setActiveCategory(category)}
-                  className={`px-6 py-3 rounded text-sm font-semibold transition-all duration-300 ${
+                  className={`px-5 py-2.5 rounded text-sm font-medium transition-all duration-300 ${
                     activeCategory === category
-                      ? 'bg-primary text-primary-foreground shadow-custom-sm'
-                      : 'bg-warm-white text-charcoal hover:bg-muted border border-border'
+                      ? 'bg-primary text-primary-foreground'
+                      : 'bg-warm-white-dark text-charcoal hover:bg-muted border border-border'
                   }`}
                 >
                   {category}
@@ -271,46 +214,46 @@ const ProjectsPage = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+              className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
             >
               {filteredProjects.map((project, index) => (
                 <AnimatedSection key={project.id} delay={index * 0.05}>
-                  <div className="bg-warm-white rounded overflow-hidden shadow-custom-sm hover:shadow-custom-xl transition-all duration-500 group border border-border h-full">
+                  <div className="bg-warm-white rounded overflow-hidden border border-border hover:shadow-custom-lg transition-all duration-300 group h-full">
                     <div className="relative aspect-[4/3] overflow-hidden">
                       <img
                         src={project.image}
                         alt={project.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <div className="absolute top-4 left-4">
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-dark/60 via-transparent to-transparent" />
+                      <div className="absolute top-3 left-3">
                         <span className="px-3 py-1 bg-primary text-primary-foreground text-xs font-medium rounded">
                           {project.category}
                         </span>
                       </div>
-                      <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="w-10 h-10 bg-warm-white rounded-full flex items-center justify-center">
-                          <ExternalLink size={18} className="text-charcoal" />
+                      <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="w-9 h-9 bg-warm-white rounded-full flex items-center justify-center">
+                          <ExternalLink size={16} className="text-charcoal" />
                         </div>
                       </div>
                     </div>
-                    <div className="p-6">
-                      <div className="flex items-center gap-3 text-sm text-charcoal/60 mb-3">
+                    <div className="p-5">
+                      <div className="flex items-center gap-2 text-xs text-charcoal/60 mb-2">
                         <span className="flex items-center gap-1">
-                          <MapPin size={14} />
+                          <MapPin size={12} />
                           {project.location}
                         </span>
                         <span>•</span>
                         <span>{project.year}</span>
                       </div>
-                      <h3 className="text-xl font-bold text-charcoal mb-2 group-hover:text-primary transition-colors">
+                      <h3 className="text-lg font-semibold text-charcoal mb-2 group-hover:text-primary transition-colors">
                         {project.title}
                       </h3>
                       <p className="text-charcoal/70 text-sm line-clamp-2 mb-4">
                         {project.description}
                       </p>
-                      <div className="pt-4 border-t border-border">
-                        <span className="text-primary font-bold text-lg">{project.value}</span>
+                      <div className="pt-3 border-t border-border">
+                        <span className="text-primary font-bold">{project.value}</span>
                       </div>
                     </div>
                   </div>
@@ -322,16 +265,12 @@ const ProjectsPage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-slate section-padding relative overflow-hidden">
-        <div className="absolute inset-0 pattern-dots opacity-30" />
-        
-        <div className="container-custom relative z-10 text-center">
+      <section className="bg-slate section-padding-sm">
+        <div className="container-custom text-center">
           <AnimatedSection>
-            <span className="font-script text-primary text-lg mb-2 block">Start Your Project</span>
-            <h2 className="text-warm-white mb-4">Have a Similar Project in Mind?</h2>
-            <p className="text-warm-white/80 max-w-2xl mx-auto mb-8 text-lg">
-              Let's discuss how we can apply our expertise to your infrastructure 
-              protection needs and deliver measurable results.
+            <h2 className="text-warm-white text-3xl font-bold mb-4">Have a Similar Project?</h2>
+            <p className="text-warm-white/70 max-w-xl mx-auto mb-8">
+              Let's discuss how we can apply our expertise to your infrastructure protection needs.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link to="/contact">
