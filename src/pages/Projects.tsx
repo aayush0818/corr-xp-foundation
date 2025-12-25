@@ -5,107 +5,85 @@ import AnimatedSection from '@/components/ui/AnimatedSection';
 import { ArrowRight, MapPin, Calendar, ExternalLink, FolderOpen } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
+import workFiberWrapping from '@/assets/work-fiber-wrapping-1.jpg';
+import workScaffolding from '@/assets/work-scaffolding-1.jpg';
+import workBeamWrapping from '@/assets/work-beam-wrapping-1.jpg';
+import workBeamWrapping2 from '@/assets/work-beam-wrapping-2.jpg';
+import workColumnWrapping from '@/assets/work-column-wrapping-1.jpg';
+import workFloorCoating from '@/assets/work-floor-coating-1.jpg';
+import workSurfacePrep from '@/assets/work-surface-prep-1.jpg';
 
-const categories = ['All', 'Infrastructure', 'Oil & Gas', 'Commercial', 'Marine', 'Industrial'];
+const categories = ['All', 'Fiber Wrapping', 'Structural Repair', 'Coating', 'Infrastructure'];
 
 const projectsData = [
   {
     id: 1,
-    title: 'Harbor Bridge Restoration',
-    category: 'Infrastructure',
-    location: 'Mumbai, Maharashtra',
+    title: 'Column & Beam FRP Strengthening',
+    category: 'Fiber Wrapping',
+    location: 'Maharashtra',
     year: '2024',
-    value: '₹45 Cr',
-    description: 'Complete corrosion assessment and protective coating application for a historic harbor bridge spanning 2.5km.',
-    image: 'https://images.unsplash.com/photo-1545558014-8692077e9b5c?auto=format&fit=crop&w=800&q=80',
+    description: 'Complete CFRP wrapping of columns and beams for structural load enhancement in commercial building.',
+    image: workFiberWrapping,
     featured: true,
   },
   {
     id: 2,
-    title: 'Refinery Tank Coating',
-    category: 'Oil & Gas',
-    location: 'Jamnagar, Gujarat',
+    title: 'Multi-Level Structure Retrofitting',
+    category: 'Structural Repair',
+    location: 'Maharashtra',
     year: '2024',
-    value: '₹28 Cr',
-    description: 'Internal and external coating systems for 12 petroleum storage tanks with 50,000 KL capacity.',
-    image: 'https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=800&q=80',
+    description: 'Large-scale column fiber wrapping project for multi-story industrial facility.',
+    image: workColumnWrapping,
     featured: true,
   },
   {
     id: 3,
-    title: 'Multi-Story Parking Repair',
-    category: 'Commercial',
-    location: 'Bangalore, Karnataka',
-    year: '2023',
-    value: '₹12 Cr',
-    description: 'Structural concrete repair and waterproofing for a 6-level parking structure.',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
+    title: 'Beam Strengthening Project',
+    category: 'Fiber Wrapping',
+    location: 'Maharashtra',
+    year: '2024',
+    description: 'Carbon fiber wrapping application on RCC beams to improve load capacity.',
+    image: workBeamWrapping,
     featured: false,
   },
   {
     id: 4,
-    title: 'Port Terminal Protection',
-    category: 'Marine',
-    location: 'Kochi, Kerala',
-    year: '2023',
-    value: '₹35 Cr',
-    description: 'Cathodic protection system installation for marine terminal structures including 8 berths.',
-    image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80',
+    title: 'Structural Beam Reinforcement',
+    category: 'Fiber Wrapping',
+    location: 'Maharashtra',
+    year: '2024',
+    description: 'FRP strengthening of multiple beam lines in structural rehabilitation project.',
+    image: workBeamWrapping2,
     featured: true,
   },
   {
     id: 5,
-    title: 'Power Plant Assessment',
-    category: 'Industrial',
-    location: 'Vizag, Andhra Pradesh',
-    year: '2023',
-    value: '₹8 Cr',
-    description: 'Comprehensive corrosion evaluation of cooling tower structures and chimney rehabilitation.',
-    image: 'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?auto=format&fit=crop&w=800&q=80',
+    title: 'Industrial Floor Coating',
+    category: 'Coating',
+    location: 'Maharashtra',
+    year: '2024',
+    description: 'High-performance epoxy floor coating system for industrial warehouse facility.',
+    image: workFloorCoating,
     featured: false,
   },
   {
     id: 6,
-    title: 'Highway Overpass Repair',
-    category: 'Infrastructure',
-    location: 'Delhi NCR',
-    year: '2022',
-    value: '₹52 Cr',
-    description: 'Structural rehabilitation and expansion joint replacement for 15 highway overpasses.',
-    image: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=800&q=80',
+    title: 'Column Scaffolding & Repair',
+    category: 'Structural Repair',
+    location: 'Maharashtra',
+    year: '2024',
+    description: 'Surface preparation and structural repair work on building columns with specialized scaffolding.',
+    image: workScaffolding,
     featured: false,
   },
   {
     id: 7,
-    title: 'Pipeline Coating Project',
-    category: 'Oil & Gas',
-    location: 'Barmer, Rajasthan',
-    year: '2022',
-    value: '₹22 Cr',
-    description: 'External pipeline coating and cathodic protection for 120km natural gas transmission lines.',
-    image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=800&q=80',
-    featured: false,
-  },
-  {
-    id: 8,
-    title: 'Office Tower Facade',
-    category: 'Commercial',
-    location: 'Pune, Maharashtra',
-    year: '2022',
-    value: '₹18 Cr',
-    description: 'Concrete facade repair and protective coating for a 40-story office building.',
-    image: 'https://images.unsplash.com/photo-1464082354059-27db6ce50048?auto=format&fit=crop&w=800&q=80',
-    featured: false,
-  },
-  {
-    id: 9,
-    title: 'Marina Dock Restoration',
-    category: 'Marine',
-    location: 'Goa',
-    year: '2021',
-    value: '₹15 Cr',
-    description: 'Complete rehabilitation of floating dock structures including 24 pile repairs.',
-    image: 'https://images.unsplash.com/photo-1527015175922-36a306cf0e20?auto=format&fit=crop&w=800&q=80',
+    title: 'Concrete Surface Preparation',
+    category: 'Structural Repair',
+    location: 'Maharashtra',
+    year: '2024',
+    description: 'Mechanical surface preparation for concrete repair and fiber wrapping installation.',
+    image: workSurfacePrep,
     featured: false,
   },
 ];
@@ -249,12 +227,9 @@ const ProjectsPage = () => {
                       <h3 className="text-lg font-semibold text-charcoal mb-2 group-hover:text-primary transition-colors">
                         {project.title}
                       </h3>
-                      <p className="text-charcoal/70 text-sm line-clamp-2 mb-4">
+                      <p className="text-charcoal/70 text-sm line-clamp-2">
                         {project.description}
                       </p>
-                      <div className="pt-3 border-t border-border">
-                        <span className="text-primary font-bold">{project.value}</span>
-                      </div>
                     </div>
                   </div>
                 </AnimatedSection>

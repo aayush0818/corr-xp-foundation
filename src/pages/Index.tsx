@@ -9,12 +9,18 @@ import { ArrowRight, Shield, Wrench, Microscope, Building2, FileCheck, Users, Aw
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
 import mumbaiCoastalRoad from '@/assets/mumbai-coastal-road.jpg';
+import workFiberWrapping from '@/assets/work-fiber-wrapping-1.jpg';
+import workColumnWrapping from '@/assets/work-column-wrapping-1.jpg';
+import workBeamWrapping from '@/assets/work-beam-wrapping-2.jpg';
+import workFloorCoating from '@/assets/work-floor-coating-1.jpg';
+import teamPhoto from '@/assets/team-photo-1.jpg';
+import workSurfacePrep from '@/assets/work-surface-prep-1.jpg';
 
 // Hero Section - Full bleed with real imagery
 const HeroSection = () => <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
     {/* Background Image */}
     <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
-    backgroundImage: 'url(https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1920&q=80)'
+    backgroundImage: `url(${workColumnWrapping})`
   }} />
     {/* Overlay */}
     <div className="absolute inset-0 hero-overlay" />
@@ -145,7 +151,7 @@ const AboutSnapshotSection = () => <section className="bg-warm-white section-pad
           <div className="relative">
             {/* Main Image */}
             <div className="relative aspect-[4/5] rounded overflow-hidden shadow-custom-xl">
-              <img alt="Structural repair and retrofitting work" className="w-full h-full object-cover" src="https://structural-india.com/wp-content/uploads/2023/01/power_plant.jpg" />
+              <img alt="Structural repair and retrofitting work" className="w-full h-full object-cover" src={workFiberWrapping} />
             </div>
             
             {/* Floating accent card */}
@@ -207,7 +213,7 @@ const ServicesPreviewSection = () => {
     title: 'Structural Repair & Rehabilitation',
     shortTitle: 'Structural',
     description: 'Repair and rehabilitation of distressed structural members such as beams, columns, slabs, and foundations to restore structural safety.',
-    image: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=800&q=80',
+    image: workSurfacePrep,
     stats: {
       value: '500+',
       label: 'Structures Repaired'
@@ -216,7 +222,7 @@ const ServicesPreviewSection = () => {
     title: 'Concrete Repair & Protection',
     shortTitle: 'Concrete',
     description: 'Concrete patch repair, micro-concreting, crack injection, grouting, and protective coating systems.',
-    image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80',
+    image: workBeamWrapping,
     stats: {
       value: '200K',
       label: 'Sq.m Repaired'
@@ -225,7 +231,7 @@ const ServicesPreviewSection = () => {
     title: 'Fiber Wrapping (FRP)',
     shortTitle: 'FRP',
     description: 'Strengthening of RCC structures using Fiber Reinforced Polymer systems to improve load-carrying capacity and ductility.',
-    image: 'https://images.unsplash.com/photo-1590496793929-36417d3117de?auto=format&fit=crop&w=800&q=80',
+    image: workFiberWrapping,
     stats: {
       value: '1M+',
       label: 'Sq.m Strengthened'
@@ -234,7 +240,7 @@ const ServicesPreviewSection = () => {
     title: 'Structural Retrofitting',
     shortTitle: 'Retrofitting',
     description: 'Advanced retrofitting using Carbon Fiber (CFRP), Glass Fiber (GFRP), and Aramid Fiber (AFRP) wrapping systems.',
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
+    image: workColumnWrapping,
     stats: {
       value: '100+',
       label: 'Buildings Retrofitted'
@@ -243,7 +249,7 @@ const ServicesPreviewSection = () => {
     title: 'Corrosion Control',
     shortTitle: 'Corrosion',
     description: 'Treatment of corroded reinforcement and anti-corrosion systems to enhance durability and extend service life.',
-    image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80',
+    image: workSurfacePrep,
     stats: {
       value: '50+',
       label: 'Systems Installed'
@@ -252,7 +258,7 @@ const ServicesPreviewSection = () => {
     title: 'Steel Coating & Protection',
     shortTitle: 'Steel',
     description: 'Surface preparation, anti-corrosive coatings, self-healing epoxy, PU, and zinc-rich coatings as per ISO guidelines.',
-    image: 'https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=800&q=80',
+    image: workFloorCoating,
     stats: {
       value: '75+',
       label: 'Steel Projects'
