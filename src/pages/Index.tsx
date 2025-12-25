@@ -212,206 +212,126 @@ const AboutSnapshotSection = () => <section className="bg-warm-white section-pad
     </div>
   </section>;
 
-// Services Preview - Clean horizontal scroll with large cards
+// Services Preview - Clean grid layout with numbered list
 const ServicesPreviewSection = () => {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
-
   const services = [
     {
       title: 'Structural Repair & Rehabilitation',
-      description: 'Repair and rehabilitation of distressed structural members to restore structural safety and serviceability.',
-      image: workFiberWrapping,
-      icon: Wrench,
-      stat: '500+',
-      statLabel: 'Structures Repaired'
+      description: 'Repair and rehabilitation of distressed beams, columns, slabs, and foundations to restore structural safety.',
+      features: ['Beam & column repair', 'Slab rehabilitation', 'Foundation strengthening'],
     },
     {
       title: 'Concrete Repair & Protection',
       description: 'Patch repair, micro-concreting, crack injection, grouting, and protective coating systems.',
-      image: workBeamWrapping,
-      icon: Shield,
-      stat: '200K',
-      statLabel: 'Sq.m Protected'
+      features: ['Crack injection', 'Micro-concreting', 'Protective coatings'],
     },
     {
-      title: 'FRP Strengthening',
-      description: 'Fiber Reinforced Polymer systems to improve load-carrying capacity, stiffness, and ductility.',
-      image: workColumnWrapping,
-      icon: Building2,
-      stat: '1M+',
-      statLabel: 'Sq.m Strengthened'
+      title: 'Fiber Wrapping (FRP)',
+      description: 'Strengthening of RCC structures using Fiber Reinforced Polymer systems for improved load capacity.',
+      features: ['Carbon fiber (CFRP)', 'Glass fiber (GFRP)', 'Aramid fiber (AFRP)'],
     },
     {
       title: 'Structural Retrofitting',
-      description: 'Advanced retrofitting using Carbon, Glass, and Aramid Fiber wrapping systems.',
-      image: workSurfacePrep,
-      icon: Microscope,
-      stat: '100+',
-      statLabel: 'Buildings Retrofitted'
+      description: 'Advanced retrofitting solutions using high-performance fiber wrapping and laminate systems.',
+      features: ['Seismic upgrades', 'Load enhancement', 'Shear wall reinforcement'],
+    },
+    {
+      title: 'Corrosion Control',
+      description: 'Treatment of corroded reinforcement and anti-corrosion systems to extend service life.',
+      features: ['Corrosion assessment', 'ASTM testing', 'NACE certified'],
     },
     {
       title: 'Steel Coating & Protection',
-      description: 'Surface preparation, anti-corrosive coatings, epoxy, PU, and zinc-rich coatings per ISO guidelines.',
-      image: workFloorCoating,
-      icon: FileCheck,
-      stat: '75+',
-      statLabel: 'Steel Projects'
+      description: 'Surface preparation and anti-corrosive coatings per NACE & ASTM guidelines.',
+      features: ['Abrasive blasting', 'Epoxy coatings', 'Zinc-rich systems'],
     },
   ];
 
-  const checkScroll = () => {
-    if (scrollRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-      setCanScrollLeft(scrollLeft > 0);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
-    }
-  };
-
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollRef.current) {
-      const scrollAmount = 400;
-      scrollRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
-      });
-    }
-  };
-
-  useEffect(() => {
-    checkScroll();
-    const ref = scrollRef.current;
-    if (ref) {
-      ref.addEventListener('scroll', checkScroll);
-      return () => ref.removeEventListener('scroll', checkScroll);
-    }
-  }, []);
-
   return (
-    <section className="bg-warm-white py-24 lg:py-32 overflow-hidden">
+    <section className="bg-slate py-24 lg:py-32">
       <div className="container-custom">
-        {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12">
+        {/* Header Row */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 mb-16">
           <AnimatedSection>
-            <span className="text-primary text-sm font-bold uppercase tracking-widest mb-3 block">
-              What We Do
-            </span>
-            <h2 className="text-charcoal text-4xl lg:text-5xl font-bold">
-              Our Expertise
+            <h2 className="text-warm-white text-4xl lg:text-5xl font-bold leading-tight">
+              Engineering Solutions<br />
+              <span className="text-primary">That Last</span>
             </h2>
           </AnimatedSection>
           
-          <div className="flex items-center gap-4">
-            {/* Scroll Arrows */}
-            <div className="hidden lg:flex items-center gap-2">
-              <button
-                onClick={() => scroll('left')}
-                disabled={!canScrollLeft}
-                className={`w-12 h-12 rounded-full border-2 flex items-center justify-center transition-all ${
-                  canScrollLeft 
-                    ? 'border-charcoal text-charcoal hover:bg-charcoal hover:text-warm-white' 
-                    : 'border-charcoal/20 text-charcoal/20 cursor-not-allowed'
-                }`}
-              >
-                <ArrowRight className="rotate-180" size={20} />
-              </button>
-              <button
-                onClick={() => scroll('right')}
-                disabled={!canScrollRight}
-                className={`w-12 h-12 rounded-full border-2 flex items-center justify-center transition-all ${
-                  canScrollRight 
-                    ? 'border-charcoal text-charcoal hover:bg-charcoal hover:text-warm-white' 
-                    : 'border-charcoal/20 text-charcoal/20 cursor-not-allowed'
-                }`}
-              >
-                <ArrowRight size={20} />
-              </button>
-            </div>
-            
+          <AnimatedSection delay={0.1} className="flex flex-col justify-end">
+            <p className="text-warm-white/70 text-lg leading-relaxed mb-6">
+              From structural repairs to advanced fiber wrapping, we deliver comprehensive 
+              solutions backed by NACE certification and ASTM testing standards.
+            </p>
             <Link to="/services">
-              <Button variant="default" size="lg">
-                All Services
+              <Button variant="hero" size="lg">
+                <span>View All Services</span>
                 <ArrowRight size={18} className="ml-2" />
               </Button>
             </Link>
-          </div>
+          </AnimatedSection>
         </div>
-      </div>
 
-      {/* Horizontal Scroll Cards */}
-      <div 
-        ref={scrollRef}
-        className="flex gap-6 overflow-x-auto scrollbar-hide px-6 lg:px-[calc((100vw-1280px)/2+24px)] pb-4"
-        style={{ scrollSnapType: 'x mandatory' }}
-      >
-        {services.map((service, index) => (
-          <motion.div
-            key={service.title}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
-            viewport={{ once: true }}
-            className="flex-shrink-0 w-[85vw] md:w-[45vw] lg:w-[380px] group"
-            style={{ scrollSnapAlign: 'start' }}
-          >
-            <div className="relative h-[500px] rounded-2xl overflow-hidden">
-              {/* Image */}
-              <img 
-                src={service.image} 
-                alt={service.title}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/60 to-transparent" />
-              
-              {/* Content */}
-              <div className="absolute inset-0 p-8 flex flex-col justify-between">
-                {/* Top - Number & Icon */}
-                <div className="flex items-start justify-between">
-                  <span className="text-7xl font-black text-warm-white/10">
-                    0{index + 1}
+        {/* Services Grid - 2 columns */}
+        <div className="grid md:grid-cols-2 gap-px bg-warm-white/10 rounded-xl overflow-hidden">
+          {services.map((service, index) => (
+            <AnimatedSection 
+              key={service.title} 
+              delay={index * 0.05}
+            >
+              <div className="bg-slate p-8 lg:p-10 h-full group hover:bg-slate-light/50 transition-colors duration-300">
+                {/* Number */}
+                <div className="flex items-start justify-between mb-6">
+                  <span className="text-5xl lg:text-6xl font-black text-primary/20 group-hover:text-primary/40 transition-colors">
+                    {String(index + 1).padStart(2, '0')}
                   </span>
-                  <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center">
-                    <service.icon className="text-primary-foreground" size={24} />
-                  </div>
+                  <ArrowRight 
+                    size={24} 
+                    className="text-warm-white/20 group-hover:text-primary group-hover:translate-x-1 transition-all mt-2" 
+                  />
                 </div>
                 
-                {/* Bottom - Content */}
-                <div>
-                  {/* Stat */}
-                  <div className="mb-4">
-                    <span className="text-4xl font-black text-primary">{service.stat}</span>
-                    <span className="text-warm-white/60 text-sm ml-2">{service.statLabel}</span>
-                  </div>
-                  
-                  <h3 className="text-warm-white text-2xl font-bold mb-3">
-                    {service.title}
-                  </h3>
-                  <p className="text-warm-white/70 text-sm leading-relaxed mb-6">
-                    {service.description}
-                  </p>
-                  
-                  <Link 
-                    to="/services" 
-                    className="inline-flex items-center gap-2 text-primary font-semibold group/link"
-                  >
-                    Learn More
-                    <ArrowRight size={16} className="group-hover/link:translate-x-1 transition-transform" />
-                  </Link>
+                {/* Content */}
+                <h3 className="text-warm-white text-xl lg:text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
+                  {service.title}
+                </h3>
+                <p className="text-warm-white/60 text-sm leading-relaxed mb-6">
+                  {service.description}
+                </p>
+                
+                {/* Features */}
+                <div className="flex flex-wrap gap-2">
+                  {service.features.map((feature) => (
+                    <span 
+                      key={feature}
+                      className="px-3 py-1 text-xs font-medium bg-warm-white/5 text-warm-white/70 rounded-full border border-warm-white/10"
+                    >
+                      {feature}
+                    </span>
+                  ))}
                 </div>
               </div>
-            </div>
-          </motion.div>
-        ))}
-      </div>
+            </AnimatedSection>
+          ))}
+        </div>
 
-      {/* Mobile scroll indicator */}
-      <div className="flex justify-center gap-1 mt-6 lg:hidden">
-        {services.map((_, index) => (
-          <div key={index} className="w-8 h-1 rounded-full bg-charcoal/20" />
-        ))}
+        {/* Bottom Stats Row */}
+        <AnimatedSection delay={0.3} className="mt-12">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { value: '500+', label: 'Projects Completed' },
+              { value: '1M+', label: 'Sq.m Strengthened' },
+              { value: 'NACE', label: 'Certified Testing' },
+              { value: 'ASTM', label: 'Standards Compliant' },
+            ].map((stat) => (
+              <div key={stat.label} className="text-center lg:text-left">
+                <div className="text-3xl lg:text-4xl font-black text-primary">{stat.value}</div>
+                <div className="text-warm-white/50 text-sm">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </AnimatedSection>
       </div>
     </section>
   );
