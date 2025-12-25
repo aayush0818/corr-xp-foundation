@@ -212,186 +212,206 @@ const AboutSnapshotSection = () => <section className="bg-warm-white section-pad
     </div>
   </section>;
 
-// Services Preview - Dynamic card grid with auto-cycling
+// Services Preview - Clean horizontal scroll with large cards
 const ServicesPreviewSection = () => {
-  const [activeService, setActiveService] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-  
-  const services = [{
-    title: 'Structural Repair',
-    description: 'Repair of beams, columns, slabs, and foundations to restore structural safety.',
-    image: workSurfacePrep,
-    stats: { value: '500+', label: 'Structures' },
-    color: 'from-primary to-primary/70'
-  }, {
-    title: 'Concrete Protection',
-    description: 'Crack injection, grouting, and protective coating systems.',
-    image: workBeamWrapping,
-    stats: { value: '200K', label: 'Sq.m' },
-    color: 'from-accent to-accent/70'
-  }, {
-    title: 'FRP Strengthening',
-    description: 'Fiber Reinforced Polymer systems for load-carrying capacity.',
-    image: workFiberWrapping,
-    stats: { value: '1M+', label: 'Sq.m' },
-    color: 'from-primary to-accent'
-  }, {
-    title: 'Retrofitting',
-    description: 'Carbon, Glass, and Aramid fiber wrapping systems.',
-    image: workColumnWrapping,
-    stats: { value: '100+', label: 'Buildings' },
-    color: 'from-slate to-slate-light'
-  }, {
-    title: 'Corrosion Control',
-    description: 'Anti-corrosion systems to extend service life.',
-    image: workSurfacePrep,
-    stats: { value: '50+', label: 'Systems' },
-    color: 'from-accent to-primary'
-  }, {
-    title: 'Steel Coating',
-    description: 'Epoxy, PU, and zinc-rich coatings per ISO guidelines.',
-    image: workFloorCoating,
-    stats: { value: '75+', label: 'Projects' },
-    color: 'from-slate-light to-primary'
-  }];
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
 
-  // Auto-cycle services
+  const services = [
+    {
+      title: 'Structural Repair & Rehabilitation',
+      description: 'Repair and rehabilitation of distressed structural members to restore structural safety and serviceability.',
+      image: workFiberWrapping,
+      icon: Wrench,
+      stat: '500+',
+      statLabel: 'Structures Repaired'
+    },
+    {
+      title: 'Concrete Repair & Protection',
+      description: 'Patch repair, micro-concreting, crack injection, grouting, and protective coating systems.',
+      image: workBeamWrapping,
+      icon: Shield,
+      stat: '200K',
+      statLabel: 'Sq.m Protected'
+    },
+    {
+      title: 'FRP Strengthening',
+      description: 'Fiber Reinforced Polymer systems to improve load-carrying capacity, stiffness, and ductility.',
+      image: workColumnWrapping,
+      icon: Building2,
+      stat: '1M+',
+      statLabel: 'Sq.m Strengthened'
+    },
+    {
+      title: 'Structural Retrofitting',
+      description: 'Advanced retrofitting using Carbon, Glass, and Aramid Fiber wrapping systems.',
+      image: workSurfacePrep,
+      icon: Microscope,
+      stat: '100+',
+      statLabel: 'Buildings Retrofitted'
+    },
+    {
+      title: 'Steel Coating & Protection',
+      description: 'Surface preparation, anti-corrosive coatings, epoxy, PU, and zinc-rich coatings per ISO guidelines.',
+      image: workFloorCoating,
+      icon: FileCheck,
+      stat: '75+',
+      statLabel: 'Steel Projects'
+    },
+  ];
+
+  const checkScroll = () => {
+    if (scrollRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+      setCanScrollLeft(scrollLeft > 0);
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+    }
+  };
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const scrollAmount = 400;
+      scrollRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   useEffect(() => {
-    if (isHovered) return;
-    const interval = setInterval(() => {
-      setActiveService((prev) => (prev + 1) % services.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [isHovered, services.length]);
+    checkScroll();
+    const ref = scrollRef.current;
+    if (ref) {
+      ref.addEventListener('scroll', checkScroll);
+      return () => ref.removeEventListener('scroll', checkScroll);
+    }
+  }, []);
 
   return (
-    <section className="relative bg-charcoal overflow-hidden py-24 lg:py-32">
-      {/* Animated background */}
-      <div className="absolute inset-0">
-        <motion.div 
-          className="absolute inset-0 opacity-30"
-          animate={{
-            background: [
-              'radial-gradient(circle at 20% 50%, hsl(var(--primary) / 0.3) 0%, transparent 50%)',
-              'radial-gradient(circle at 80% 50%, hsl(var(--primary) / 0.3) 0%, transparent 50%)',
-              'radial-gradient(circle at 50% 80%, hsl(var(--primary) / 0.3) 0%, transparent 50%)',
-              'radial-gradient(circle at 20% 50%, hsl(var(--primary) / 0.3) 0%, transparent 50%)',
-            ]
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-        />
-        <div className="absolute inset-0 pattern-dots opacity-10" />
-      </div>
-
-      <div className="container-custom relative z-10">
+    <section className="bg-warm-white py-24 lg:py-32 overflow-hidden">
+      <div className="container-custom">
         {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12">
           <AnimatedSection>
-            <span className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground text-xs font-bold uppercase tracking-widest rounded mb-4">
-              <Wrench size={14} />
-              Our Services
+            <span className="text-primary text-sm font-bold uppercase tracking-widest mb-3 block">
+              What We Do
             </span>
-            <h2 className="text-warm-white text-4xl lg:text-6xl font-bold leading-tight">
-              What We <span className="text-primary">Do</span>
+            <h2 className="text-charcoal text-4xl lg:text-5xl font-bold">
+              Our Expertise
             </h2>
           </AnimatedSection>
           
-          <Link to="/services">
-            <Button variant="heroOutline" size="lg" className="group">
-              <span>View All Services</span>
-              <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
-            </Button>
-          </Link>
+          <div className="flex items-center gap-4">
+            {/* Scroll Arrows */}
+            <div className="hidden lg:flex items-center gap-2">
+              <button
+                onClick={() => scroll('left')}
+                disabled={!canScrollLeft}
+                className={`w-12 h-12 rounded-full border-2 flex items-center justify-center transition-all ${
+                  canScrollLeft 
+                    ? 'border-charcoal text-charcoal hover:bg-charcoal hover:text-warm-white' 
+                    : 'border-charcoal/20 text-charcoal/20 cursor-not-allowed'
+                }`}
+              >
+                <ArrowRight className="rotate-180" size={20} />
+              </button>
+              <button
+                onClick={() => scroll('right')}
+                disabled={!canScrollRight}
+                className={`w-12 h-12 rounded-full border-2 flex items-center justify-center transition-all ${
+                  canScrollRight 
+                    ? 'border-charcoal text-charcoal hover:bg-charcoal hover:text-warm-white' 
+                    : 'border-charcoal/20 text-charcoal/20 cursor-not-allowed'
+                }`}
+              >
+                <ArrowRight size={20} />
+              </button>
+            </div>
+            
+            <Link to="/services">
+              <Button variant="default" size="lg">
+                All Services
+                <ArrowRight size={18} className="ml-2" />
+              </Button>
+            </Link>
+          </div>
         </div>
+      </div>
 
-        {/* Service Cards Grid */}
-        <div 
-          className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          {services.map((service, index) => (
-            <motion.div
-              key={service.title}
-              className={`relative overflow-hidden rounded-xl cursor-pointer group ${
-                index === activeService ? 'lg:col-span-2 lg:row-span-2' : ''
-              }`}
-              onClick={() => setActiveService(index)}
-              layout
-              transition={{ duration: 0.5, type: "spring" }}
-            >
-              {/* Background Image */}
-              <div className={`relative ${index === activeService ? 'aspect-[16/9] lg:aspect-auto lg:h-full' : 'aspect-square'}`}>
-                <img 
-                  src={service.image} 
-                  alt={service.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
+      {/* Horizontal Scroll Cards */}
+      <div 
+        ref={scrollRef}
+        className="flex gap-6 overflow-x-auto scrollbar-hide px-6 lg:px-[calc((100vw-1280px)/2+24px)] pb-4"
+        style={{ scrollSnapType: 'x mandatory' }}
+      >
+        {services.map((service, index) => (
+          <motion.div
+            key={service.title}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1 }}
+            viewport={{ once: true }}
+            className="flex-shrink-0 w-[85vw] md:w-[45vw] lg:w-[380px] group"
+            style={{ scrollSnapAlign: 'start' }}
+          >
+            <div className="relative h-[500px] rounded-2xl overflow-hidden">
+              {/* Image */}
+              <img 
+                src={service.image} 
+                alt={service.title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/60 to-transparent" />
+              
+              {/* Content */}
+              <div className="absolute inset-0 p-8 flex flex-col justify-between">
+                {/* Top - Number & Icon */}
+                <div className="flex items-start justify-between">
+                  <span className="text-7xl font-black text-warm-white/10">
+                    0{index + 1}
+                  </span>
+                  <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center">
+                    <service.icon className="text-primary-foreground" size={24} />
+                  </div>
+                </div>
                 
-                {/* Gradient Overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-t ${service.color} opacity-80 mix-blend-multiply`} />
-                <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/50 to-transparent" />
-                
-                {/* Content */}
-                <div className="absolute inset-0 p-4 lg:p-6 flex flex-col justify-end">
-                  {/* Stats Badge */}
-                  <motion.div 
-                    className={`absolute top-4 right-4 bg-warm-white text-charcoal px-3 py-2 rounded font-bold text-center transition-all duration-300 ${
-                      index === activeService ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
-                    }`}
-                    initial={false}
-                  >
-                    <div className="text-xl lg:text-2xl leading-none">{service.stats.value}</div>
-                    <div className="text-[10px] uppercase tracking-wider text-charcoal/60">{service.stats.label}</div>
-                  </motion.div>
-                  
-                  {/* Title & Description */}
-                  <div>
-                    <h3 className={`text-warm-white font-bold transition-all duration-300 ${
-                      index === activeService ? 'text-2xl lg:text-3xl mb-3' : 'text-lg lg:text-xl'
-                    }`}>
-                      {service.title}
-                    </h3>
-                    
-                    <AnimatePresence>
-                      {index === activeService && (
-                        <motion.p
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          className="text-warm-white/80 text-sm lg:text-base max-w-md"
-                        >
-                          {service.description}
-                        </motion.p>
-                      )}
-                    </AnimatePresence>
+                {/* Bottom - Content */}
+                <div>
+                  {/* Stat */}
+                  <div className="mb-4">
+                    <span className="text-4xl font-black text-primary">{service.stat}</span>
+                    <span className="text-warm-white/60 text-sm ml-2">{service.statLabel}</span>
                   </div>
                   
-                  {/* Active Indicator */}
-                  <motion.div 
-                    className="absolute bottom-0 left-0 h-1 bg-primary"
-                    initial={{ width: 0 }}
-                    animate={{ width: index === activeService ? '100%' : 0 }}
-                    transition={{ duration: 0.3 }}
-                  />
+                  <h3 className="text-warm-white text-2xl font-bold mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-warm-white/70 text-sm leading-relaxed mb-6">
+                    {service.description}
+                  </p>
+                  
+                  <Link 
+                    to="/services" 
+                    className="inline-flex items-center gap-2 text-primary font-semibold group/link"
+                  >
+                    Learn More
+                    <ArrowRight size={16} className="group-hover/link:translate-x-1 transition-transform" />
+                  </Link>
                 </div>
               </div>
-            </motion.div>
-          ))}
-        </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
 
-        {/* Progress Dots */}
-        <div className="flex justify-center gap-2 mt-8">
-          {services.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveService(index)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                index === activeService ? 'w-8 bg-primary' : 'w-2 bg-warm-white/30 hover:bg-warm-white/50'
-              }`}
-            />
-          ))}
-        </div>
+      {/* Mobile scroll indicator */}
+      <div className="flex justify-center gap-1 mt-6 lg:hidden">
+        {services.map((_, index) => (
+          <div key={index} className="w-8 h-1 rounded-full bg-charcoal/20" />
+        ))}
       </div>
     </section>
   );
