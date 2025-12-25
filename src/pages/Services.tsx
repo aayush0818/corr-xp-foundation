@@ -19,6 +19,9 @@ import {
 } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
+import workFiberWrapping from '@/assets/work-fiber-wrapping-1.jpg';
+import workColumnWrapping from '@/assets/work-column-wrapping-1.jpg';
+import workFloorCoating from '@/assets/work-floor-coating-1.jpg';
 
 const services = [
   {

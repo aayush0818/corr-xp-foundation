@@ -5,6 +5,8 @@ import CountUpNumber from '@/components/ui/CountUpNumber';
 import { ArrowRight, CheckCircle2, Shield, Wrench, Target, Building2, Layers, Construction } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
+import teamPhoto from '@/assets/team-photo-1.jpg';
+import workFiberWrapping from '@/assets/work-fiber-wrapping-1.jpg';
 
 const coreServices = [
   'Structural repair & rehabilitation',
@@ -149,8 +151,8 @@ const AboutPage = () => {
               <div className="relative">
                 <div className="aspect-[4/5] rounded overflow-hidden shadow-custom-xl">
                   <img
-                    src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80"
-                    alt="Structural repair work"
+                    src={workFiberWrapping}
+                    alt="Fiber wrapping work in progress"
                     className="w-full h-full object-cover"
                   />
                 </div>
