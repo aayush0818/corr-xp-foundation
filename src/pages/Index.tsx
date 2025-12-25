@@ -466,35 +466,30 @@ const TestimonialsSection = () => {
     author: 'Rajesh Kumar',
     position: 'Chief Engineer',
     company: 'ONGC',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80',
     rating: 5
   }, {
     quote: "The corrosion protection system they designed for our coastal infrastructure has exceeded all performance benchmarks. Five years on, we're seeing zero degradation.",
     author: 'Priya Sharma',
     position: 'Project Director',
     company: 'L&T Infrastructure',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80',
     rating: 5
   }, {
     quote: "What impressed us most was their systematic approach to problem-solving. They don't just treat symptoms — they identify root causes and engineer permanent solutions.",
     author: 'Vikram Mehta',
     position: 'VP Operations',
     company: 'Tata Steel',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80',
     rating: 5
   }, {
     quote: "Their preventive maintenance program has saved us millions in potential repairs. The ROI on their services is undeniable. Highly recommend for any industrial facility.",
     author: 'Anita Desai',
     position: 'Plant Manager',
     company: 'IOCL Refinery',
-    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=150&q=80',
     rating: 5
   }, {
     quote: "From initial assessment to project completion, CORR XP demonstrated exceptional knowledge and commitment. Our bridge rehabilitation was completed ahead of schedule.",
     author: 'Suresh Patel',
     position: 'Executive Engineer',
     company: 'NHAI',
-    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&q=80',
     rating: 5
   }];
 
@@ -581,7 +576,11 @@ const TestimonialsSection = () => {
 
               {/* Author */}
               <div className="flex items-center gap-4">
-                <img src={testimonials[currentIndex].image} alt={testimonials[currentIndex].author} className="w-16 h-16 rounded-full object-cover ring-4 ring-primary/20" />
+                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
+                  <span className="text-primary text-xl font-bold">
+                    {testimonials[currentIndex].author.split(' ').map(n => n[0]).join('')}
+                  </span>
+                </div>
                 <div>
                   <div className="font-bold text-charcoal text-lg">
                     {testimonials[currentIndex].author}
