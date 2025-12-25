@@ -40,7 +40,7 @@ const Header = () => {
     <>
       {/* Desktop Header */}
       <header
-        className={`hidden lg:block sticky top-0 left-0 right-0 z-50 transition-all duration-400 ${
+        className={`hidden lg:block fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${
           isScrolled
             ? 'bg-warm-white shadow-custom-lg'
             : 'bg-slate backdrop-blur-sm'
