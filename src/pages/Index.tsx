@@ -33,7 +33,7 @@ const HeroSection = () => <section className="relative min-h-screen flex items-c
         delay: 0.2
       }}>
           <span className="font-script text-primary text-xl md:text-2xl mb-4 block">
-            Excellence in Engineering
+            Structural Repair Specialists
           </span>
         </motion.div>
         
@@ -47,8 +47,8 @@ const HeroSection = () => <section className="relative min-h-screen flex items-c
         duration: 0.8,
         delay: 0.4
       }} className="text-warm-white text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-[1.1] text-shadow-lg">
-          Protecting Infrastructure,{' '}
-          <span className="text-primary">Building Legacy</span>
+          Structural Repair,{' '}
+          <span className="text-primary">Protection & Retrofitting</span>
         </motion.h1>
         
         <motion.p initial={{
@@ -61,8 +61,8 @@ const HeroSection = () => <section className="relative min-h-screen flex items-c
         duration: 0.8,
         delay: 0.6
       }} className="text-lg md:text-xl text-warm-white/85 mb-10 max-w-2xl leading-relaxed">
-          India's leading specialists in corrosion engineering and concrete rehabilitation. 
-          25+ years of protecting critical infrastructure across industries.
+          Specialized structural repair, rehabilitation, protection, and retrofitting contractor. 
+          Advanced solutions for concrete and steel structures using proven repair systems.
         </motion.p>
         
         <motion.div initial={{
@@ -145,13 +145,13 @@ const AboutSnapshotSection = () => <section className="bg-warm-white section-pad
           <div className="relative">
             {/* Main Image */}
             <div className="relative aspect-[4/5] rounded overflow-hidden shadow-custom-xl">
-              <img alt="Engineering team inspecting infrastructure" className="w-full h-full object-cover" src="https://structural-india.com/wp-content/uploads/2023/01/power_plant.jpg" />
+              <img alt="Structural repair and retrofitting work" className="w-full h-full object-cover" src="https://structural-india.com/wp-content/uploads/2023/01/power_plant.jpg" />
             </div>
             
             {/* Floating accent card */}
             <div className="absolute -bottom-8 right-0 lg:-right-8 bg-primary p-6 rounded shadow-custom-xl max-w-[200px]">
-              <div className="text-4xl font-bold text-primary-foreground mb-1">25+</div>
-              <div className="text-primary-foreground/80 text-sm">Years Building Trust</div>
+              <div className="text-4xl font-bold text-primary-foreground mb-1">MSME</div>
+              <div className="text-primary-foreground/80 text-sm">Registered Contractor</div>
             </div>
             
             {/* Decorative line */}
@@ -163,26 +163,26 @@ const AboutSnapshotSection = () => <section className="bg-warm-white section-pad
         <AnimatedSection direction="right" className="lg:col-span-6 order-1 lg:order-2">
           <span className="font-script text-accent text-lg mb-2 block">Who We Are</span>
           <h2 className="mb-6 text-charcoal">
-            Engineering Excellence,{' '}
-            <span className="text-primary">Proven Results</span>
+            Specialized Structural{' '}
+            <span className="text-primary">Repair Contractors</span>
           </h2>
           
           <div className="space-y-4 text-charcoal/75 mb-8">
             <p className="text-lg leading-relaxed">
-              CORR XP has been at the forefront of corrosion engineering and concrete 
-              rehabilitation in India for over two decades. We combine cutting-edge 
-              technology with deep expertise to protect critical infrastructure.
+              CORR XP India is a specialized structural repair, rehabilitation, protection, 
+              and retrofitting contractor, providing advanced solutions for concrete and 
+              steel structures.
             </p>
             <p className="leading-relaxed">
-              From oil refineries to transportation networks, our solutions extend 
-              asset lifecycles, minimize downtime, and deliver measurable ROI. We don't 
-              just fix problems — we engineer lasting solutions.
+              We focus on improving strength, durability, and performance of existing assets 
+              using proven repair systems and modern strengthening technologies including 
+              Carbon, Glass, and Aramid fiber systems.
             </p>
           </div>
 
           {/* Key points */}
           <div className="grid grid-cols-2 gap-4 mb-8">
-            {['ISO Certified', 'Pan-India Presence', 'Expert Team', 'Proven Methods'].map(item => <div key={item} className="flex items-center gap-2 text-charcoal/80">
+            {['MSME Registered', 'GST Registered', 'In-house Design', 'Pan-India Service'].map(item => <div key={item} className="flex items-center gap-2 text-charcoal/80">
                 <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
                 <span className="text-sm font-medium">{item}</span>
               </div>)}
@@ -204,49 +204,58 @@ const ServicesPreviewSection = () => {
   const [activeService, setActiveService] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
   const services = [{
-    title: 'Durability Repairs',
-    shortTitle: 'Durability',
-    description: 'Comprehensive durability repair solutions including patch repairs, crack injection, and surface protection for extended structural life.',
+    title: 'Structural Repair & Rehabilitation',
+    shortTitle: 'Structural',
+    description: 'Repair and rehabilitation of distressed structural members such as beams, columns, slabs, and foundations to restore structural safety.',
     image: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=800&q=80',
     stats: {
       value: '500+',
       label: 'Structures Repaired'
     }
   }, {
-    title: 'Structural Repairs',
-    shortTitle: 'Structural',
-    description: 'Complete structural restoration from micro-silica repairs to CFRP strengthening, exceeding original specifications.',
+    title: 'Concrete Repair & Protection',
+    shortTitle: 'Concrete',
+    description: 'Concrete patch repair, micro-concreting, crack injection, grouting, and protective coating systems.',
     image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80',
     stats: {
       value: '200K',
       label: 'Sq.m Repaired'
     }
   }, {
-    title: 'Structural Strengthening',
-    shortTitle: 'Strengthening',
-    description: 'Advanced strengthening solutions using carbon fiber, steel plates, and post-tensioning for enhanced load capacity.',
+    title: 'Fiber Wrapping (FRP)',
+    shortTitle: 'FRP',
+    description: 'Strengthening of RCC structures using Fiber Reinforced Polymer systems to improve load-carrying capacity and ductility.',
     image: 'https://images.unsplash.com/photo-1590496793929-36417d3117de?auto=format&fit=crop&w=800&q=80',
     stats: {
       value: '1M+',
       label: 'Sq.m Strengthened'
     }
   }, {
-    title: 'Seismic Retrofitting',
-    shortTitle: 'Seismic',
-    description: 'Specialized seismic upgrade solutions to enhance structural resilience against earthquake forces.',
+    title: 'Structural Retrofitting',
+    shortTitle: 'Retrofitting',
+    description: 'Advanced retrofitting using Carbon Fiber (CFRP), Glass Fiber (GFRP), and Aramid Fiber (AFRP) wrapping systems.',
     image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
     stats: {
       value: '100+',
       label: 'Buildings Retrofitted'
     }
   }, {
-    title: 'Corrosion Mitigation',
+    title: 'Corrosion Control',
     shortTitle: 'Corrosion',
-    description: 'State-of-the-art cathodic protection and corrosion control systems for long-term infrastructure preservation.',
+    description: 'Treatment of corroded reinforcement and anti-corrosion systems to enhance durability and extend service life.',
     image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80',
     stats: {
       value: '50+',
       label: 'Systems Installed'
+    }
+  }, {
+    title: 'Steel Coating & Protection',
+    shortTitle: 'Steel',
+    description: 'Surface preparation, anti-corrosive coatings, self-healing epoxy, PU, and zinc-rich coatings as per ISO guidelines.',
+    image: 'https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=800&q=80',
+    stats: {
+      value: '75+',
+      label: 'Steel Projects'
     }
   }];
 

@@ -51,8 +51,8 @@ const Footer = () => {
               <img src={logo} alt="CORR XP Logo" className="h-14" />
             </Link>
             <p className="text-warm-white/60 mb-6 leading-relaxed">
-              India's leading specialists in corrosion engineering and concrete rehabilitation. 
-              Protecting infrastructure, building legacy since 1999.
+              Specialized structural repair, rehabilitation, protection, and retrofitting 
+              contractor providing advanced solutions for concrete and steel structures.
             </p>
             
             {/* Contact Info */}

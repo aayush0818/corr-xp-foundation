@@ -2,63 +2,71 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import CountUpNumber from '@/components/ui/CountUpNumber';
-import { ArrowRight, Award, Users, Target, CheckCircle2, Shield, Lightbulb, Heart, Building2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Shield, Wrench, Target, Building2, Layers, Construction } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
+
+const coreServices = [
+  'Structural repair & rehabilitation',
+  'Concrete repair and protection',
+  'Corrosion control solutions',
+  'Steel coating and protection services',
+  'Fiber wrapping (FRP strengthening)',
+  'Structural retrofitting using Carbon / Glass / Aramid fiber systems',
+  'In-house Design of Repairs (Structural Stability Included)',
+];
 
 const values = [
   {
     icon: Shield,
-    title: 'Integrity',
-    description: 'Highest ethical standards in all our work with honest assessments.',
+    title: 'Quality Assurance',
+    description: 'Proven repair systems and adherence to ISO guidelines in all our work.',
   },
   {
-    icon: Lightbulb,
-    title: 'Innovation',
-    description: 'Continuously advancing methods and technologies for complex challenges.',
+    icon: Wrench,
+    title: 'Technical Expertise',
+    description: 'In-house design capabilities including structural stability analysis.',
   },
   {
     icon: Target,
-    title: 'Excellence',
-    description: 'Exceptional quality in every project, exceeding industry standards.',
+    title: 'Precision',
+    description: 'Focused on improving strength, durability, and performance of structures.',
   },
   {
-    icon: Heart,
-    title: 'Client Focus',
-    description: 'Building lasting partnerships through dedicated, tailored service.',
+    icon: Layers,
+    title: 'Modern Technology',
+    description: 'Advanced fiber systems including CFRP, GFRP, and AFRP solutions.',
   },
 ];
 
-const milestones = [
-  { year: '1999', title: 'Company Founded', description: 'Started with a vision to protect India\'s infrastructure' },
-  { year: '2005', title: 'ISO Certification', description: 'Achieved ISO 9001 quality management certification' },
-  { year: '2010', title: 'National Expansion', description: 'Expanded operations across all major Indian states' },
-  { year: '2015', title: 'NACE Partnership', description: 'Became NACE certified corrosion specialists' },
-  { year: '2020', title: '500+ Projects', description: 'Milestone of 500+ successful project completions' },
-  { year: '2024', title: 'Industry Leader', description: 'Recognized as India\'s premier corrosion engineering firm' },
+const industries = [
+  'Residential & commercial buildings',
+  'Industrial facilities',
+  'Infrastructure & bridges',
+  'Power plants & utilities',
+  'Institutional structures',
 ];
 
 const AboutPage = () => {
   const stats = [
-    { value: 25, suffix: '+', label: 'Years Experience' },
     { value: 500, suffix: '+', label: 'Projects Completed' },
-    { value: 150, suffix: '+', label: 'Expert Engineers' },
-    { value: 98, suffix: '%', label: 'Client Satisfaction' },
+    { value: 100, suffix: '+', label: 'Structures Retrofitted' },
+    { value: 5, suffix: '', label: 'Industries Served' },
+    { value: 6, suffix: '', label: 'Core Services' },
   ];
 
   return (
     <>
       <Helmet>
-        <title>About Us | CORR XP - 25+ Years of Engineering Excellence</title>
+        <title>About Us | CORR XP India - Structural Repair & Retrofitting Specialists</title>
         <meta
           name="description"
-          content="Learn about CORR XP's journey as India's leading corrosion protection and concrete rehabilitation specialists. 25+ years of protecting critical infrastructure."
+          content="CORR XP India is a specialized structural repair, rehabilitation, protection, and retrofitting contractor providing advanced solutions for concrete and steel structures."
         />
       </Helmet>
 
-      {/* Hero Section - Clean gradient with content focus */}
+      {/* Hero Section */}
       <section className="relative bg-slate overflow-hidden">
-        {/* Abstract background elements */}
         <div className="absolute inset-0">
           <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent" />
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2" />
@@ -68,7 +76,6 @@ const AboutPage = () => {
         
         <div className="container-custom relative z-10 pt-32 pb-24 lg:pt-40 lg:pb-32">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left content */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -76,18 +83,18 @@ const AboutPage = () => {
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-6">
                 <Building2 className="w-4 h-4 text-primary" />
-                <span className="text-primary text-sm font-medium">Since 1999</span>
+                <span className="text-primary text-sm font-medium">MSME & GST Registered</span>
               </div>
               
               <h1 className="text-warm-white text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                25+ Years of{' '}
-                <span className="text-primary">Engineering Excellence</span>
+                Structural Repair{' '}
+                <span className="text-primary">Specialists</span>
               </h1>
               
               <p className="text-lg text-warm-white/80 mb-8 max-w-xl leading-relaxed">
-                From a small team with a big vision to India's premier corrosion engineering 
-                specialists. Our journey is built on expertise, innovation, and unwavering 
-                commitment to protecting critical infrastructure.
+                CORR XP India is a specialized structural repair, rehabilitation, protection, 
+                and retrofitting contractor, providing advanced solutions for concrete and 
+                steel structures.
               </p>
 
               <div className="flex flex-wrap gap-4">
@@ -97,15 +104,14 @@ const AboutPage = () => {
                     <ArrowRight size={18} className="ml-2" />
                   </Button>
                 </Link>
-                <Link to="/projects">
+                <Link to="/services">
                   <Button variant="heroOutline" size="lg">
-                    <span>View Projects</span>
+                    <span>Our Services</span>
                   </Button>
                 </Link>
               </div>
             </motion.div>
 
-            {/* Right - Stats grid */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -135,7 +141,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Story Section */}
+      {/* Core Services Section */}
       <section className="bg-warm-white section-padding">
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -144,48 +150,43 @@ const AboutPage = () => {
                 <div className="aspect-[4/5] rounded overflow-hidden shadow-custom-xl">
                   <img
                     src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80"
-                    alt="CORR XP Team at work"
+                    alt="Structural repair work"
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="absolute -bottom-6 -right-6 bg-primary p-6 rounded shadow-custom-xl max-w-[180px] hidden md:block">
-                  <div className="text-3xl font-bold text-primary-foreground">1999</div>
-                  <div className="text-primary-foreground/80 text-sm">Year Founded</div>
+                <div className="absolute -bottom-6 -right-6 bg-primary p-6 rounded shadow-custom-xl max-w-[200px] hidden md:block">
+                  <div className="text-2xl font-bold text-primary-foreground">In-house</div>
+                  <div className="text-primary-foreground/80 text-sm">Design of Repairs</div>
                 </div>
-                <div className="absolute left-0 top-1/4 w-1 h-24 bg-primary hidden lg:block -translate-x-6" />
               </div>
             </AnimatedSection>
 
             <AnimatedSection direction="right">
-              <span className="font-script text-accent text-lg mb-2 block">Who We Are</span>
+              <span className="font-script text-accent text-lg mb-2 block">What We Do</span>
               <h2 className="text-charcoal mb-6">
-                Building Trust Through{' '}
-                <span className="text-primary">Excellence</span>
+                Our Key{' '}
+                <span className="text-primary">Services</span>
               </h2>
-              <div className="space-y-4 text-charcoal/75">
-                <p className="text-lg leading-relaxed">
-                  Founded in 1999, CORR XP has grown from a small consulting firm into 
-                  India's most trusted name in corrosion engineering and concrete rehabilitation.
-                </p>
-                <p className="leading-relaxed">
-                  Our journey began with a simple yet powerful vision: to protect India's 
-                  critical infrastructure from the silent threat of corrosion. Today, we've 
-                  completed over 500 projects across industries.
-                </p>
-                <p className="leading-relaxed">
-                  What sets us apart is our unwavering commitment to scientific rigor, 
-                  innovative solutions, and client partnership.
-                </p>
-              </div>
+              <p className="text-charcoal/75 mb-8 leading-relaxed">
+                We focus on improving strength, durability, and performance of existing assets 
+                using proven repair systems and modern strengthening technologies.
+              </p>
               
-              <div className="grid grid-cols-2 gap-3 mt-8">
-                {['ISO 9001 Certified', 'NACE Specialists', 'Pan-India Presence', '24/7 Support'].map((item) => (
-                  <div key={item} className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span className="text-sm font-medium text-charcoal/80">{item}</span>
+              <div className="space-y-3">
+                {coreServices.map((service) => (
+                  <div key={service} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-charcoal/80">{service}</span>
                   </div>
                 ))}
               </div>
+
+              <Link to="/services" className="inline-block mt-8">
+                <Button variant="default" size="lg">
+                  <span>View All Services</span>
+                  <ArrowRight size={18} className="ml-2" />
+                </Button>
+              </Link>
             </AnimatedSection>
           </div>
         </div>
@@ -195,8 +196,8 @@ const AboutPage = () => {
       <section className="bg-warm-white-dark section-padding">
         <div className="container-custom">
           <AnimatedSection className="text-center mb-12">
-            <span className="font-script text-accent text-lg mb-2 block">Our Foundation</span>
-            <h2 className="text-charcoal mb-4">Core Values</h2>
+            <span className="font-script text-accent text-lg mb-2 block">Our Approach</span>
+            <h2 className="text-charcoal mb-4">Why Choose Us</h2>
           </AnimatedSection>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -215,24 +216,48 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Timeline Section */}
+      {/* Industries Section */}
       <section className="bg-slate section-padding">
         <div className="container-custom">
-          <AnimatedSection className="text-center mb-12">
-            <span className="font-script text-primary text-lg mb-2 block">Our Journey</span>
-            <h2 className="text-warm-white mb-4">Key Milestones</h2>
-          </AnimatedSection>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {milestones.map((milestone, index) => (
-              <AnimatedSection key={milestone.year} delay={index * 0.1}>
-                <div className="bg-slate-light/30 backdrop-blur-sm border border-warm-white/10 p-6 rounded hover:bg-slate-light/50 transition-colors">
-                  <span className="text-primary font-bold text-2xl">{milestone.year}</span>
-                  <h3 className="text-warm-white font-semibold text-lg mt-2 mb-2">{milestone.title}</h3>
-                  <p className="text-warm-white/60 text-sm">{milestone.description}</p>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <AnimatedSection>
+              <span className="font-script text-primary text-lg mb-2 block">Sectors We Serve</span>
+              <h2 className="text-warm-white mb-6">Industries We Protect</h2>
+              <p className="text-warm-white/70 mb-8 leading-relaxed">
+                Our expertise spans across multiple sectors, delivering tailored structural 
+                repair and retrofitting solutions for each industry's unique challenges.
+              </p>
+              <div className="space-y-4">
+                {industries.map((industry) => (
+                  <div key={industry} className="flex items-center gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
+                    <span className="text-warm-white/80">{industry}</span>
+                  </div>
+                ))}
+              </div>
+            </AnimatedSection>
+            
+            <AnimatedSection delay={0.2}>
+              <div className="bg-slate-light/30 backdrop-blur-sm border border-warm-white/10 p-8 rounded">
+                <h3 className="text-warm-white text-xl font-bold mb-6">Business Registration</h3>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3 p-4 bg-slate-light/30 rounded border border-warm-white/10">
+                    <Construction className="w-6 h-6 text-primary" />
+                    <div>
+                      <div className="text-warm-white font-semibold">MSME Registered</div>
+                      <div className="text-warm-white/60 text-sm">Micro, Small & Medium Enterprises</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 p-4 bg-slate-light/30 rounded border border-warm-white/10">
+                    <Building2 className="w-6 h-6 text-primary" />
+                    <div>
+                      <div className="text-warm-white font-semibold">GST Registered</div>
+                      <div className="text-warm-white/60 text-sm">Proprietorship Firm</div>
+                    </div>
+                  </div>
                 </div>
-              </AnimatedSection>
-            ))}
+              </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
@@ -243,10 +268,10 @@ const AboutPage = () => {
           <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
             <div className="text-center lg:text-left">
               <h2 className="text-primary-foreground text-3xl font-bold mb-2">
-                Ready to Work With Us?
+                Need Structural Solutions?
               </h2>
               <p className="text-primary-foreground/80">
-                Let's discuss how we can protect your infrastructure.
+                Let's discuss your repair, protection, or retrofitting requirements.
               </p>
             </div>
             <div className="flex flex-wrap gap-4">
