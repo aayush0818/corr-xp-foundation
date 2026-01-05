@@ -134,7 +134,7 @@ const ProjectsPage = () => {
               </h1>
               
               <p className="text-lg text-warm-white/80 max-w-2xl leading-relaxed">
-                500+ successful projects across India. Each one a testament to our commitment 
+                25+ successful projects across India. Each one a testament to our commitment 
                 to engineering excellence and client satisfaction.
               </p>
             </motion.div>
@@ -148,9 +148,9 @@ const ProjectsPage = () => {
             className="flex flex-wrap gap-8 mt-12 pt-8 border-t border-warm-white/10"
           >
             {[
-              { value: '500+', label: 'Projects' },
-              { value: '25+', label: 'States' },
-              { value: '98%', label: 'Satisfaction' },
+              { value: '25+', label: 'Projects' },
+              { value: '9+', label: 'Years Experience' },
+              { value: '6', label: 'Structural Engineers' },
             ].map((stat) => (
               <div key={stat.label}>
                 <div className="text-2xl font-bold text-primary">{stat.value}</div>

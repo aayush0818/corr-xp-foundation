@@ -90,6 +90,17 @@ const services = [
       'Load capacity enhancement',
     ],
   },
+  {
+    icon: Home,
+    title: 'Waterproofing Terraces',
+    description: 'Comprehensive waterproofing solutions for building terraces, decks, and roof surfaces to prevent water ingress and structural damage.',
+    features: [
+      'Terrace waterproofing',
+      'Deck protection',
+      'Long-lasting sealing',
+      'Water ingress prevention',
+    ],
+  },
 ];
 
 const areasOfExpertise = [
@@ -188,7 +199,7 @@ const ServicesPage = () => {
             className="flex flex-wrap gap-8 mt-12 pt-8 border-t border-warm-white/10"
           >
             <div>
-              <div className="text-3xl font-bold text-primary">6</div>
+              <div className="text-3xl font-bold text-primary">7</div>
               <div className="text-warm-white/60 text-sm">Core Services</div>
             </div>
             <div>

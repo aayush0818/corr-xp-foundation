@@ -127,7 +127,7 @@ const Header = () => {
                 <img 
                   src={logo} 
                   alt="CORR XP Logo" 
-                  className={`transition-all duration-300 ${isScrolled ? 'h-12' : 'h-16'}`}
+                  className={`transition-all duration-300 ${isScrolled ? 'h-16' : 'h-24'}`}
                 />
               </Link>
 

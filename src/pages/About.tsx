@@ -16,6 +16,7 @@ const coreServices = [
   'Fiber wrapping (FRP strengthening)',
   'Structural retrofitting using Carbon / Glass / Aramid fiber systems',
   'In-house Design of Repairs (Structural Stability Included)',
+  'Waterproofing Services for Building Terraces/Decks',
 ];
 
 const values = [
@@ -51,10 +52,10 @@ const industries = [
 
 const AboutPage = () => {
   const stats = [
-    { value: 500, suffix: '+', label: 'Projects Completed' },
-    { value: 100, suffix: '+', label: 'Structures Retrofitted' },
+    { value: 9, suffix: '+', label: 'Years of Experience' },
+    { value: 25, suffix: '+', label: 'Projects Completed' },
+    { value: 6, suffix: '', label: 'Structural Engineers' },
     { value: 5, suffix: '', label: 'Industries Served' },
-    { value: 6, suffix: '', label: 'Core Services' },
   ];
 
   return (
