@@ -37,20 +37,20 @@ const Header = () => {
 
   return (
     <>
-      {/* Desktop Header */}
+      {/* Desktop Header - Expanded State (not scrolled) */}
       <header
-        className={`hidden lg:block fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${
+        className={`hidden lg:block fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-warm-white shadow-custom-lg'
-            : 'bg-slate backdrop-blur-sm'
+            ? 'bg-warm-white shadow-custom-lg -translate-y-full pointer-events-none opacity-0'
+            : 'bg-slate backdrop-blur-sm translate-y-0 opacity-100'
         }`}
       >
         {/* Top Row: Contact | Logo | CTAs + Social */}
-        <div className={`transition-all duration-300 ${isScrolled ? 'py-0 border-b border-slate/10' : 'border-b border-warm-white/10'}`}>
+        <div className="border-b border-warm-white/10">
           <div className="container-custom">
-            <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'py-1.5' : 'py-3'}`}>
+            <div className="flex items-center justify-between py-3">
               {/* Left: Contact Info */}
-              <div className={`flex items-center gap-6 transition-all duration-300 ${isScrolled ? 'opacity-0 pointer-events-none h-0 overflow-hidden' : 'opacity-100'}`}>
+              <div className="flex items-center gap-6">
                 <a href="tel:+919988252531" className="flex items-center gap-2 text-warm-white/70 hover:text-primary transition-colors text-sm">
                   <Phone size={14} />
                   <span>+91 99 88 2525 31</span>
@@ -66,12 +66,12 @@ const Header = () => {
                 <img 
                   src={logo} 
                   alt="CORR XP Logo" 
-                  className={`transition-all duration-300 ${isScrolled ? 'h-12' : 'h-20'}`}
+                  className="h-16"
                 />
               </Link>
 
               {/* Right: CTAs + Social */}
-              <div className={`flex items-center gap-4 transition-all duration-300 ${isScrolled ? 'opacity-0 pointer-events-none h-0 overflow-hidden' : 'opacity-100'}`}>
+              <div className="flex items-center gap-4">
                 <Link to="/contact">
                   <Button variant="ghost" size="sm" className="text-warm-white/80 hover:text-warm-white hover:bg-warm-white/10 text-sm">
                     <span>Inquire Now</span>
@@ -104,21 +104,17 @@ const Header = () => {
         {/* Bottom Row: Split Navigation */}
         <div>
           <div className="container-custom">
-            <div className={`flex items-center justify-center transition-all duration-300 ${isScrolled ? 'py-1' : 'py-2'}`}>
+            <div className="flex items-center justify-center py-2">
               {/* Left Navigation */}
               <nav className="flex items-center">
                 {leftNavItems.map((item) => (
                   <Link
                     key={item.path}
                     to={item.path}
-                    className={`px-6 transition-all duration-300 text-sm font-medium uppercase tracking-wider relative group ${
-                      isScrolled ? 'py-2' : 'py-3'
-                    } ${
+                    className={`px-6 py-3 text-sm font-medium uppercase tracking-wider relative group ${
                       location.pathname === item.path
                         ? 'text-primary'
-                        : isScrolled 
-                          ? 'text-slate-dark/80 hover:text-slate-dark'
-                          : 'text-warm-white/80 hover:text-warm-white'
+                        : 'text-warm-white/80 hover:text-warm-white'
                     }`}
                   >
                     {item.name}
@@ -132,7 +128,7 @@ const Header = () => {
               </nav>
 
               {/* Center Spacer for Logo alignment */}
-              <div className={`transition-all duration-300 ${isScrolled ? 'w-32' : 'w-48'}`} />
+              <div className="w-48" />
 
               {/* Right Navigation */}
               <nav className="flex items-center">
@@ -140,14 +136,10 @@ const Header = () => {
                   <Link
                     key={item.path}
                     to={item.path}
-                    className={`px-6 transition-all duration-300 text-sm font-medium uppercase tracking-wider relative group ${
-                      isScrolled ? 'py-2' : 'py-3'
-                    } ${
+                    className={`px-6 py-3 text-sm font-medium uppercase tracking-wider relative group ${
                       location.pathname === item.path
                         ? 'text-primary'
-                        : isScrolled 
-                          ? 'text-slate-dark/80 hover:text-slate-dark'
-                          : 'text-warm-white/80 hover:text-warm-white'
+                        : 'text-warm-white/80 hover:text-warm-white'
                     }`}
                   >
                     {item.name}
@@ -160,6 +152,58 @@ const Header = () => {
                 ))}
               </nav>
             </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Desktop Header - Compact State (scrolled) */}
+      <header
+        className={`hidden lg:block fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled
+            ? 'bg-warm-white shadow-custom-lg translate-y-0 opacity-100'
+            : '-translate-y-full pointer-events-none opacity-0'
+        }`}
+      >
+        <div className="container-custom">
+          <div className="flex items-center justify-between py-3">
+            {/* Left: Logo */}
+            <Link to="/" className="flex items-center">
+              <img 
+                src={logo} 
+                alt="CORR XP Logo" 
+                className="h-10"
+              />
+            </Link>
+
+            {/* Center: Navigation */}
+            <nav className="flex items-center gap-1">
+              {allNavItems.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`px-5 py-2 text-sm font-medium uppercase tracking-wider relative group ${
+                    location.pathname === item.path
+                      ? 'text-primary'
+                      : 'text-slate-dark/80 hover:text-slate-dark'
+                  }`}
+                >
+                  {item.name}
+                  <span
+                    className={`absolute bottom-0 left-5 right-5 h-0.5 bg-primary transform origin-left transition-transform duration-300 ${
+                      location.pathname === item.path ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                    }`}
+                  />
+                </Link>
+              ))}
+            </nav>
+
+            {/* Right: CTA */}
+            <Link to="/contact">
+              <Button variant="default" size="sm">
+                <span>Get Quote</span>
+                <ChevronRight size={14} className="ml-1" />
+              </Button>
+            </Link>
           </div>
         </div>
       </header>
