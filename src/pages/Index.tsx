@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import AnimatedSection from '@/components/ui/AnimatedSection';
@@ -7,7 +7,7 @@ import ScrollIndicator from '@/components/ui/ScrollIndicator';
 import FloatingContact from '@/components/ui/FloatingContact';
 import { ArrowRight, Shield, Wrench, Microscope, Building2, FileCheck, Users, Award, CheckCircle2 } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import mumbaiCoastalRoad from '@/assets/mumbai-coastal-road.jpg';
 import workFiberWrapping from '@/assets/work-fiber-wrapping-1.jpg';
 import workColumnWrapping from '@/assets/work-column-wrapping-1.jpg';
@@ -15,13 +15,6 @@ import workBeamWrapping from '@/assets/work-beam-wrapping-2.jpg';
 import workFloorCoating from '@/assets/work-floor-coating-1.jpg';
 import teamPhoto from '@/assets/team-photo-1.jpg';
 import workSurfacePrep from '@/assets/work-surface-prep-1.jpg';
-import ongcLogo from '@/assets/clients/ongc.png';
-import ltLogo from '@/assets/clients/lt.png';
-import nalcoLogo from '@/assets/clients/nalco.png';
-import ciplaLogo from '@/assets/clients/cipla.png';
-import tataSteelLogo from '@/assets/clients/tata-steel.png';
-import ambujaCementLogo from '@/assets/clients/ambuja-cement.png';
-import accLogo from '@/assets/clients/acc.png';
 
 // Hero Section - Full bleed with real imagery
 const HeroSection = () => <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -109,19 +102,19 @@ const HeroSection = () => <section className="relative min-h-screen flex items-c
 // Stats Section - Horizontal with dividers
 const StatsSection = () => {
   const stats = [{
-    value: 25,
+    value: 9,
     suffix: '+',
-    label: 'Years of Excellence',
+    label: 'Years of Experience',
     icon: Award
   }, {
-    value: 500,
+    value: 25,
     suffix: '+',
     label: 'Projects Delivered',
     icon: Building2
   }, {
-    value: 150,
-    suffix: '+',
-    label: 'Expert Engineers',
+    value: 6,
+    suffix: '',
+    label: 'Structural Engineers On-boarded',
     icon: Users
   }, {
     value: 98,
@@ -189,7 +182,9 @@ const AboutSnapshotSection = () => <section className="bg-warm-white section-pad
             <p className="leading-relaxed">
               We focus on improving strength, durability, and performance of existing assets 
               using proven repair systems and modern strengthening technologies including 
-              Carbon, Glass, and Aramid fiber systems.
+              Polymer Modified Mortar repairs, Epoxy Grouting, Micro concrete Jacketing, 
+              New Reinforcement Encasing, Retrofitting with Fiber wrapping etc. We also 
+              provide Waterproofing Services for Building Terraces/Decks etc.
             </p>
           </div>
 
@@ -241,9 +236,9 @@ const ServicesPreviewSection = () => {
       features: ['Corrosion assessment', 'ASTM testing', 'NACE certified'],
     },
     {
-      title: 'Steel Coating & Protection',
-      description: 'Surface preparation and anti-corrosive coatings per NACE & ASTM guidelines.',
-      features: ['Abrasive blasting', 'Epoxy coatings', 'Zinc-rich systems'],
+      title: 'Waterproofing Terraces',
+      description: 'Comprehensive waterproofing solutions for building terraces, decks, and roof surfaces.',
+      features: ['Terrace waterproofing', 'Deck protection', 'Long-lasting sealing'],
     },
   ];
 
@@ -320,10 +315,10 @@ const ServicesPreviewSection = () => {
         <AnimatedSection delay={0.3} className="mt-12">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { value: '500+', label: 'Projects Completed' },
-              { value: '1M+', label: 'Sq.m Strengthened' },
+              { value: '25+', label: 'Projects Completed' },
               { value: 'NACE', label: 'Certified Testing' },
               { value: 'ASTM', label: 'Standards Compliant' },
+              { value: 'MSME', label: 'Registered' },
             ].map((stat) => (
               <div key={stat.label} className="text-center lg:text-left">
                 <div className="text-3xl lg:text-4xl font-black text-primary">{stat.value}</div>
@@ -337,23 +332,29 @@ const ServicesPreviewSection = () => {
   );
 };
 
-// Clients Section - Infinite marquee with bold design
-const ClientsSection = () => {
-  const clients = [
-    { name: 'ONGC', logo: ongcLogo },
-    { name: 'Larsen & Toubro', logo: ltLogo },
-    { name: 'NALCO', logo: nalcoLogo },
-    { name: 'Cipla', logo: ciplaLogo },
-    { name: 'Tata Steel', logo: tataSteelLogo },
-    { name: 'Ambuja Cement', logo: ambujaCementLogo },
-    { name: 'ACC', logo: accLogo },
+// Vision Section - Replacing Clients/Testimonials
+const VisionSection = () => {
+  const visionPoints = [
+    {
+      title: 'Strong & Professional',
+      description: 'To be India\'s most trusted partner in structural repairs and retrofitting — extending the life, safety and sustainability of every structure we touch.',
+    },
+    {
+      title: 'Growth & Innovation Focused',
+      description: 'To lead the transformation of India\'s built infrastructure through innovative repair technologies, sustainable strengthening solutions and uncompromising structural integrity.',
+    },
+    {
+      title: 'Customer-Value Driven',
+      description: 'To create long-lasting, safe and resilient structures by delivering reliable, engineered repair and rehabilitation solutions that customers can trust for decades.',
+    },
+    {
+      title: 'Mission-With-Purpose',
+      description: 'To safeguard structures, protect investments and enhance the longevity of India\'s infrastructure through excellence in structural repairs and retrofitting.',
+    },
   ];
 
-  // Double the array for seamless loop
-  const marqueeClients = [...clients, ...clients];
-
   return (
-    <section className="relative bg-warm-white overflow-hidden py-20">
+    <section className="relative bg-warm-white overflow-hidden py-20 lg:py-28">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -361,257 +362,59 @@ const ClientsSection = () => {
         }} />
       </div>
 
-      <div className="container-custom relative z-10 mb-12">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-          <AnimatedSection>
-            <h2 className="text-charcoal text-3xl lg:text-4xl font-bold">
-              Trusted by <span className="text-primary">Industry Leaders</span>
-            </h2>
-          </AnimatedSection>
-          
-          <div className="flex items-center gap-8">
+      <div className="container-custom relative z-10">
+        <AnimatedSection className="text-center mb-16">
+          <span className="font-script text-accent text-xl mb-2 block">Our Vision</span>
+          <h2 className="text-charcoal text-3xl lg:text-5xl font-bold mb-4">
+            Building India's <span className="text-primary">Structural Future</span>
+          </h2>
+          <p className="text-charcoal/60 max-w-2xl mx-auto">
+            Committed to excellence, innovation, and sustainability in every project we undertake
+          </p>
+        </AnimatedSection>
+
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+          {visionPoints.map((point, index) => (
+            <AnimatedSection key={point.title} delay={index * 0.1}>
+              <div className="bg-white p-8 rounded-xl shadow-lg border border-border/30 h-full hover:shadow-xl transition-shadow duration-300">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <span className="text-primary text-xl font-bold">{index + 1}</span>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-charcoal mb-3">{point.title}</h3>
+                    <p className="text-charcoal/70 leading-relaxed">{point.description}</p>
+                  </div>
+                </div>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+
+        {/* Trust Badges */}
+        <AnimatedSection delay={0.4} className="mt-16">
+          <div className="flex flex-wrap justify-center gap-4">
             {[
-              { value: '100+', label: 'Clients' },
-              { value: '7+', label: 'Industries' },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-3xl font-black text-primary">{stat.value}</div>
-                <div className="text-xs uppercase tracking-wider text-charcoal/50">{stat.label}</div>
+              { icon: Shield, label: 'MSME Registered' },
+              { icon: Award, label: 'NACE Certified' },
+              { icon: CheckCircle2, label: 'GST Registered' },
+              { icon: FileCheck, label: 'ASTM Compliant' },
+            ].map((item) => (
+              <div 
+                key={item.label}
+                className="flex items-center gap-2 px-4 py-2 bg-slate/5 rounded-full border border-border/50"
+              >
+                <item.icon size={16} className="text-primary" />
+                <span className="text-charcoal/70 text-sm font-medium">{item.label}</span>
               </div>
             ))}
           </div>
-        </div>
-      </div>
-
-      {/* Marquee Container */}
-      <div className="relative">
-        {/* Gradient Overlays */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-warm-white to-transparent z-10" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-warm-white to-transparent z-10" />
-        
-        {/* First Marquee Row */}
-        <div className="flex overflow-hidden mb-4">
-          <motion.div
-            className="flex gap-6 py-4"
-            animate={{ x: ['0%', '-50%'] }}
-            transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-          >
-            {marqueeClients.map((client, index) => (
-              <div
-                key={`row1-${index}`}
-                className="flex-shrink-0 w-40 h-28 bg-white rounded-xl shadow-lg border border-border/30 p-4 flex items-center justify-center hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer group"
-              >
-                <img 
-                  src={client.logo} 
-                  alt={client.name}
-                  className="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
-                />
-              </div>
-            ))}
-          </motion.div>
-        </div>
-
-        {/* Second Marquee Row (Reverse Direction) */}
-        <div className="flex overflow-hidden">
-          <motion.div
-            className="flex gap-6 py-4"
-            animate={{ x: ['-50%', '0%'] }}
-            transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-          >
-            {marqueeClients.reverse().map((client, index) => (
-              <div
-                key={`row2-${index}`}
-                className="flex-shrink-0 w-40 h-28 bg-white rounded-xl shadow-lg border border-border/30 p-4 flex items-center justify-center hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer group"
-              >
-                <img 
-                  src={client.logo} 
-                  alt={client.name}
-                  className="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
-                />
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Trust Badges */}
-      <div className="container-custom mt-12">
-        <div className="flex flex-wrap justify-center gap-4">
-          {[
-            { icon: Shield, label: 'MSME Registered' },
-            { icon: Award, label: 'NACE Certified' },
-            { icon: CheckCircle2, label: 'GST Registered' },
-            { icon: FileCheck, label: 'ASTM Compliant' },
-          ].map((item) => (
-            <div 
-              key={item.label}
-              className="flex items-center gap-2 px-4 py-2 bg-slate/5 rounded-full border border-border/50"
-            >
-              <item.icon size={16} className="text-primary" />
-              <span className="text-charcoal/70 text-sm font-medium">{item.label}</span>
-            </div>
-          ))}
-        </div>
+        </AnimatedSection>
       </div>
     </section>
   );
 };
 
-// Testimonials Section - Carousel with auto-play
-const TestimonialsSection = () => {
-  const [currentIndex, setCurrentIndex] = React.useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = React.useState(true);
-  const testimonials = [{
-    quote: "CORR XP's team delivered exceptional results on our refinery rehabilitation project. Their technical expertise and professionalism set them apart from any contractor we've worked with.",
-    author: 'Rajesh Kumar',
-    position: 'Chief Engineer',
-    company: 'ONGC',
-    rating: 5
-  }, {
-    quote: "The corrosion protection system they designed for our coastal infrastructure has exceeded all performance benchmarks. Five years on, we're seeing zero degradation.",
-    author: 'Priya Sharma',
-    position: 'Project Director',
-    company: 'L&T Infrastructure',
-    rating: 5
-  }, {
-    quote: "What impressed us most was their systematic approach to problem-solving. They don't just treat symptoms — they identify root causes and engineer permanent solutions.",
-    author: 'Vikram Mehta',
-    position: 'VP Operations',
-    company: 'Tata Steel',
-    rating: 5
-  }, {
-    quote: "Their preventive maintenance program has saved us millions in potential repairs. The ROI on their services is undeniable. Highly recommend for any industrial facility.",
-    author: 'Anita Desai',
-    position: 'Plant Manager',
-    company: 'IOCL Refinery',
-    rating: 5
-  }, {
-    quote: "From initial assessment to project completion, CORR XP demonstrated exceptional knowledge and commitment. Our bridge rehabilitation was completed ahead of schedule.",
-    author: 'Suresh Patel',
-    position: 'Executive Engineer',
-    company: 'NHAI',
-    rating: 5
-  }];
-
-  // Auto-play functionality
-  React.useEffect(() => {
-    if (!isAutoPlaying) return;
-    const interval = setInterval(() => {
-      setCurrentIndex(prev => (prev + 1) % testimonials.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [isAutoPlaying, testimonials.length]);
-  const goToPrevious = () => {
-    setIsAutoPlaying(false);
-    setCurrentIndex(prev => (prev - 1 + testimonials.length) % testimonials.length);
-  };
-  const goToNext = () => {
-    setIsAutoPlaying(false);
-    setCurrentIndex(prev => (prev + 1) % testimonials.length);
-  };
-  const goToSlide = (index: number) => {
-    setIsAutoPlaying(false);
-    setCurrentIndex(index);
-  };
-  return <section className="bg-slate section-padding relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl translate-y-1/2 hidden lg:block" />
-      </div>
-
-      {/* Large quote decoration */}
-      <div className="absolute top-20 right-20 opacity-[0.03] hidden lg:block">
-        <svg className="w-80 h-80" viewBox="0 0 100 100" fill="currentColor">
-          <path d="M30 10C13.4 10 0 23.4 0 40s13.4 30 30 30c0 11-9 20-20 20v10c16.6 0 30-13.4 30-30V40c0-16.6-13.4-30-30-30zm60 0c-16.6 0-30 13.4-30 30s13.4 30 30 30c0 11-9 20-20 20v10c16.6 0 30-13.4 30-30V40c0-16.6-13.4-30-30-30z" />
-        </svg>
-      </div>
-
-      <div className="container-custom relative z-10">
-        <AnimatedSection className="text-center mb-16">
-          <span className="font-script text-primary text-xl mb-2 block">Testimonials</span>
-          <h2 className="text-warm-white">Voices of Trust</h2>
-          <p className="text-warm-white/60 mt-4 max-w-xl mx-auto">
-            Hear from industry leaders who've experienced the CORR XP difference
-          </p>
-        </AnimatedSection>
-
-        {/* Carousel Container */}
-        <div className="relative max-w-4xl mx-auto px-4">
-          {/* Navigation Arrows */}
-          <button onClick={goToPrevious} className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 lg:w-12 lg:h-12 lg:-left-16 bg-warm-white/10 hover:bg-primary text-warm-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-warm-white/10" aria-label="Previous testimonial">
-            <ArrowRight size={20} className="rotate-180" />
-          </button>
-          
-          <button onClick={goToNext} className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 lg:w-12 lg:h-12 lg:-right-16 bg-warm-white/10 hover:bg-primary text-warm-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-warm-white/10" aria-label="Next testimonial">
-            <ArrowRight size={20} />
-          </button>
-
-          {/* Testimonial Card */}
-          <div className="overflow-hidden">
-            <motion.div key={currentIndex} initial={{
-            opacity: 0,
-            x: 50
-          }} animate={{
-            opacity: 1,
-            x: 0
-          }} exit={{
-            opacity: 0,
-            x: -50
-          }} transition={{
-            duration: 0.5,
-            ease: 'easeOut'
-          }} className="bg-warm-white rounded-2xl p-8 md:p-12 shadow-custom-xl">
-              {/* Stars */}
-              <div className="flex gap-1 mb-6">
-                {[...Array(testimonials[currentIndex].rating)].map((_, i) => <svg key={i} className="w-5 h-5 text-primary fill-primary" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>)}
-              </div>
-
-              {/* Quote */}
-              <blockquote className="text-xl md:text-2xl text-charcoal leading-relaxed mb-8 font-medium">
-                "{testimonials[currentIndex].quote}"
-              </blockquote>
-
-              {/* Author */}
-              <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
-                  <span className="text-primary text-xl font-bold">
-                    {testimonials[currentIndex].author.split(' ').map(n => n[0]).join('')}
-                  </span>
-                </div>
-                <div>
-                  <div className="font-bold text-charcoal text-lg">
-                    {testimonials[currentIndex].author}
-                  </div>
-                  <div className="text-charcoal/60">
-                    {testimonials[currentIndex].position}
-                  </div>
-                  <div className="text-primary font-semibold text-sm">
-                    {testimonials[currentIndex].company}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Dot Indicators */}
-          <div className="flex justify-center gap-2 mt-8">
-            {testimonials.map((_, index) => <button key={index} onClick={() => goToSlide(index)} className={`h-2 rounded-full transition-all duration-300 ${index === currentIndex ? 'w-8 bg-primary' : 'w-2 bg-warm-white/30 hover:bg-warm-white/50'}`} aria-label={`Go to testimonial ${index + 1}`} />)}
-          </div>
-
-          {/* Auto-play indicator */}
-          <div className="flex justify-center mt-4">
-            <button onClick={() => setIsAutoPlaying(!isAutoPlaying)} className="text-warm-white/40 hover:text-warm-white/70 text-xs flex items-center gap-2 transition-colors">
-              <span className={`w-2 h-2 rounded-full ${isAutoPlaying ? 'bg-primary animate-pulse' : 'bg-warm-white/30'}`} />
-              {isAutoPlaying ? 'Auto-playing' : 'Paused'}
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>;
-};
 
 // Projects Preview - Featured layout
 const ProjectsPreviewSection = () => {
@@ -730,7 +533,7 @@ const Index = () => {
   return <>
       <Helmet>
         <title>CORR XP | Corrosion Protection & Concrete Rehabilitation Experts</title>
-        <meta name="description" content="CORR XP delivers innovative corrosion protection and concrete rehabilitation solutions that extend the life of critical infrastructure. 25+ years of engineering excellence." />
+        <meta name="description" content="CORR XP delivers innovative corrosion protection and concrete rehabilitation solutions that extend the life of critical infrastructure. 9+ years of engineering excellence." />
         <meta name="keywords" content="corrosion protection, concrete repair, infrastructure, structural engineering, protective coatings, India" />
       </Helmet>
 
@@ -738,9 +541,8 @@ const Index = () => {
       <StatsSection />
       <AboutSnapshotSection />
       <ServicesPreviewSection />
-      <ClientsSection />
+      <VisionSection />
       <ProjectsPreviewSection />
-      <TestimonialsSection />
       <CTASection />
       <FloatingContact />
     </>;
