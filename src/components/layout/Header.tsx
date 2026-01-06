@@ -21,15 +21,30 @@ const allNavItems = [...leftNavItems, ...rightNavItems];
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileHeaderVisible, setIsMobileHeaderVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+      
+      setIsScrolled(currentScrollY > 20);
+      
+      // Mobile header hide/show logic
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down & past threshold - hide
+        setIsMobileHeaderVisible(false);
+      } else {
+        // Scrolling up - show
+        setIsMobileHeaderVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
@@ -160,7 +175,7 @@ const Header = () => {
       </header>
 
       {/* Mobile Header - Just the menu button */}
-      <header className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-slate/80 backdrop-blur-sm">
+      <header className={`lg:hidden fixed left-0 right-0 z-50 bg-slate/80 backdrop-blur-sm transition-transform duration-300 ${isMobileHeaderVisible ? 'translate-y-0 top-0' : '-translate-y-full top-0'}`}>
         <div className="container-custom flex items-center justify-end py-3">
           {/* Mobile Menu Button */}
           <button
