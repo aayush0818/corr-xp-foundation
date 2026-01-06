@@ -15,6 +15,7 @@ import workBeamWrapping from '@/assets/work-beam-wrapping-2.jpg';
 import workFloorCoating from '@/assets/work-floor-coating-1.jpg';
 import teamPhoto from '@/assets/team-photo-1.jpg';
 import workSurfacePrep from '@/assets/work-surface-prep-1.jpg';
+import logo from '@/assets/logo.png';
 
 // Hero Section - Full bleed with real imagery
 const HeroSection = () => <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -26,8 +27,22 @@ const HeroSection = () => <section className="relative min-h-screen flex items-c
     <div className="absolute inset-0 hero-overlay" />
     
     {/* Content */}
-    <div className="container-custom relative z-10 pt-20">
+    <div className="container-custom relative z-10 pt-16 lg:pt-20">
       <div className="max-w-4xl">
+        {/* Mobile Logo - Large and Centered */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }} 
+          animate={{ opacity: 1, scale: 1 }} 
+          transition={{ duration: 0.6 }}
+          className="lg:hidden flex justify-center mb-8"
+        >
+          <img 
+            src={logo} 
+            alt="CORR XP Logo" 
+            className="h-28 w-auto"
+          />
+        </motion.div>
+
         <motion.div initial={{
         opacity: 0,
         y: 30
