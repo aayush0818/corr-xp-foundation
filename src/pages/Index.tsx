@@ -27,7 +27,7 @@ const HeroSection = () => <section className="relative min-h-screen flex items-c
     <div className="absolute inset-0 hero-overlay" />
     
     {/* Content */}
-    <div className="container-custom relative z-10 pt-16 lg:pt-20">
+    <div className="container-custom relative z-10 pt-16 lg:pt-40">
       <div className="max-w-4xl">
         {/* Mobile Logo - Large and Centered */}
         <motion.div 
