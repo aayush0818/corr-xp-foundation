@@ -159,21 +159,9 @@ const Header = () => {
         </div>
       </header>
 
-      {/* Mobile Header - Completely Separate */}
-      <header className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-slate shadow-custom-md">
-        <div className="container-custom flex items-center justify-between py-3">
-          {/* Empty div for spacing */}
-          <div className="w-10" />
-
-          {/* Centered Logo */}
-          <Link to="/" className="flex items-center absolute left-1/2 transform -translate-x-1/2">
-            <img 
-              src={logo} 
-              alt="CORR XP Logo" 
-              className="h-10"
-            />
-          </Link>
-
+      {/* Mobile Header - Just the menu button */}
+      <header className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-slate/80 backdrop-blur-sm">
+        <div className="container-custom flex items-center justify-end py-3">
           {/* Mobile Menu Button */}
           <button
             className="p-2 rounded-md transition-colors text-warm-white hover:bg-warm-white/10"
