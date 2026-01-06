@@ -162,8 +162,11 @@ const Header = () => {
       {/* Mobile Header - Completely Separate */}
       <header className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-slate shadow-custom-md">
         <div className="container-custom flex items-center justify-between py-3">
-          {/* Logo */}
-          <Link to="/" className="flex items-center">
+          {/* Empty div for spacing */}
+          <div className="w-10" />
+
+          {/* Centered Logo */}
+          <Link to="/" className="flex items-center absolute left-1/2 transform -translate-x-1/2">
             <img 
               src={logo} 
               alt="CORR XP Logo" 
