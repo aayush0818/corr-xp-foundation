@@ -17,11 +17,12 @@ import {
   Beaker,
   FileCheck,
 } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import workFiberWrapping from '@/assets/work-fiber-wrapping-1.jpg';
 import workColumnWrapping from '@/assets/work-column-wrapping-1.jpg';
 import workFloorCoating from '@/assets/work-floor-coating-1.jpg';
+import SEOHead from '@/components/seo/SEOHead';
+import { professionalServiceSchema, SITE_URL } from '@/lib/seo';
 
 const services = [
   {
@@ -151,13 +152,17 @@ const values = [
 const ServicesPage = () => {
   return (
     <>
-      <Helmet>
-        <title>Our Services | CORR XP India - Structural Repair, Protection & Retrofitting</title>
-        <meta
-          name="description"
-          content="CORR XP India offers structural repair, concrete protection, corrosion control, steel coating, FRP strengthening, and structural retrofitting services with NACE & ASTM certified testing."
-        />
-      </Helmet>
+      <SEOHead
+        title="Structural Repair, Protection & Retrofitting Services"
+        description="CORR XP India offers structural repair, concrete protection, corrosion control, steel coating, FRP strengthening, and structural retrofitting services with NACE & ASTM certified testing."
+        path="/services"
+        keywords="structural repair services, concrete repair, FRP strengthening, CFRP wrapping, GFRP, corrosion control, steel coating, NACE certified, ASTM testing, retrofitting India"
+        schemas={[professionalServiceSchema]}
+        breadcrumbs={[
+          { name: 'Home', url: SITE_URL },
+          { name: 'Services', url: `${SITE_URL}/services` },
+        ]}
+      />
 
       {/* Hero Section */}
       <section className="relative bg-slate overflow-hidden">

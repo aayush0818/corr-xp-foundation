@@ -2,10 +2,17 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import { Home } from "lucide-react";
+import SEOHead from "@/components/seo/SEOHead";
 
 const NotFound = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center bg-slate pt-20">
+    <>
+      <SEOHead
+        title="Page Not Found"
+        description="The page you're looking for doesn't exist or has been moved."
+        noindex={true}
+      />
+      <section className="min-h-screen flex items-center justify-center bg-slate pt-20">
       <div className="container-custom text-center">
         <AnimatedSection>
           <h1 className="text-8xl md:text-9xl font-bold text-primary mb-4">404</h1>
@@ -23,6 +30,7 @@ const NotFound = () => {
         </AnimatedSection>
       </div>
     </section>
+    </>
   );
 };
 

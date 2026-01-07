@@ -3,10 +3,11 @@ import { Button } from '@/components/ui/button';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import CountUpNumber from '@/components/ui/CountUpNumber';
 import { ArrowRight, CheckCircle2, Shield, Wrench, Target, Building2, Layers, Construction } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import teamPhoto from '@/assets/team-photo-1.jpg';
 import workFiberWrapping from '@/assets/work-fiber-wrapping-1.jpg';
+import SEOHead from '@/components/seo/SEOHead';
+import { localBusinessSchema, createBreadcrumbSchema, SITE_URL } from '@/lib/seo';
 
 const coreServices = [
   'Structural repair & rehabilitation',
@@ -60,13 +61,17 @@ const AboutPage = () => {
 
   return (
     <>
-      <Helmet>
-        <title>About Us | CORR XP India - Structural Repair & Retrofitting Specialists</title>
-        <meta
-          name="description"
-          content="CORR XP India is a specialized structural repair, rehabilitation, protection, and retrofitting contractor providing advanced solutions for concrete and steel structures."
-        />
-      </Helmet>
+      <SEOHead
+        title="About Us | Structural Repair & Retrofitting Specialists"
+        description="CORR XP India is a specialized structural repair, rehabilitation, protection, and retrofitting contractor with 9+ years of experience providing advanced solutions for concrete and steel structures."
+        path="/about"
+        keywords="structural repair company India, concrete rehabilitation, MSME registered contractor, GST registered, FRP strengthening, structural engineers"
+        schemas={[localBusinessSchema]}
+        breadcrumbs={[
+          { name: 'Home', url: SITE_URL },
+          { name: 'About Us', url: `${SITE_URL}/about` },
+        ]}
+      />
 
       {/* Hero Section */}
       <section className="relative bg-slate overflow-hidden">
