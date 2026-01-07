@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import { Mail, Phone, MapPin, Clock, Send, Building2, CheckCircle2, MessageSquare } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
 import { useToast } from '@/hooks/use-toast';
 import { motion } from 'framer-motion';
+import SEOHead from '@/components/seo/SEOHead';
+import { localBusinessSchema, SITE_URL } from '@/lib/seo';
 
 const ContactPage = () => {
   const { toast } = useToast();
@@ -74,13 +75,17 @@ const ContactPage = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Contact Us | CORR XP - Get in Touch With Our Experts</title>
-        <meta
-          name="description"
-          content="Contact CORR XP for corrosion protection and concrete rehabilitation services. Get a free consultation."
-        />
-      </Helmet>
+      <SEOHead
+        title="Contact Us | Get in Touch With Our Experts"
+        description="Contact CORR XP for structural repair, FRP strengthening, and concrete rehabilitation services. Get a free consultation. Phone: +91 99 88 2525 31. Located in Kharghar, Navi Mumbai."
+        path="/contact"
+        keywords="contact structural repair company, concrete repair consultation, FRP strengthening quote, Navi Mumbai contractor, structural engineering services"
+        schemas={[localBusinessSchema]}
+        breadcrumbs={[
+          { name: 'Home', url: SITE_URL },
+          { name: 'Contact', url: `${SITE_URL}/contact` },
+        ]}
+      />
 
       {/* Hero Section */}
       <section className="relative bg-slate overflow-hidden">

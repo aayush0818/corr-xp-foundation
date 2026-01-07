@@ -6,7 +6,6 @@ import CountUpNumber from '@/components/ui/CountUpNumber';
 import ScrollIndicator from '@/components/ui/ScrollIndicator';
 import FloatingContact from '@/components/ui/FloatingContact';
 import { ArrowRight, Shield, Wrench, Microscope, Building2, FileCheck, Users, Award, CheckCircle2 } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import mumbaiCoastalRoad from '@/assets/mumbai-coastal-road.jpg';
 import workFiberWrapping from '@/assets/work-fiber-wrapping-1.jpg';
@@ -16,6 +15,8 @@ import workFloorCoating from '@/assets/work-floor-coating-1.jpg';
 import teamPhoto from '@/assets/team-photo-1.jpg';
 import workSurfacePrep from '@/assets/work-surface-prep-1.jpg';
 import logo from '@/assets/logo.png';
+import SEOHead from '@/components/seo/SEOHead';
+import { websiteSchema, localBusinessSchema, SITE_URL } from '@/lib/seo';
 
 // Hero Section - Full bleed with real imagery
 const HeroSection = () => <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -546,11 +547,13 @@ const CTASection = () => <section className="bg-primary section-padding-sm relat
   </section>;
 const Index = () => {
   return <>
-      <Helmet>
-        <title>CORR XP | Corrosion Protection & Concrete Rehabilitation Experts</title>
-        <meta name="description" content="CORR XP delivers innovative corrosion protection and concrete rehabilitation solutions that extend the life of critical infrastructure. 9+ years of engineering excellence." />
-        <meta name="keywords" content="corrosion protection, concrete repair, infrastructure, structural engineering, protective coatings, India" />
-      </Helmet>
+      <SEOHead
+        title="CORR XP | Corrosion Protection & Concrete Rehabilitation Experts"
+        description="CORR XP delivers innovative corrosion protection and concrete rehabilitation solutions that extend the life of critical infrastructure. 9+ years of engineering excellence."
+        path=""
+        keywords="corrosion protection, concrete repair, structural rehabilitation, FRP strengthening, fiber wrapping, retrofitting, NACE certified, ASTM testing, India"
+        schemas={[websiteSchema, localBusinessSchema]}
+      />
 
       <HeroSection />
       <StatsSection />

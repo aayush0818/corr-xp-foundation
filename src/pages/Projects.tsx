@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import { ArrowRight, MapPin, Calendar, ExternalLink, FolderOpen } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
 import workFiberWrapping from '@/assets/work-fiber-wrapping-1.jpg';
 import workScaffolding from '@/assets/work-scaffolding-1.jpg';
@@ -12,6 +11,8 @@ import workBeamWrapping2 from '@/assets/work-beam-wrapping-2.jpg';
 import workColumnWrapping from '@/assets/work-column-wrapping-1.jpg';
 import workFloorCoating from '@/assets/work-floor-coating-1.jpg';
 import workSurfacePrep from '@/assets/work-surface-prep-1.jpg';
+import SEOHead from '@/components/seo/SEOHead';
+import { SITE_URL } from '@/lib/seo';
 
 const categories = ['All', 'Fiber Wrapping', 'Structural Repair', 'Coating', 'Infrastructure'];
 
@@ -98,13 +99,16 @@ const ProjectsPage = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Our Projects | CORR XP - Portfolio of Infrastructure Protection Work</title>
-        <meta
-          name="description"
-          content="Explore CORR XP's portfolio of successful corrosion protection and concrete rehabilitation projects across infrastructure, oil & gas, commercial, and marine sectors."
-        />
-      </Helmet>
+      <SEOHead
+        title="Our Projects | Portfolio of Structural Repair & Retrofitting Work"
+        description="Explore CORR XP's portfolio of 25+ successful structural repair, FRP strengthening, and retrofitting projects across Maharashtra and India."
+        path="/projects"
+        keywords="structural repair projects, FRP strengthening portfolio, fiber wrapping projects, concrete repair work, infrastructure protection India"
+        breadcrumbs={[
+          { name: 'Home', url: SITE_URL },
+          { name: 'Projects', url: `${SITE_URL}/projects` },
+        ]}
+      />
 
       {/* Hero Section */}
       <section className="relative bg-slate overflow-hidden">
