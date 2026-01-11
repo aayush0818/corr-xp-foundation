@@ -109,36 +109,12 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Main Nav Row: Split Navigation with Centered Logo */}
+        {/* Main Nav Row: Logo Left, Navigation Right */}
         <div className={`transition-all duration-300 ${isScrolled ? 'border-b border-slate/10' : ''}`}>
           <div className="container-custom">
-            <div className={`flex items-center justify-center transition-all duration-300 ${isScrolled ? 'py-2' : 'py-3'}`}>
-              {/* Left Navigation */}
-              <nav className="flex items-center">
-                {leftNavItems.map((item) => (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    className={`px-6 py-2 text-sm font-medium uppercase tracking-wider relative group ${
-                      location.pathname === item.path
-                        ? 'text-primary'
-                        : isScrolled 
-                          ? 'text-slate-dark/80 hover:text-slate-dark'
-                          : 'text-warm-white/80 hover:text-warm-white'
-                    }`}
-                  >
-                    {item.name}
-                    <span
-                      className={`absolute bottom-0 left-6 right-6 h-0.5 bg-primary transform origin-left transition-transform duration-300 ${
-                        location.pathname === item.path ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-                      }`}
-                    />
-                  </Link>
-                ))}
-              </nav>
-
-              {/* Center: Logo */}
-              <Link to="/" className="mx-8 flex items-center">
+            <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'py-2' : 'py-3'}`}>
+              {/* Left: Logo */}
+              <Link to="/" className="flex items-center">
                 <img 
                   src={logo} 
                   alt="CORR XP Logo" 
@@ -146,9 +122,9 @@ const Header = () => {
                 />
               </Link>
 
-              {/* Right Navigation */}
+              {/* Right: Navigation */}
               <nav className="flex items-center">
-                {rightNavItems.map((item) => (
+                {allNavItems.map((item) => (
                   <Link
                     key={item.path}
                     to={item.path}
