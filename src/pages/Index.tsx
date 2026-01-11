@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import CountUpNumber from '@/components/ui/CountUpNumber';
-import ScrollIndicator from '@/components/ui/ScrollIndicator';
+
 import FloatingContact from '@/components/ui/FloatingContact';
 import { ArrowRight, Shield, Wrench, Microscope, Building2, FileCheck, Users, Award, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -112,7 +112,6 @@ const HeroSection = () => <section className="relative min-h-screen flex items-c
       </div>
     </div>
 
-    <ScrollIndicator />
   </section>;
 
 // Stats Section - Horizontal with dividers
