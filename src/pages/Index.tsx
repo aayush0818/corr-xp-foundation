@@ -7,7 +7,7 @@ import CountUpNumber from '@/components/ui/CountUpNumber';
 import FloatingContact from '@/components/ui/FloatingContact';
 import { ArrowRight, Shield, Wrench, Microscope, Building2, FileCheck, Users, Award, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
-import workFiberWrapping from '@/assets/work-fiber-wrapping-1.jpg';
+import industrialPlant from '@/assets/industrial-plant.png';
 import workColumnWrapping from '@/assets/work-column-wrapping-1.jpg';
 import workBeamWrapping from '@/assets/work-beam-wrapping-2.jpg';
 import workFloorCoating from '@/assets/work-floor-coating-1.jpg';
@@ -165,7 +165,7 @@ const AboutSnapshotSection = () => <section className="bg-warm-white section-pad
           <div className="relative">
             {/* Main Image */}
             <div className="relative aspect-[4/5] rounded overflow-hidden shadow-custom-xl">
-              <img alt="Structural repair and retrofitting work" className="w-full h-full object-cover" src={workFiberWrapping} />
+              <img alt="Industrial plant structural repair project" className="w-full h-full object-cover" src={industrialPlant} />
             </div>
             
             {/* Floating accent card */}

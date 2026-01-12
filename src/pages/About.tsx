@@ -5,7 +5,7 @@ import CountUpNumber from '@/components/ui/CountUpNumber';
 import { ArrowRight, CheckCircle2, Shield, Wrench, Target, Building2, Layers, Construction } from 'lucide-react';
 import { motion } from 'framer-motion';
 import teamPhoto from '@/assets/team-photo-1.jpg';
-import workFiberWrapping from '@/assets/work-fiber-wrapping-1.jpg';
+import industrialPlant from '@/assets/industrial-plant.png';
 import SEOHead from '@/components/seo/SEOHead';
 import { localBusinessSchema, createBreadcrumbSchema, SITE_URL } from '@/lib/seo';
 
@@ -157,8 +157,8 @@ const AboutPage = () => {
               <div className="relative">
                 <div className="aspect-[4/5] rounded overflow-hidden shadow-custom-xl">
                   <img
-                    src={workFiberWrapping}
-                    alt="Fiber wrapping work in progress"
+                    src={industrialPlant}
+                    alt="Industrial plant structural repair project"
                     className="w-full h-full object-cover"
                   />
                 </div>
