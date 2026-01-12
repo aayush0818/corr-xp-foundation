@@ -50,8 +50,7 @@ const ContactPage = () => {
 
   const contactInfo = [
     { icon: Mail, label: 'Email', value: 'corrxp@gmail.com', href: 'mailto:corrxp@gmail.com' },
-    { icon: Phone, label: 'Phone', value: '+91 99 88 2525 31', href: 'tel:+919988252531' },
-    { icon: Phone, label: 'Phone', value: '+91 99 00 3873 60', href: 'tel:+919900387360' },
+    { icon: Phone, label: 'Phone', value: '+91 99 88 2525 31 / +91 99 00 3873 60', href: 'tel:+919988252531' },
     { icon: MapPin, label: 'Address', value: 'Kharghar, Navi Mumbai', href: null },
     { icon: Clock, label: 'Hours', value: 'Mon - Sat: 9AM - 6PM', href: null },
   ];
