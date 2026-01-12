@@ -4,88 +4,33 @@ import { Button } from '@/components/ui/button';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import { ArrowRight, MapPin, Calendar, ExternalLink, FolderOpen } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import workFiberWrapping from '@/assets/work-fiber-wrapping-1.jpg';
-import workScaffolding from '@/assets/work-scaffolding-1.jpg';
-import workBeamWrapping from '@/assets/work-beam-wrapping-1.jpg';
-import workBeamWrapping2 from '@/assets/work-beam-wrapping-2.jpg';
-import workColumnWrapping from '@/assets/work-column-wrapping-1.jpg';
-import workFloorCoating from '@/assets/work-floor-coating-1.jpg';
-import workSurfacePrep from '@/assets/work-surface-prep-1.jpg';
+import terraceWaterproofing from '@/assets/project-terrace-waterproofing.png';
+import paintingWorks from '@/assets/project-painting-works.png';
 import SEOHead from '@/components/seo/SEOHead';
 import { SITE_URL } from '@/lib/seo';
 
-const categories = ['All', 'Fiber Wrapping', 'Structural Repair', 'Coating', 'Infrastructure'];
+const categories = ['All', 'Waterproofing', 'Painting'];
 
 const projectsData = [
   {
     id: 1,
-    title: 'Column & Beam FRP Strengthening',
-    category: 'Fiber Wrapping',
+    title: 'Terrace Waterproofing',
+    category: 'Waterproofing',
     location: 'Maharashtra',
     year: '2024',
-    description: 'Complete CFRP wrapping of columns and beams for structural load enhancement in commercial building.',
-    image: workFiberWrapping,
+    description: 'Complete waterproofing solution for building terrace with specialized coating application.',
+    image: terraceWaterproofing,
     featured: true,
   },
   {
     id: 2,
-    title: 'Multi-Level Structure Retrofitting',
-    category: 'Structural Repair',
+    title: 'Painting Works',
+    category: 'Painting',
     location: 'Maharashtra',
     year: '2024',
-    description: 'Large-scale column fiber wrapping project for multi-story industrial facility.',
-    image: workColumnWrapping,
+    description: 'Large-scale painting and coating works for infrastructure project.',
+    image: paintingWorks,
     featured: true,
-  },
-  {
-    id: 3,
-    title: 'Beam Strengthening Project',
-    category: 'Fiber Wrapping',
-    location: 'Maharashtra',
-    year: '2024',
-    description: 'Carbon fiber wrapping application on RCC beams to improve load capacity.',
-    image: workBeamWrapping,
-    featured: false,
-  },
-  {
-    id: 4,
-    title: 'Structural Beam Reinforcement',
-    category: 'Fiber Wrapping',
-    location: 'Maharashtra',
-    year: '2024',
-    description: 'FRP strengthening of multiple beam lines in structural rehabilitation project.',
-    image: workBeamWrapping2,
-    featured: true,
-  },
-  {
-    id: 5,
-    title: 'Industrial Floor Coating',
-    category: 'Coating',
-    location: 'Maharashtra',
-    year: '2024',
-    description: 'High-performance epoxy floor coating system for industrial warehouse facility.',
-    image: workFloorCoating,
-    featured: false,
-  },
-  {
-    id: 6,
-    title: 'Column Scaffolding & Repair',
-    category: 'Structural Repair',
-    location: 'Maharashtra',
-    year: '2024',
-    description: 'Surface preparation and structural repair work on building columns with specialized scaffolding.',
-    image: workScaffolding,
-    featured: false,
-  },
-  {
-    id: 7,
-    title: 'Concrete Surface Preparation',
-    category: 'Structural Repair',
-    location: 'Maharashtra',
-    year: '2024',
-    description: 'Mechanical surface preparation for concrete repair and fiber wrapping installation.',
-    image: workSurfacePrep,
-    featured: false,
   },
 ];
 
