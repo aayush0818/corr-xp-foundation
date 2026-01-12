@@ -7,7 +7,6 @@ import CountUpNumber from '@/components/ui/CountUpNumber';
 import FloatingContact from '@/components/ui/FloatingContact';
 import { ArrowRight, Shield, Wrench, Microscope, Building2, FileCheck, Users, Award, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
-import mumbaiCoastalRoad from '@/assets/mumbai-coastal-road.jpg';
 import workFiberWrapping from '@/assets/work-fiber-wrapping-1.jpg';
 import workColumnWrapping from '@/assets/work-column-wrapping-1.jpg';
 import workBeamWrapping from '@/assets/work-beam-wrapping-2.jpg';
@@ -430,86 +429,6 @@ const VisionSection = () => {
   );
 };
 
-
-// Projects Preview - Featured layout
-const ProjectsPreviewSection = () => {
-  const featuredProject = {
-    id: 1,
-    title: 'Mumbai Coastal Road Protection',
-    category: 'Infrastructure',
-    location: 'Maharashtra',
-    image: mumbaiCoastalRoad,
-    description: 'Comprehensive corrosion protection system for 10km coastal infrastructure.'
-  };
-  const projects = [{
-    id: 2,
-    title: 'Refinery Tank Rehabilitation',
-    category: 'Oil & Gas',
-    image: 'https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=600&q=80'
-  }, {
-    id: 3,
-    title: 'Multi-Level Parking Repair',
-    category: 'Commercial',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80'
-  }];
-  return <section className="bg-slate section-padding">
-      <div className="container-custom">
-        <AnimatedSection className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
-          <div>
-            <span className="font-script text-primary text-lg mb-2 block">Our Portfolio</span>
-            <h2 className="text-warm-white">Featured Projects</h2>
-          </div>
-          <Link to="/projects">
-            <Button variant="heroOutline">
-              <span>View All Projects</span>
-              <ArrowRight size={16} className="ml-2" />
-            </Button>
-          </Link>
-        </AnimatedSection>
-
-        <div className="grid lg:grid-cols-2 gap-6">
-          {/* Featured Project */}
-          <AnimatedSection direction="left" className="lg:row-span-2">
-            <Link to="/projects" className="block h-full group">
-              <div className="relative h-full min-h-[400px] lg:min-h-full overflow-hidden rounded img-zoom">
-                <img src={featuredProject.image} alt={featuredProject.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-dark/90 via-slate-dark/40 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-8">
-                  <span className="inline-block px-3 py-1 bg-primary text-primary-foreground text-xs font-medium rounded mb-3">
-                    {featuredProject.category}
-                  </span>
-                  <h3 className="text-2xl font-bold text-warm-white mb-2 group-hover:text-primary transition-colors">
-                    {featuredProject.title}
-                  </h3>
-                  <p className="text-warm-white/70 text-sm mb-1">{featuredProject.location}</p>
-                  <p className="text-warm-white/60 text-sm">{featuredProject.description}</p>
-                </div>
-              </div>
-            </Link>
-          </AnimatedSection>
-
-          {/* Other Projects */}
-          {projects.map((project, index) => <AnimatedSection key={project.id} direction="right" delay={index * 0.15}>
-              <Link to="/projects" className="block group">
-                <div className="relative h-[200px] overflow-hidden rounded img-zoom">
-                  <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-dark/80 via-transparent to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <span className="text-primary text-xs font-medium uppercase tracking-wide">
-                      {project.category}
-                    </span>
-                    <h3 className="text-lg font-semibold text-warm-white mt-1 group-hover:text-primary transition-colors">
-                      {project.title}
-                    </h3>
-                  </div>
-                </div>
-              </Link>
-            </AnimatedSection>)}
-        </div>
-      </div>
-    </section>;
-};
-
 // CTA Section - Minimal and bold
 const CTASection = () => <section className="bg-primary section-padding-sm relative overflow-hidden">
     {/* Decorative pattern */}
@@ -559,7 +478,6 @@ const Index = () => {
       <AboutSnapshotSection />
       <ServicesPreviewSection />
       <VisionSection />
-      <ProjectsPreviewSection />
       <CTASection />
       <FloatingContact />
     </>;
