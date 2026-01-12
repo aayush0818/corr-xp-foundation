@@ -2,11 +2,16 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import AnimatedSection from '@/components/ui/AnimatedSection';
-import { ArrowRight, MapPin, Calendar, ExternalLink, FolderOpen } from 'lucide-react';
+import { ArrowRight, MapPin, FolderOpen, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import terraceWaterproofing from '@/assets/project-terrace-waterproofing.png';
 import paintingWorks from '@/assets/project-painting-works.png';
-import nerulTemple from '@/assets/nerul-temple-5.png';
+import nerulTemple1 from '@/assets/nerul-temple-1.png';
+import nerulTemple2 from '@/assets/nerul-temple-2.png';
+import nerulTemple3 from '@/assets/nerul-temple-3.png';
+import nerulTemple4 from '@/assets/nerul-temple-4.png';
+import nerulTemple5 from '@/assets/nerul-temple-5.png';
+import nerulTemple6 from '@/assets/nerul-temple-6.png';
 import SEOHead from '@/components/seo/SEOHead';
 import { SITE_URL } from '@/lib/seo';
 
@@ -19,10 +24,8 @@ const projectsData = [
     category: 'Waterproofing',
     location: 'Maharashtra',
     year: '2024',
-    description: 'Complete waterproofing solution for building terrace with specialized coating application.',
     image: terraceWaterproofing,
-    featured: true,
-    link: null,
+    images: [terraceWaterproofing],
   },
   {
     id: 2,
@@ -30,10 +33,8 @@ const projectsData = [
     category: 'Painting',
     location: 'Maharashtra',
     year: '2024',
-    description: 'Large-scale painting and coating works for infrastructure project.',
     image: paintingWorks,
-    featured: true,
-    link: null,
+    images: [paintingWorks],
   },
   {
     id: 3,
@@ -41,20 +42,42 @@ const projectsData = [
     category: 'Painting',
     location: 'Nerul, Maharashtra',
     year: '2024',
-    description: 'Temple restoration and painting works including detailed statue painting and structural finishing.',
-    image: nerulTemple,
-    featured: true,
-    link: '/projects/nerul-temple',
+    image: nerulTemple5,
+    images: [nerulTemple1, nerulTemple2, nerulTemple3, nerulTemple4, nerulTemple5, nerulTemple6],
   },
 ];
 
 const ProjectsPage = () => {
   const [activeCategory, setActiveCategory] = useState('All');
+  const [selectedProject, setSelectedProject] = useState<typeof projectsData[0] | null>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const filteredProjects =
     activeCategory === 'All'
       ? projectsData
       : projectsData.filter((project) => project.category === activeCategory);
+
+  const openLightbox = (project: typeof projectsData[0]) => {
+    setSelectedProject(project);
+    setCurrentImageIndex(0);
+  };
+
+  const closeLightbox = () => {
+    setSelectedProject(null);
+    setCurrentImageIndex(0);
+  };
+
+  const nextImage = () => {
+    if (selectedProject) {
+      setCurrentImageIndex((currentImageIndex + 1) % selectedProject.images.length);
+    }
+  };
+
+  const prevImage = () => {
+    if (selectedProject) {
+      setCurrentImageIndex((currentImageIndex - 1 + selectedProject.images.length) % selectedProject.images.length);
+    }
+  };
 
   return (
     <>
@@ -71,7 +94,6 @@ const ProjectsPage = () => {
 
       {/* Hero Section */}
       <section className="relative bg-slate overflow-hidden">
-        {/* Abstract background */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-slate-dark via-slate to-slate" />
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
@@ -103,7 +125,6 @@ const ProjectsPage = () => {
             </motion.div>
           </div>
 
-          {/* Stats row */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -127,7 +148,6 @@ const ProjectsPage = () => {
       {/* Filter & Projects */}
       <section className="bg-warm-white section-padding">
         <div className="container-custom">
-          {/* Category Filter */}
           <AnimatedSection className="mb-10">
             <div className="flex flex-wrap gap-2 justify-center">
               {categories.map((category) => (
@@ -146,7 +166,6 @@ const ProjectsPage = () => {
             </div>
           </AnimatedSection>
 
-          {/* Projects Grid */}
           <AnimatePresence mode="wait">
             <motion.div 
               key={activeCategory}
@@ -158,72 +177,44 @@ const ProjectsPage = () => {
             >
               {filteredProjects.map((project, index) => (
                 <AnimatedSection key={project.id} delay={index * 0.05}>
-                  {project.link ? (
-                    <Link to={project.link} className="block h-full">
-                      <div className="bg-warm-white rounded overflow-hidden border border-border hover:shadow-custom-lg transition-all duration-300 group h-full">
-                        <div className="relative aspect-[4/3] overflow-hidden">
-                          <img
-                            src={project.image}
-                            alt={project.title}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-slate-dark/60 via-transparent to-transparent" />
-                          <div className="absolute top-3 left-3">
-                            <span className="px-3 py-1 bg-primary text-primary-foreground text-xs font-medium rounded">
-                              {project.category}
-                            </span>
-                          </div>
-                          <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <div className="w-9 h-9 bg-warm-white rounded-full flex items-center justify-center">
-                              <ExternalLink size={16} className="text-charcoal" />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="p-5">
-                          <div className="flex items-center gap-2 text-xs text-charcoal/60 mb-2">
-                            <span className="flex items-center gap-1">
-                              <MapPin size={12} />
-                              {project.location}
-                            </span>
-                            <span>•</span>
-                            <span>{project.year}</span>
-                          </div>
-                          <h3 className="text-lg font-semibold text-charcoal group-hover:text-primary transition-colors">
-                            {project.title}
-                          </h3>
-                        </div>
+                  <div 
+                    className="bg-warm-white rounded overflow-hidden border border-border hover:shadow-custom-lg transition-all duration-300 group h-full cursor-pointer"
+                    onClick={() => openLightbox(project)}
+                  >
+                    <div className="relative aspect-[4/3] overflow-hidden">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-dark/60 via-transparent to-transparent" />
+                      <div className="absolute top-3 left-3">
+                        <span className="px-3 py-1 bg-primary text-primary-foreground text-xs font-medium rounded">
+                          {project.category}
+                        </span>
                       </div>
-                    </Link>
-                  ) : (
-                    <div className="bg-warm-white rounded overflow-hidden border border-border hover:shadow-custom-lg transition-all duration-300 group h-full">
-                      <div className="relative aspect-[4/3] overflow-hidden">
-                        <img
-                          src={project.image}
-                          alt={project.title}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-dark/60 via-transparent to-transparent" />
-                        <div className="absolute top-3 left-3">
-                          <span className="px-3 py-1 bg-primary text-primary-foreground text-xs font-medium rounded">
-                            {project.category}
+                      {project.images.length > 1 && (
+                        <div className="absolute top-3 right-3">
+                          <span className="px-2 py-1 bg-charcoal/70 text-warm-white text-xs font-medium rounded">
+                            {project.images.length} photos
                           </span>
                         </div>
-                      </div>
-                      <div className="p-5">
-                        <div className="flex items-center gap-2 text-xs text-charcoal/60 mb-2">
-                          <span className="flex items-center gap-1">
-                            <MapPin size={12} />
-                            {project.location}
-                          </span>
-                          <span>•</span>
-                          <span>{project.year}</span>
-                        </div>
-                        <h3 className="text-lg font-semibold text-charcoal">
-                          {project.title}
-                        </h3>
-                      </div>
+                      )}
                     </div>
-                  )}
+                    <div className="p-5">
+                      <div className="flex items-center gap-2 text-xs text-charcoal/60 mb-2">
+                        <span className="flex items-center gap-1">
+                          <MapPin size={12} />
+                          {project.location}
+                        </span>
+                        <span>•</span>
+                        <span>{project.year}</span>
+                      </div>
+                      <h3 className="text-lg font-semibold text-charcoal group-hover:text-primary transition-colors">
+                        {project.title}
+                      </h3>
+                    </div>
+                  </div>
                 </AnimatedSection>
               ))}
             </motion.div>
@@ -255,6 +246,88 @@ const ProjectsPage = () => {
           </AnimatedSection>
         </div>
       </section>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-charcoal/95 flex flex-col items-center justify-center p-4"
+            onClick={closeLightbox}
+          >
+            {/* Header */}
+            <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
+              <div className="text-warm-white">
+                <h3 className="font-bold text-lg">{selectedProject.title}</h3>
+                <p className="text-warm-white/60 text-sm">{selectedProject.location}</p>
+              </div>
+              <button 
+                className="text-warm-white/70 hover:text-warm-white p-2"
+                onClick={closeLightbox}
+              >
+                <X size={28} />
+              </button>
+            </div>
+
+            {/* Navigation arrows - only show if multiple images */}
+            {selectedProject.images.length > 1 && (
+              <>
+                <button 
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-warm-white/70 hover:text-warm-white p-2 bg-charcoal/50 rounded-full"
+                  onClick={(e) => { e.stopPropagation(); prevImage(); }}
+                >
+                  <ChevronLeft size={32} />
+                </button>
+                
+                <button 
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-warm-white/70 hover:text-warm-white p-2 bg-charcoal/50 rounded-full"
+                  onClick={(e) => { e.stopPropagation(); nextImage(); }}
+                >
+                  <ChevronRight size={32} />
+                </button>
+              </>
+            )}
+            
+            {/* Main Image */}
+            <motion.img
+              key={currentImageIndex}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              src={selectedProject.images[currentImageIndex]}
+              alt={`${selectedProject.title} - Image ${currentImageIndex + 1}`}
+              className="max-w-full max-h-[70vh] object-contain rounded"
+              onClick={(e) => e.stopPropagation()}
+            />
+
+            {/* Thumbnails - only show if multiple images */}
+            {selectedProject.images.length > 1 && (
+              <div className="flex gap-2 mt-4 overflow-x-auto max-w-full px-4" onClick={(e) => e.stopPropagation()}>
+                {selectedProject.images.map((img, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentImageIndex(idx)}
+                    className={`flex-shrink-0 w-16 h-16 rounded overflow-hidden border-2 transition-all ${
+                      idx === currentImageIndex ? 'border-primary' : 'border-transparent opacity-60 hover:opacity-100'
+                    }`}
+                  >
+                    <img src={img} alt="" className="w-full h-full object-cover" />
+                  </button>
+                ))}
+              </div>
+            )}
+            
+            {/* Counter */}
+            {selectedProject.images.length > 1 && (
+              <div className="mt-4 text-warm-white/70 text-sm">
+                {currentImageIndex + 1} / {selectedProject.images.length}
+              </div>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };
