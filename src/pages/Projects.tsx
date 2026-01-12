@@ -6,6 +6,7 @@ import { ArrowRight, MapPin, Calendar, ExternalLink, FolderOpen } from 'lucide-r
 import { motion, AnimatePresence } from 'framer-motion';
 import terraceWaterproofing from '@/assets/project-terrace-waterproofing.png';
 import paintingWorks from '@/assets/project-painting-works.png';
+import nerulTemple from '@/assets/nerul-temple-5.png';
 import SEOHead from '@/components/seo/SEOHead';
 import { SITE_URL } from '@/lib/seo';
 
@@ -30,6 +31,16 @@ const projectsData = [
     year: '2024',
     description: 'Large-scale painting and coating works for infrastructure project.',
     image: paintingWorks,
+    featured: true,
+  },
+  {
+    id: 3,
+    title: 'Nerul Temple Project',
+    category: 'Painting',
+    location: 'Nerul, Maharashtra',
+    year: '2024',
+    description: 'Temple restoration and painting works including detailed statue painting and structural finishing.',
+    image: nerulTemple,
     featured: true,
   },
 ];
