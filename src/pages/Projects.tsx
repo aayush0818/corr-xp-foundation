@@ -22,6 +22,7 @@ const projectsData = [
     description: 'Complete waterproofing solution for building terrace with specialized coating application.',
     image: terraceWaterproofing,
     featured: true,
+    link: null,
   },
   {
     id: 2,
@@ -32,6 +33,7 @@ const projectsData = [
     description: 'Large-scale painting and coating works for infrastructure project.',
     image: paintingWorks,
     featured: true,
+    link: null,
   },
   {
     id: 3,
@@ -42,6 +44,7 @@ const projectsData = [
     description: 'Temple restoration and painting works including detailed statue painting and structural finishing.',
     image: nerulTemple,
     featured: true,
+    link: '/projects/nerul-temple',
   },
 ];
 
@@ -155,39 +158,72 @@ const ProjectsPage = () => {
             >
               {filteredProjects.map((project, index) => (
                 <AnimatedSection key={project.id} delay={index * 0.05}>
-                  <div className="bg-warm-white rounded overflow-hidden border border-border hover:shadow-custom-lg transition-all duration-300 group h-full">
-                    <div className="relative aspect-[4/3] overflow-hidden">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-dark/60 via-transparent to-transparent" />
-                      <div className="absolute top-3 left-3">
-                        <span className="px-3 py-1 bg-primary text-primary-foreground text-xs font-medium rounded">
-                          {project.category}
-                        </span>
-                      </div>
-                      <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="w-9 h-9 bg-warm-white rounded-full flex items-center justify-center">
-                          <ExternalLink size={16} className="text-charcoal" />
+                  {project.link ? (
+                    <Link to={project.link} className="block h-full">
+                      <div className="bg-warm-white rounded overflow-hidden border border-border hover:shadow-custom-lg transition-all duration-300 group h-full">
+                        <div className="relative aspect-[4/3] overflow-hidden">
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-slate-dark/60 via-transparent to-transparent" />
+                          <div className="absolute top-3 left-3">
+                            <span className="px-3 py-1 bg-primary text-primary-foreground text-xs font-medium rounded">
+                              {project.category}
+                            </span>
+                          </div>
+                          <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div className="w-9 h-9 bg-warm-white rounded-full flex items-center justify-center">
+                              <ExternalLink size={16} className="text-charcoal" />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="p-5">
+                          <div className="flex items-center gap-2 text-xs text-charcoal/60 mb-2">
+                            <span className="flex items-center gap-1">
+                              <MapPin size={12} />
+                              {project.location}
+                            </span>
+                            <span>•</span>
+                            <span>{project.year}</span>
+                          </div>
+                          <h3 className="text-lg font-semibold text-charcoal group-hover:text-primary transition-colors">
+                            {project.title}
+                          </h3>
                         </div>
                       </div>
-                    </div>
-                    <div className="p-5">
-                      <div className="flex items-center gap-2 text-xs text-charcoal/60 mb-2">
-                        <span className="flex items-center gap-1">
-                          <MapPin size={12} />
-                          {project.location}
-                        </span>
-                        <span>•</span>
-                        <span>{project.year}</span>
+                    </Link>
+                  ) : (
+                    <div className="bg-warm-white rounded overflow-hidden border border-border hover:shadow-custom-lg transition-all duration-300 group h-full">
+                      <div className="relative aspect-[4/3] overflow-hidden">
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-dark/60 via-transparent to-transparent" />
+                        <div className="absolute top-3 left-3">
+                          <span className="px-3 py-1 bg-primary text-primary-foreground text-xs font-medium rounded">
+                            {project.category}
+                          </span>
+                        </div>
                       </div>
-                      <h3 className="text-lg font-semibold text-charcoal group-hover:text-primary transition-colors">
-                        {project.title}
-                      </h3>
+                      <div className="p-5">
+                        <div className="flex items-center gap-2 text-xs text-charcoal/60 mb-2">
+                          <span className="flex items-center gap-1">
+                            <MapPin size={12} />
+                            {project.location}
+                          </span>
+                          <span>•</span>
+                          <span>{project.year}</span>
+                        </div>
+                        <h3 className="text-lg font-semibold text-charcoal">
+                          {project.title}
+                        </h3>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </AnimatedSection>
               ))}
             </motion.div>
