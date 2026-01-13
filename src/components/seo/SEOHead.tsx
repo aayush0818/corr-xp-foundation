@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { 
   SITE_URL, 
   SITE_NAME, 
+  SITE_PHONE,
   SOCIAL_IMAGE,
   organizationSchema,
   createBreadcrumbSchema,
@@ -16,6 +17,8 @@ interface SEOHeadProps {
   keywords?: string;
   schemas?: object[];
   breadcrumbs?: { name: string; url: string }[];
+  articlePublishedTime?: string;
+  articleModifiedTime?: string;
 }
 
 const SEOHead = ({
@@ -27,9 +30,14 @@ const SEOHead = ({
   keywords,
   schemas = [],
   breadcrumbs,
+  articlePublishedTime,
+  articleModifiedTime,
 }: SEOHeadProps) => {
   const fullUrl = `${SITE_URL}${path}`;
   const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
+  
+  // Ensure description is within 160 characters
+  const metaDescription = description.length > 160 ? description.substring(0, 157) + '...' : description;
   
   // Always include organization schema
   const allSchemas = [organizationSchema, ...schemas];
@@ -43,7 +51,7 @@ const SEOHead = ({
     <Helmet>
       {/* Primary Meta Tags */}
       <title>{fullTitle}</title>
-      <meta name="description" content={description} />
+      <meta name="description" content={metaDescription} />
       {keywords && <meta name="keywords" content={keywords} />}
       <link rel="canonical" href={fullUrl} />
       
@@ -58,8 +66,11 @@ const SEOHead = ({
       <meta property="og:type" content="website" />
       <meta property="og:url" content={fullUrl} />
       <meta property="og:title" content={fullTitle} />
-      <meta property="og:description" content={description} />
+      <meta property="og:description" content={metaDescription} />
       <meta property="og:image" content={image} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content={`${SITE_NAME} - Structural Repair & Retrofitting`} />
       <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:locale" content="en_IN" />
       
@@ -67,13 +78,34 @@ const SEOHead = ({
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:url" content={fullUrl} />
       <meta name="twitter:title" content={fullTitle} />
-      <meta name="twitter:description" content={description} />
+      <meta name="twitter:description" content={metaDescription} />
       <meta name="twitter:image" content={image} />
+      <meta name="twitter:image:alt" content={`${SITE_NAME} - Structural Repair & Retrofitting`} />
       
       {/* Additional SEO */}
       <meta name="author" content={SITE_NAME} />
+      <meta name="publisher" content={SITE_NAME} />
+      <meta name="copyright" content={SITE_NAME} />
       <meta name="geo.region" content="IN-MH" />
-      <meta name="geo.placename" content="Navi Mumbai" />
+      <meta name="geo.placename" content="Navi Mumbai, Maharashtra" />
+      <meta name="geo.position" content="19.0345;73.0735" />
+      <meta name="ICBM" content="19.0345, 73.0735" />
+      
+      {/* Business Contact */}
+      <meta name="contact" content={SITE_PHONE} />
+      <meta name="rating" content="general" />
+      <meta name="distribution" content="global" />
+      <meta name="revisit-after" content="7 days" />
+      
+      {/* Mobile & App */}
+      <meta name="format-detection" content="telephone=yes" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+      <meta name="apple-mobile-web-app-title" content="CORR XP" />
+      
+      {/* Article timestamps if provided */}
+      {articlePublishedTime && <meta property="article:published_time" content={articlePublishedTime} />}
+      {articleModifiedTime && <meta property="article:modified_time" content={articleModifiedTime} />}
       
       {/* JSON-LD Structured Data */}
       {allSchemas.map((schema, index) => (

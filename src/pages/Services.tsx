@@ -22,7 +22,7 @@ import workFiberWrapping from '@/assets/work-fiber-wrapping-1.jpg';
 import workColumnWrapping from '@/assets/work-column-wrapping-1.jpg';
 import workFloorCoating from '@/assets/work-floor-coating-1.jpg';
 import SEOHead from '@/components/seo/SEOHead';
-import { professionalServiceSchema, SITE_URL } from '@/lib/seo';
+import { professionalServiceSchema, faqSchema, SITE_URL } from '@/lib/seo';
 
 const services = [
   {
@@ -154,10 +154,10 @@ const ServicesPage = () => {
     <>
       <SEOHead
         title="Structural Repair, Protection & Retrofitting Services"
-        description="CORR XP India offers structural repair, concrete protection, corrosion control, steel coating, FRP strengthening, and structural retrofitting services with NACE & ASTM certified testing."
+        description="CORR XP India offers structural repair, concrete protection, corrosion control, steel coating, FRP strengthening, and structural retrofitting with NACE & ASTM certification."
         path="/services"
-        keywords="structural repair services, concrete repair, FRP strengthening, CFRP wrapping, GFRP, corrosion control, steel coating, NACE certified, ASTM testing, retrofitting India"
-        schemas={[professionalServiceSchema]}
+        keywords="structural repair services, concrete repair, FRP strengthening, CFRP wrapping, GFRP, corrosion control, steel coating, NACE certified, ASTM testing, retrofitting India, waterproofing terraces"
+        schemas={[professionalServiceSchema, faqSchema]}
         breadcrumbs={[
           { name: 'Home', url: SITE_URL },
           { name: 'Services', url: `${SITE_URL}/services` },
