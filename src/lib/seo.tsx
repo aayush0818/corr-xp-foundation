@@ -4,7 +4,8 @@ export const SITE_URL = 'https://corrxp.com';
 export const SITE_NAME = 'CORR XP India Services';
 export const SITE_PHONE = '+91-9988252531';
 export const SITE_EMAIL = 'corrxp@gmail.com';
-export const SOCIAL_IMAGE = 'https://storage.googleapis.com/gpt-engineer-file-uploads/Ah1bLRfI1KayT3tm7lsw0Bn73no1/social-images/social-1766299538701-corrxp.jpeg';
+export const SOCIAL_IMAGE = 'https://corrxp.com/og-image.png';
+export const SITE_TAGLINE = 'Corrosion Protection & Concrete Rehabilitation Experts';
 
 // Organization Schema - Use on all pages
 export const organizationSchema = {
@@ -198,4 +199,57 @@ export const websiteSchema = {
       url: `${SITE_URL}/favicon.png`,
     },
   },
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: `${SITE_URL}/services?q={search_term_string}`,
+    'query-input': 'required name=search_term_string',
+  },
+};
+
+// FAQ Schema - Use on Services or About pages
+export const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What services does CORR XP provide?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'CORR XP provides structural repair & rehabilitation, concrete repair & protection, corrosion control, steel coating & protection, fiber wrapping (FRP strengthening), structural retrofitting using CFRP/GFRP/AFRP systems, and waterproofing services for terraces and decks.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is FRP strengthening?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'FRP (Fiber Reinforced Polymer) strengthening is a method of reinforcing concrete structures using carbon fiber (CFRP), glass fiber (GFRP), or aramid fiber (AFRP) wrapping systems. It improves load-carrying capacity, stiffness, and ductility without adding significant dead load.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is CORR XP certified for corrosion testing?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes, CORR XP conducts comprehensive corrosion testing as per NACE International standards and ASTM testing standards including ASTM G102, G50, B117, G142, and G316.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Where is CORR XP located?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'CORR XP India is located in Kharghar, Navi Mumbai, Maharashtra (Sector 21). We provide pan-India structural repair and retrofitting services.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How can I get a consultation from CORR XP?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'You can contact CORR XP for a free consultation by calling +91 99 88 2525 31, emailing corrxp@gmail.com, or visiting our contact page to submit an inquiry form.',
+      },
+    },
+  ],
 };
