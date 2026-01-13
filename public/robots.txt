@@ -1,3 +1,10 @@
+# robots.txt for corrxp.com
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Specific bot permissions
 User-agent: Googlebot
 Allow: /
 
@@ -10,8 +17,8 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: *
-Allow: /
-
-# Sitemap
+# Sitemap location
 Sitemap: https://corrxp.com/sitemap.xml
+
+# Crawl delay (be nice to servers)
+Crawl-delay: 1
