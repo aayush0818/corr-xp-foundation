@@ -301,14 +301,14 @@ const ContactPage = () => {
                 {/* Map */}
                 <div className="aspect-[4/3] rounded overflow-hidden border border-border">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3774.2156903538244!2d72.82259!3d18.925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDU1JzMwLjAiTiA3MsKwNDknMjEuMyJF!5e0!3m2!1sen!2sin!4v1677157439054!5m2!1sen!2sin"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.5!2d73.0735!3d19.0345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c24cce39e5ab%3A0x8b6e4c6b3e8b6e4c!2sSector%2021%2C%20Kharghar%2C%20Navi%20Mumbai%2C%20Maharashtra%20410210!5e0!3m2!1sen!2sin!4v1704067200000!5m2!1sen!2sin"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title="CORR XP Office Location"
+                    title="CORR XP Office Location - Kharghar, Sector 21"
                   />
                 </div>
               </div>
