@@ -17,7 +17,7 @@ const FloatingContact = () => {
             className="flex flex-col gap-2 mb-2"
           >
             <a
-              href="https://wa.me/1234567890"
+              href="https://wa.me/919900387360"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 bg-[#25D366] text-white px-4 py-3 rounded-lg shadow-custom-lg hover:shadow-custom-xl transition-all hover:-translate-y-0.5"
@@ -26,14 +26,14 @@ const FloatingContact = () => {
               <span className="text-sm font-medium">WhatsApp</span>
             </a>
             <a
-              href="tel:+1234567890"
+              href="tel:+919988252531"
               className="flex items-center gap-3 bg-slate-dark text-warm-white px-4 py-3 rounded-lg shadow-custom-lg hover:shadow-custom-xl transition-all hover:-translate-y-0.5"
             >
               <Phone size={20} />
               <span className="text-sm font-medium">Call Us</span>
             </a>
             <a
-              href="mailto:info@corrxp.com"
+              href="mailto:corrxp@gmail.com"
               className="flex items-center gap-3 bg-primary text-primary-foreground px-4 py-3 rounded-lg shadow-custom-lg hover:shadow-custom-xl transition-all hover:-translate-y-0.5"
             >
               <Mail size={20} />
