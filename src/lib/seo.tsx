@@ -5,7 +5,22 @@ export const SITE_NAME = 'CORR XP India Services';
 export const SITE_PHONE = '+91-9988252531';
 export const SITE_EMAIL = 'corrxp@gmail.com';
 export const SOCIAL_IMAGE = 'https://corrxp.com/og-image.png';
-export const SITE_TAGLINE = 'Corrosion Protection & Concrete Rehabilitation Experts';
+export const SITE_TAGLINE = 'Structural Repair & Concrete Rehabilitation Experts in Mumbai, Navi Mumbai, Thane & Pune';
+
+// Location-specific keywords for SEO
+export const LOCATION_KEYWORDS = {
+  primary: ['Mumbai', 'Navi Mumbai', 'Kharghar', 'Thane', 'Pune'],
+  secondary: ['Panvel', 'Vashi', 'Nerul', 'Belapur', 'Airoli', 'Turbhe', 'Kalamboli'],
+  regions: ['Maharashtra', 'Western India', 'MMR Region'],
+};
+
+export const SERVICE_LOCATION_KEYWORDS = {
+  structuralRepair: 'structural repair Mumbai, structural repair Navi Mumbai, building repair Thane, construction repair Kharghar, structural contractor Pune',
+  waterproofing: 'waterproofing Mumbai, terrace waterproofing Navi Mumbai, building waterproofing Thane, waterproofing contractor Kharghar, waterproofing services Pune',
+  concreteRepair: 'concrete repair Mumbai, RCC repair Navi Mumbai, concrete rehabilitation Thane, concrete restoration Pune',
+  frpStrengthening: 'FRP strengthening Mumbai, CFRP wrapping Navi Mumbai, fiber wrapping Thane, structural retrofitting Pune',
+  corrosionControl: 'corrosion protection Mumbai, anti-corrosion coating Navi Mumbai, steel protection Thane, corrosion control Pune',
+};
 
 // Organization Schema - Use on all pages
 export const organizationSchema = {
@@ -14,22 +29,40 @@ export const organizationSchema = {
   name: SITE_NAME,
   url: SITE_URL,
   logo: `${SITE_URL}/favicon.png`,
-  description: 'Specialized structural repair, rehabilitation, protection, and retrofitting contractor providing advanced solutions for concrete and steel structures in India.',
+  description: 'Leading structural repair, rehabilitation, and retrofitting contractor serving Mumbai, Navi Mumbai, Thane, Kharghar, and Pune. Specialized in concrete repair, FRP strengthening, waterproofing, and corrosion protection.',
   contactPoint: {
     '@type': 'ContactPoint',
     telephone: SITE_PHONE,
     contactType: 'Customer Service',
-    areaServed: 'IN',
-    availableLanguage: ['English', 'Hindi'],
+    areaServed: ['Mumbai', 'Navi Mumbai', 'Thane', 'Pune', 'Maharashtra'],
+    availableLanguage: ['English', 'Hindi', 'Marathi'],
   },
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'A-1201, Chaturbhuj CHS, Shilp Chowk, Sec 21',
-    addressLocality: 'Kharghar',
+    addressLocality: 'Kharghar, Navi Mumbai',
     addressRegion: 'Maharashtra',
     postalCode: '410210',
     addressCountry: 'IN',
   },
+  areaServed: [
+    {
+      '@type': 'City',
+      name: 'Mumbai',
+    },
+    {
+      '@type': 'City', 
+      name: 'Navi Mumbai',
+    },
+    {
+      '@type': 'City',
+      name: 'Thane',
+    },
+    {
+      '@type': 'City',
+      name: 'Pune',
+    },
+  ],
   sameAs: [],
 };
 
@@ -44,6 +77,7 @@ export const localBusinessSchema = {
   telephone: SITE_PHONE,
   email: SITE_EMAIL,
   priceRange: '₹₹₹',
+  description: 'Premier structural repair and waterproofing contractor in Navi Mumbai. Serving Mumbai, Thane, Kharghar, Panvel, and Pune with FRP strengthening, concrete rehabilitation, and corrosion protection services.',
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'A-1201, Chaturbhuj CHS, Shilp Chowk, Sec 21',
@@ -65,9 +99,45 @@ export const localBusinessSchema = {
       closes: '18:00',
     },
   ],
-  areaServed: {
-    '@type': 'Country',
-    name: 'India',
+  areaServed: [
+    {
+      '@type': 'City',
+      name: 'Mumbai',
+      containedInPlace: { '@type': 'State', name: 'Maharashtra' },
+    },
+    {
+      '@type': 'City',
+      name: 'Navi Mumbai',
+      containedInPlace: { '@type': 'State', name: 'Maharashtra' },
+    },
+    {
+      '@type': 'City',
+      name: 'Thane',
+      containedInPlace: { '@type': 'State', name: 'Maharashtra' },
+    },
+    {
+      '@type': 'City',
+      name: 'Pune',
+      containedInPlace: { '@type': 'State', name: 'Maharashtra' },
+    },
+    {
+      '@type': 'Place',
+      name: 'Kharghar',
+    },
+    {
+      '@type': 'Place',
+      name: 'Panvel',
+    },
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Structural Repair Services in Mumbai Region',
+    itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Structural Repair Mumbai' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Waterproofing Navi Mumbai' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'FRP Strengthening Thane' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Concrete Repair Kharghar' } },
+    ],
   },
 };
 
