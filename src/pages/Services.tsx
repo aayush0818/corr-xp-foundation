@@ -153,10 +153,10 @@ const ServicesPage = () => {
   return (
     <>
       <SEOHead
-        title="Structural Repair & Waterproofing Services in Mumbai, Navi Mumbai, Thane"
-        description="Expert structural repair, FRP strengthening, waterproofing, concrete protection & retrofitting services in Mumbai, Navi Mumbai, Kharghar, Thane & Pune. NACE & ASTM certified."
+        title="Structural Repair, Protection & Retrofitting Services"
+        description="CORR XP India offers structural repair, concrete protection, corrosion control, steel coating, FRP strengthening, and structural retrofitting with NACE & ASTM certification."
         path="/services"
-        keywords="structural repair services Mumbai, concrete repair Navi Mumbai, FRP strengthening Thane, CFRP wrapping Kharghar, waterproofing services Pune, corrosion control Mumbai, steel coating Maharashtra, NACE certified testing, building repair contractor"
+        keywords="structural repair services, concrete repair, FRP strengthening, CFRP wrapping, GFRP, corrosion control, steel coating, NACE certified, ASTM testing, retrofitting India, waterproofing terraces"
         schemas={[professionalServiceSchema, faqSchema]}
         breadcrumbs={[
           { name: 'Home', url: SITE_URL },
