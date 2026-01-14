@@ -76,10 +76,10 @@ const ContactPage = () => {
   return (
     <>
       <SEOHead
-        title="Contact Us | Get in Touch With Our Experts"
-        description="Contact CORR XP for structural repair, FRP strengthening, and concrete rehabilitation services. Get a free consultation. Phone: +91 99 88 2525 31. Located in Kharghar, Navi Mumbai."
+        title="Contact Us | Structural Repair Experts in Kharghar, Navi Mumbai"
+        description="Contact CORR XP for structural repair, waterproofing & FRP strengthening in Mumbai, Navi Mumbai, Thane, Kharghar & Pune. Free consultation. Phone: +91 99 88 2525 31. Office: Kharghar, Sector 21."
         path="/contact"
-        keywords="contact structural repair company, concrete repair consultation, FRP strengthening quote, Navi Mumbai contractor, structural engineering services"
+        keywords="contact structural repair Mumbai, building repair consultation Navi Mumbai, waterproofing quote Kharghar, FRP strengthening contractor Thane, structural engineering services Pune, construction contractor contact"
         schemas={[localBusinessSchema]}
         breadcrumbs={[
           { name: 'Home', url: SITE_URL },

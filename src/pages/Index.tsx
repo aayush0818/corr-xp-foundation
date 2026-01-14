@@ -82,8 +82,8 @@ const HeroSection = () => <section className="relative min-h-screen flex items-c
         duration: 0.8,
         delay: 0.6
       }} className="text-lg md:text-xl text-warm-white/85 mb-10 max-w-2xl leading-relaxed">
-          Specialized structural repair, rehabilitation, protection, and retrofitting contractor. 
-          Advanced solutions for concrete and steel structures using proven repair systems.
+          Leading structural repair, rehabilitation & waterproofing contractor in Mumbai, Navi Mumbai, Thane & Pune. 
+          Advanced FRP strengthening solutions for concrete and steel structures.
         </motion.p>
         
         <motion.div initial={{
@@ -189,16 +189,14 @@ const AboutSnapshotSection = () => <section className="bg-warm-white section-pad
           
           <div className="space-y-4 text-charcoal/75 mb-8">
             <p className="text-lg leading-relaxed">
-              CORR XP India is a specialized structural repair, rehabilitation, protection, 
-              and retrofitting contractor, providing advanced solutions for concrete and 
-              steel structures.
+              CORR XP India is a premier structural repair, rehabilitation, and retrofitting contractor 
+              based in Kharghar, Navi Mumbai. We serve clients across Mumbai, Thane, Panvel, and Pune.
             </p>
             <p className="leading-relaxed">
-              We focus on improving strength, durability, and performance of existing assets 
-              using proven repair systems and modern strengthening technologies including 
-              Polymer Modified Mortar repairs, Epoxy Grouting, Micro concrete Jacketing, 
-              New Reinforcement Encasing, Retrofitting with Fiber wrapping etc. We also 
-              provide Waterproofing Services for Building Terraces/Decks etc.
+              We specialize in FRP strengthening (CFRP, GFRP, AFRP), concrete rehabilitation, 
+              waterproofing services, and corrosion protection. Our expert team uses proven repair systems 
+              including Polymer Modified Mortar, Epoxy Grouting, Micro concrete Jacketing, and advanced 
+              fiber wrapping technologies.
             </p>
           </div>
 
@@ -466,10 +464,10 @@ const CTASection = () => <section className="bg-primary section-padding-sm relat
 const Index = () => {
   return <>
       <SEOHead
-        title="CORR XP | Corrosion Protection & Concrete Rehabilitation Experts"
-        description="CORR XP delivers innovative corrosion protection and concrete rehabilitation solutions that extend the life of critical infrastructure. 9+ years of engineering excellence."
+        title="Structural Repair & Waterproofing Contractor in Mumbai, Navi Mumbai, Thane"
+        description="CORR XP - Leading structural repair, FRP strengthening, waterproofing & concrete rehabilitation contractor in Mumbai, Navi Mumbai, Kharghar, Thane & Pune. NACE certified."
         path=""
-        keywords="corrosion protection, concrete repair, structural rehabilitation, FRP strengthening, fiber wrapping, retrofitting, NACE certified, ASTM testing, India"
+        keywords="structural repair Mumbai, waterproofing Navi Mumbai, concrete repair Thane, FRP strengthening Kharghar, building repair Pune, construction contractor Mumbai, terrace waterproofing, corrosion protection, structural retrofitting Maharashtra"
         schemas={[websiteSchema, localBusinessSchema]}
       />
 

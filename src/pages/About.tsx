@@ -62,10 +62,10 @@ const AboutPage = () => {
   return (
     <>
       <SEOHead
-        title="About Us | Structural Repair & Retrofitting Specialists"
-        description="CORR XP India is a specialized structural repair, rehabilitation, protection, and retrofitting contractor with 9+ years of experience providing advanced solutions for concrete and steel structures."
+        title="About Us | Structural Repair Contractor in Navi Mumbai, Mumbai, Thane"
+        description="CORR XP - 9+ years experienced structural repair & retrofitting contractor based in Kharghar, Navi Mumbai. Serving Mumbai, Thane, Pune with concrete rehabilitation & waterproofing."
         path="/about"
-        keywords="structural repair company India, concrete rehabilitation, MSME registered contractor, GST registered, FRP strengthening, structural engineers"
+        keywords="structural repair company Navi Mumbai, concrete rehabilitation Mumbai, MSME registered contractor Kharghar, FRP strengthening Thane, building repair contractor Pune, structural engineers Maharashtra"
         schemas={[localBusinessSchema]}
         breadcrumbs={[
           { name: 'Home', url: SITE_URL },
