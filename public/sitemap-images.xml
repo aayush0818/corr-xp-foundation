@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Homepage with hero and client images -->
+  <url>
+    <loc>https://corrxp.com/</loc>
+    <image:image>
+      <image:loc>https://corrxp.com/og-image.png</image:loc>
+      <image:title>CORR XP India - Structural Repair &amp; Retrofitting Specialists</image:title>
+      <image:caption>Leading structural repair and waterproofing company in Mumbai, Navi Mumbai, and Kharghar</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Projects Page Images -->
+  <url>
+    <loc>https://corrxp.com/projects</loc>
+    <image:image>
+      <image:loc>https://corrxp.com/assets/mumbai-coastal-road.jpg</image:loc>
+      <image:title>Mumbai Coastal Road Project - Structural Repair Work</image:title>
+      <image:caption>Major infrastructure project - structural repair and waterproofing by CORR XP India</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://corrxp.com/assets/nerul-temple-1.png</image:loc>
+      <image:title>Nerul Temple Restoration Project</image:title>
+      <image:caption>Heritage temple restoration and waterproofing in Nerul, Navi Mumbai</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://corrxp.com/assets/nerul-temple-2.png</image:loc>
+      <image:title>Nerul Temple Structural Repair</image:title>
+      <image:caption>Concrete repair and restoration work at Nerul Temple</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://corrxp.com/assets/nerul-temple-3.png</image:loc>
+      <image:title>Temple Waterproofing Project Navi Mumbai</image:title>
+      <image:caption>Waterproofing and structural strengthening at Nerul Temple</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://corrxp.com/assets/nerul-temple-4.png</image:loc>
+      <image:title>Heritage Building Restoration Mumbai</image:title>
+      <image:caption>Professional restoration services for heritage structures</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://corrxp.com/assets/nerul-temple-5.png</image:loc>
+      <image:title>Structural Retrofitting Navi Mumbai</image:title>
+      <image:caption>Advanced retrofitting techniques for structural strengthening</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://corrxp.com/assets/nerul-temple-6.png</image:loc>
+      <image:title>Complete Temple Renovation Project</image:title>
+      <image:caption>Full structural renovation and waterproofing completed</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://corrxp.com/assets/project-bridge-1.jpg</image:loc>
+      <image:title>Bridge Structural Repair Mumbai</image:title>
+      <image:caption>Bridge repair and strengthening project in Mumbai region</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://corrxp.com/assets/project-coating-1.jpg</image:loc>
+      <image:title>Industrial Protective Coating</image:title>
+      <image:caption>Anti-corrosion coating and surface protection services</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://corrxp.com/assets/project-painting-works.png</image:loc>
+      <image:title>Industrial Painting Works</image:title>
+      <image:caption>Professional industrial painting and coating services</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://corrxp.com/assets/project-repairs-1.jpg</image:loc>
+      <image:title>Concrete Repair Work Mumbai</image:title>
+      <image:caption>Structural concrete repair and rehabilitation services</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://corrxp.com/assets/project-substructure-1.jpg</image:loc>
+      <image:title>Substructure Repair Project</image:title>
+      <image:caption>Foundation and substructure strengthening work</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://corrxp.com/assets/project-terrace-waterproofing.png</image:loc>
+      <image:title>Terrace Waterproofing Mumbai</image:title>
+      <image:caption>Professional terrace waterproofing services in Mumbai and Navi Mumbai</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://corrxp.com/assets/project-testing-1.jpg</image:loc>
+      <image:title>Structural Testing and Assessment</image:title>
+      <image:caption>NDT testing and structural health assessment services</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Services Page - Work Images -->
+  <url>
+    <loc>https://corrxp.com/services</loc>
+    <image:image>
+      <image:loc>https://corrxp.com/assets/work-beam-wrapping-1.jpg</image:loc>
+      <image:title>Beam Wrapping CFRP Strengthening</image:title>
+      <image:caption>Carbon fiber reinforced polymer beam wrapping for structural strengthening</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://corrxp.com/assets/work-beam-wrapping-2.jpg</image:loc>
+      <image:title>FRP Beam Strengthening Mumbai</image:title>
+      <image:caption>Fiber reinforced polymer wrapping for beam rehabilitation</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://corrxp.com/assets/work-column-wrapping-1.jpg</image:loc>
+      <image:title>Column Wrapping Retrofitting</image:title>
+      <image:caption>Column jacketing and FRP wrapping for seismic retrofitting</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://corrxp.com/assets/work-fiber-wrapping-1.jpg</image:loc>
+      <image:title>Fiber Wrapping Structural Repair</image:title>
+      <image:caption>Advanced fiber wrapping techniques for concrete repair</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://corrxp.com/assets/work-floor-coating-1.jpg</image:loc>
+      <image:title>Industrial Floor Coating</image:title>
+      <image:caption>Epoxy floor coating and industrial flooring solutions</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://corrxp.com/assets/work-scaffolding-1.jpg</image:loc>
+      <image:title>Scaffolding Setup for Repair Work</image:title>
+      <image:caption>Professional scaffolding for high-rise structural repair projects</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://corrxp.com/assets/work-surface-prep-1.jpg</image:loc>
+      <image:title>Surface Preparation for Coating</image:title>
+      <image:caption>Surface preparation and treatment before coating application</image:caption>
+    </image:image>
+  </url>
+
+  <!-- About Page -->
+  <url>
+    <loc>https://corrxp.com/about</loc>
+    <image:image>
+      <image:loc>https://corrxp.com/assets/team-photo-1.jpg</image:loc>
+      <image:title>CORR XP India Team</image:title>
+      <image:caption>Expert structural repair team serving Mumbai, Navi Mumbai, and Kharghar</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://corrxp.com/assets/industrial-plant.png</image:loc>
+      <image:title>Industrial Plant Maintenance</image:title>
+      <image:caption>Industrial structural maintenance and repair services</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Client Logos -->
+  <url>
+    <loc>https://corrxp.com/</loc>
+    <image:image>
+      <image:loc>https://corrxp.com/assets/clients/tata-steel.png</image:loc>
+      <image:title>Tata Steel - CORR XP Client</image:title>
+      <image:caption>Structural repair services for Tata Steel facilities</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://corrxp.com/assets/clients/ongc.png</image:loc>
+      <image:title>ONGC - CORR XP Client</image:title>
+      <image:caption>Industrial coating and repair for ONGC installations</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://corrxp.com/assets/clients/lt.png</image:loc>
+      <image:title>L&amp;T - CORR XP Client</image:title>
+      <image:caption>Partnering with L&amp;T for major infrastructure projects</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://corrxp.com/assets/clients/cipla.png</image:loc>
+      <image:title>Cipla - CORR XP Client</image:title>
+      <image:caption>Pharmaceutical facility structural maintenance</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://corrxp.com/assets/clients/nalco.png</image:loc>
+      <image:title>NALCO - CORR XP Client</image:title>
+      <image:caption>Industrial repair services for NALCO</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://corrxp.com/assets/clients/ambuja-cement.png</image:loc>
+      <image:title>Ambuja Cement - CORR XP Client</image:title>
+      <image:caption>Cement plant structural maintenance and repair</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://corrxp.com/assets/clients/acc.png</image:loc>
+      <image:title>ACC Cement - CORR XP Client</image:title>
+      <image:caption>Structural repair for ACC cement facilities</image:caption>
+    </image:image>
+  </url>
+
+</urlset>
