@@ -1,73 +1,129 @@
-# Welcome to your Lovable project
+# CORR XP
 
-## Project info
+A modern corporate website for CORR XP India, a specialized structural repair, rehabilitation, protection, and retrofitting contractor.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+The website was designed to communicate technical engineering services through a clean, modern interface while establishing credibility with industrial clients. It presents the company's expertise, certifications, services, and completed projects in an accessible and professional manner.
 
-## How can I edit this code?
+🌐 **Live Website**  
+https://corrxp.com
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+## Overview
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+CORR XP India specializes in extending the lifespan of concrete and steel structures through advanced repair and strengthening systems.
 
-Changes made via Lovable will be committed automatically to this repo.
+This project focuses on transforming a highly technical engineering business into a modern digital experience that builds trust with architects, consultants, industrial clients, and infrastructure companies.
 
-**Use your preferred IDE**
+The website balances technical information with strong visual hierarchy, responsive layouts, and conversion-focused design.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Features
 
-Follow these steps:
+- Modern responsive interface
+- Service-focused landing page
+- Interactive project showcase
+- Engineering services catalogue
+- Company certifications & credentials
+- Inquiry & consultation forms
+- Mobile-first responsive design
+- Smooth animations and transitions
+- SEO-friendly structure
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+---
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## Tech Stack
 
-# Step 3: Install the necessary dependencies.
-npm i
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Framer Motion
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+---
+
+## My Role
+
+I designed and developed the complete frontend experience, including:
+
+- Website architecture
+- UI/UX design
+- Responsive layouts
+- Component development
+- Animations & interactions
+- Performance optimization
+- Production deployment
+
+---
+
+## Design Goals
+
+The objective was to create a website that communicates technical expertise without feeling outdated or overly industrial.
+
+Key design principles included:
+
+- Clean visual hierarchy
+- Engineering-focused aesthetics
+- Professional typography
+- Trust-building content presentation
+- Fast loading performance
+- Responsive experience across devices
+
+---
+
+## Key Sections
+
+- Hero Section
+- Company Overview
+- Engineering Services
+- Vision & Mission
+- Certifications
+- Project Showcase
+- Contact & Inquiry
+- Newsletter
+
+---
+
+## Getting Started
+
+Clone the repository
+
+```bash
+git clone https://github.com/aayush0818/corr-xp-foundation.git
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Run locally
+
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Build for production
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+npm run build
+```
 
-**Use GitHub Codespaces**
+---
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Project Highlights
 
-## What technologies are used for this project?
+- Built for a real-world engineering company
+- Fully responsive across devices
+- Modular React component architecture
+- Optimized for performance
+- SEO-conscious page structure
+- Clean and maintainable codebase
 
-This project is built with:
+---
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## License
 
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+This repository is shared for portfolio purposes. All branding, content, and assets belong to their respective owners.
