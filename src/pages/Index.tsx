@@ -5,7 +5,7 @@ import AnimatedSection from '@/components/ui/AnimatedSection';
 import CountUpNumber from '@/components/ui/CountUpNumber';
 
 import FloatingContact from '@/components/ui/FloatingContact';
-import { ArrowRight, Shield, Wrench, Microscope, Building2, FileCheck, Users, Award, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Shield, Wrench, Microscope, Building, FileCheck, Users, Award, CircleCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
 import industrialPlant from '@/assets/industrial-plant.png';
 import workColumnWrapping from '@/assets/work-column-wrapping-1.jpg';
@@ -124,7 +124,7 @@ const StatsSection = () => {
     value: 25,
     suffix: '+',
     label: 'Projects Delivered',
-    icon: Building2
+    icon: Building
   }, {
     value: 6,
     suffix: '',
@@ -134,7 +134,7 @@ const StatsSection = () => {
     value: 98,
     suffix: '%',
     label: 'Client Retention',
-    icon: CheckCircle2
+    icon: CircleCheck
   }];
   return <section className="relative bg-slate py-16 overflow-hidden">
       {/* Background pattern */}
@@ -205,7 +205,7 @@ const AboutSnapshotSection = () => <section className="bg-warm-white section-pad
           {/* Key points */}
           <div className="grid grid-cols-2 gap-4 mb-8">
             {['MSME Registered', 'GST Registered', 'In-house Design', 'Pan-India Service'].map(item => <div key={item} className="flex items-center gap-2 text-charcoal/80">
-                <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
+                <CircleCheck className="w-5 h-5 text-primary flex-shrink-0" />
                 <span className="text-sm font-medium">{item}</span>
               </div>)}
           </div>
@@ -411,7 +411,7 @@ const VisionSection = () => {
             {[
               { icon: Shield, label: 'MSME Registered' },
               { icon: Award, label: 'NACE Certified' },
-              { icon: CheckCircle2, label: 'GST Registered' },
+              { icon: CircleCheck, label: 'GST Registered' },
               { icon: FileCheck, label: 'ASTM Compliant' },
             ].map((item) => (
               <div 

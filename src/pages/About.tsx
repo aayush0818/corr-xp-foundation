@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import CountUpNumber from '@/components/ui/CountUpNumber';
-import { ArrowRight, CheckCircle2, Shield, Wrench, Target, Building2, Layers, Construction } from 'lucide-react';
+import { ArrowRight, CircleCheck, Shield, Wrench, Target, Building, Layers, Construction } from 'lucide-react';
 import { motion } from 'framer-motion';
 import teamPhoto from '@/assets/team-photo-1.jpg';
 import industrialPlant from '@/assets/industrial-plant.png';
@@ -90,7 +90,7 @@ const AboutPage = () => {
               transition={{ duration: 0.8 }}
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-6">
-                <Building2 className="w-4 h-4 text-primary" />
+                <Building className="w-4 h-4 text-primary" />
                 <span className="text-primary text-sm font-medium">MSME & GST Registered</span>
               </div>
               
@@ -183,7 +183,7 @@ const AboutPage = () => {
               <div className="space-y-3">
                 {coreServices.map((service) => (
                   <div key={service} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <CircleCheck className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-charcoal/80">{service}</span>
                   </div>
                 ))}
@@ -238,7 +238,7 @@ const AboutPage = () => {
               <div className="space-y-4">
                 {industries.map((industry) => (
                   <div key={industry} className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
+                    <CircleCheck className="w-5 h-5 text-primary flex-shrink-0" />
                     <span className="text-warm-white/80">{industry}</span>
                   </div>
                 ))}
@@ -257,7 +257,7 @@ const AboutPage = () => {
                     </div>
                   </div>
                   <div className="flex items-center gap-3 p-4 bg-slate-light/30 rounded border border-warm-white/10">
-                    <Building2 className="w-6 h-6 text-primary" />
+                    <Building className="w-6 h-6 text-primary" />
                     <div>
                       <div className="text-warm-white font-semibold">GST Registered</div>
                       <div className="text-warm-white/60 text-sm">Proprietorship Firm</div>

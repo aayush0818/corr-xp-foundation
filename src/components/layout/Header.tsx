@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, Mail, Download, ChevronRight, Facebook, Twitter, Linkedin } from 'lucide-react';
+import { Menu, X, Phone, Mail, Download, ChevronRight } from 'lucide-react';
+import { Facebook, Twitter, Linkedin } from '@/components/ui/social-icons';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
 import logo from '@/assets/logo.png';

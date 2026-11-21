@@ -5,11 +5,11 @@ import {
   ArrowRight,
   Wrench,
   Shield,
-  Building2,
+  Building,
   Layers,
-  CheckCircle2,
+  CircleCheck,
   Factory,
-  Home,
+  House,
   Landmark,
   Zap,
   GraduationCap,
@@ -70,7 +70,7 @@ const services = [
     ],
   },
   {
-    icon: Building2,
+    icon: Building,
     title: 'Fiber Wrapping (FRP Strengthening)',
     description: 'Strengthening of RCC structures using Fiber Reinforced Polymer (FRP) systems to improve load-carrying capacity, stiffness, and ductility.',
     features: [
@@ -92,7 +92,7 @@ const services = [
     ],
   },
   {
-    icon: Home,
+    icon: House,
     title: 'Waterproofing Terraces',
     description: 'Comprehensive waterproofing solutions for building terraces, decks, and roof surfaces to prevent water ingress and structural damage.',
     features: [
@@ -134,7 +134,7 @@ const retrofittingBenefits = [
 ];
 
 const industries = [
-  { icon: Home, name: 'Residential & Commercial', description: 'Buildings' },
+  { icon: House, name: 'Residential & Commercial', description: 'Buildings' },
   { icon: Factory, name: 'Industrial Facilities', description: 'Manufacturing' },
   { icon: Construction, name: 'Infrastructure', description: 'Bridges & Roads' },
   { icon: Zap, name: 'Power Plants', description: 'Utilities' },
@@ -270,7 +270,7 @@ const ServicesPage = () => {
                   <ul className="space-y-2">
                     {service.features.map((feature) => (
                       <li key={feature} className="flex items-center gap-2 text-sm text-charcoal/80">
-                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
+                        <CircleCheck className="w-4 h-4 text-primary flex-shrink-0" />
                         {feature}
                       </li>
                     ))}
@@ -360,7 +360,7 @@ const ServicesPage = () => {
               <div className="space-y-4">
                 {retrofittingBenefits.map((benefit) => (
                   <div key={benefit} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <CircleCheck className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-charcoal/80">{benefit}</span>
                   </div>
                 ))}

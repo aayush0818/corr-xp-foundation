@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, ArrowRight, Linkedin, Twitter, Youtube } from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
+import { Linkedin, Twitter, Youtube } from '@/components/ui/social-icons';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import logo from '@/assets/logo.png';
