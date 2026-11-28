@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import AnimatedSection from "@/components/ui/AnimatedSection";
-import { Home } from "lucide-react";
+import { House } from "lucide-react";
 import SEOHead from "@/components/seo/SEOHead";
 
 const NotFound = () => {
@@ -23,7 +23,7 @@ const NotFound = () => {
           </p>
           <Button variant="hero" asChild>
             <Link to="/">
-              <Home size={18} />
+              <House size={18} />
               Back to Home
             </Link>
           </Button>

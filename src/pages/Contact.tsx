@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import AnimatedSection from '@/components/ui/AnimatedSection';
-import { Mail, Phone, MapPin, Clock, Send, Building2, CheckCircle2, MessageSquare } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Send, Building, CircleCheck, MessageSquare } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { motion } from 'framer-motion';
 import SEOHead from '@/components/seo/SEOHead';
@@ -276,7 +276,7 @@ const ContactPage = () => {
                   <div className="space-y-3">
                     {reasons.map((reason) => (
                       <div key={reason} className="flex items-center gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
+                        <CircleCheck className="w-4 h-4 text-primary flex-shrink-0" />
                         <span className="text-warm-white/80 text-sm">{reason}</span>
                       </div>
                     ))}
@@ -286,7 +286,7 @@ const ContactPage = () => {
                 {/* Office Info */}
                 <div className="bg-warm-white-dark p-6 rounded border border-border">
                   <div className="flex items-center gap-2 mb-4">
-                    <Building2 className="w-5 h-5 text-primary" />
+                    <Building className="w-5 h-5 text-primary" />
                     <h3 className="text-lg font-bold text-charcoal">Office</h3>
                   </div>
                   <address className="not-italic text-charcoal/70 text-sm space-y-1">
